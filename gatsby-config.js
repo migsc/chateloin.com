@@ -27,8 +27,13 @@ module.exports = {
         icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
       },
     },
+
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
+
+    // required to be able to change all .js files to .tsx files. It’s
+    // responsible for type checking and transpiling TypeScript code.
+    `gatsby-plugin-typescript`,
   ],
 }
