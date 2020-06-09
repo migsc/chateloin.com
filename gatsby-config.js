@@ -35,5 +35,12 @@ module.exports = {
     // required to be able to change all .js files to .tsx files. It’s
     // responsible for type checking and transpiling TypeScript code.
     `gatsby-plugin-typescript`,
+    {
+      resolve: `gatsby-plugin-typography`,
+      options: {
+        pathToConfigModule: `src/utils/typography`,
+      },
+    },
+    `gatsby-plugin-postcss`,
   ],
 }
