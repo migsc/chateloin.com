@@ -1,6 +1,7 @@
 import React from "react"
 import { Link } from "gatsby"
 import "../components/global.css"
+import "../components/home.css"
 import Image from "../components/image"
 import SEO from "../components/seo"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
@@ -17,7 +18,7 @@ interface MenuItemProps {
 
 const MenuItem: React.FC<MenuItemProps> = ({ icon = faCode }) => (
   <div className="bg-gray-200 h-16 w-16 rounded-full flex justify-center">
-    <FontAwesomeIcon className="self-center" icon={icon} />
+    <FontAwesomeIcon className="self-center" icon={icon} color="#000" />
   </div>
 )
 
@@ -25,7 +26,7 @@ const IndexPage: React.FC = () => (
   <>
     <SEO title="Miguel Chateloin" />
     <div className="container mx-auto">
-      <h1>Miguel Chateloin</h1>
+      <h1>miguel chateloin</h1>
       <p>
         A pretty cool guy with a cool guy tagline that goes here.{" "}
         <FontAwesomeIcon icon="code" />
