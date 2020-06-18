@@ -47,6 +47,7 @@ const SEO: React.FC<Props> = ({
       htmlAttributes={{
         lang,
       }}
+      bodyAttributes={{ class: "bg-green-500" }}
       title={title}
       titleTemplate={`%s | ${site.siteMetadata.title}`}
       meta={[

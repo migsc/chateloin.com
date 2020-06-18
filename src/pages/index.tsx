@@ -4,6 +4,7 @@ import "../components/global.css"
 import Image from "../components/image"
 import SEO from "../components/seo"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { Helmet } from "react-helmet"
 import {
   faCode,
   faMusic,
@@ -34,24 +35,28 @@ extra large
 
 */
 
-const IndexPage: React.FC = () => (
-  <div className="sm:br-green-500">
-    <SEO title="Miguel Chateloin" />
-    <div className="container mx-auto">
-      <h1>miguel chateloin</h1>
-      <p>
-        A pretty cool guy with a cool guy tagline that goes here.{" "}
-        <FontAwesomeIcon icon="code" />
-      </p>
-      <div className="flex flex-row justify-between">
-        <MenuItem icon={faCode} />
-        <MenuItem icon={faMusic} />
-        <MenuItem icon={faPaintBrush} />
-      </div>
-    </div>
+const IndexPage: React.FC = () => {
+  return (
+    // <Helmet>
+      <div>
+        <SEO title="Miguel Chateloin" />
+        <div className="container mx-auto">
+          <h1>miguel chateloin</h1>
+          <p>
+            A pretty cool guy with a cool guy tagline that goes here.{" "}
+            <FontAwesomeIcon icon="code" />
+          </p>
+          <div className="flex flex-row justify-between">
+            <MenuItem icon={faCode} />
+            <MenuItem icon={faMusic} />
+            <MenuItem icon={faPaintBrush} />
+          </div>
+        </div>
 
-    {/* <Link to="/page-2/">Go to page 2</Link> */}
-  </div>
-)
+        {/* <Link to="/page-2/">Go to page 2</Link> */}
+      </div>
+    // </Helmet>
+  )
+}
 
 export default IndexPage
