@@ -1,7 +1,6 @@
 import React from "react"
 import { Link } from "gatsby"
 import "../components/global.css"
-import "../components/home.css"
 import Image from "../components/image"
 import SEO from "../components/seo"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
@@ -22,8 +21,21 @@ const MenuItem: React.FC<MenuItemProps> = ({ icon = faCode }) => (
   </div>
 )
 
+/*
+
+small
+  640
+medium
+  768
+large
+  1024
+extra large
+  1280
+
+*/
+
 const IndexPage: React.FC = () => (
-  <>
+  <div className="sm:br-green-500">
     <SEO title="Miguel Chateloin" />
     <div className="container mx-auto">
       <h1>miguel chateloin</h1>
@@ -39,7 +51,7 @@ const IndexPage: React.FC = () => (
     </div>
 
     {/* <Link to="/page-2/">Go to page 2</Link> */}
-  </>
+  </div>
 )
 
 export default IndexPage

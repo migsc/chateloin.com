@@ -14,3 +14,7 @@ h3 {
 p {
   @apply text-base;
 }
+
+body {
+  background-color: #000;
+}
