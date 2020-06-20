@@ -13,11 +13,11 @@ import {
 } from "@fortawesome/free-solid-svg-icons"
 import Layout from "../components/layout"
 
-interface MenuItemProps {
+interface NavButtonProps {
   icon: IconDefinition
 }
 
-const MenuItem: React.FC<MenuItemProps> = ({ icon = faCode }) => (
+const NavButton: React.FC<NavButtonProps> = ({ icon = faCode }) => (
   <div className="border-white border-solid border-4 h-16 w-16 rounded-full flex justify-center">
     <FontAwesomeIcon className="self-center text-xl" icon={icon} color="#fff" />
   </div>
@@ -48,11 +48,12 @@ const HomePage: React.FC = () => {
         <p className="text-xl">
           A pretty cool guy with a cool guy tagline that goes here.{" "}
           <FontAwesomeIcon icon="code" />
+          <Link to="/code">Link to code</Link>
         </p>
         <div className="flex flex-row justify-around mt-32 mx-auto">
-          <MenuItem icon={faCode} />
-          <MenuItem icon={faMusic} />
-          <MenuItem icon={faPaintBrush} />
+          <NavButton icon={faCode} />
+          <NavButton icon={faMusic} />
+          <NavButton icon={faPaintBrush} />
         </div>
       </div>
 
