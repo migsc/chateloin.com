@@ -15,12 +15,22 @@ import Layout from "../components/layout"
 
 interface NavButtonProps {
   icon: IconDefinition
+  linkTo?: string
 }
 
-const NavButton: React.FC<NavButtonProps> = ({ icon = faCode }) => (
-  <div className="border-white border-solid border-4 h-16 w-16 rounded-full flex justify-center">
-    <FontAwesomeIcon className="self-center text-xl" icon={icon} color="#fff" />
-  </div>
+const NavButton: React.FC<NavButtonProps> = ({
+  icon = faCode,
+  linkTo = "#",
+}) => (
+  <Link to={linkTo}>
+    <div className="border-white border-solid border-4 h-16 w-16 rounded-full flex justify-center">
+      <FontAwesomeIcon
+        className="self-center text-xl"
+        icon={icon}
+        color="#fff"
+      />
+    </div>
+  </Link>
 )
 
 /*
@@ -48,10 +58,9 @@ const HomePage: React.FC = () => {
         <p className="text-xl">
           A pretty cool guy with a cool guy tagline that goes here.{" "}
           <FontAwesomeIcon icon="code" />
-          <Link to="/code">Link to code</Link>
         </p>
         <div className="flex flex-row justify-around mt-32 mx-auto">
-          <NavButton icon={faCode} />
+          <NavButton icon={faCode} linkTo="code" />
           <NavButton icon={faMusic} />
           <NavButton icon={faPaintBrush} />
         </div>
