@@ -18,8 +18,8 @@ interface MenuItemProps {
 }
 
 const MenuItem: React.FC<MenuItemProps> = ({ icon = faCode }) => (
-  <div className="bg-gray-200 h-16 w-16 rounded-full flex justify-center">
-    <FontAwesomeIcon className="self-center" icon={icon} color="#000" />
+  <div className="border-white border-solid border-4 h-16 w-16 rounded-full flex justify-center">
+    <FontAwesomeIcon className="self-center text-xl" icon={icon} color="#fff" />
   </div>
 )
 
@@ -40,14 +40,16 @@ const HomePage: React.FC = () => {
   return (
     <Layout>
       <SEO title="Miguel Chateloin" />
-      <Helmet bodyAttributes={{ class: "bg-green-500" }} />
-      <div className="container mx-auto">
-        <h1>miguel chateloin</h1>
-        <p>
+      <div className="max-w-xs py-12 md:py-48 md:max-w-sm lg:max-w-lg sm:mx-auto">
+        <h1 className="text-4xl mb-4">
+          miguel <br />
+          chateloin
+        </h1>
+        <p className="text-xl">
           A pretty cool guy with a cool guy tagline that goes here.{" "}
           <FontAwesomeIcon icon="code" />
         </p>
-        <div className="flex flex-row justify-between">
+        <div className="flex flex-row justify-around mt-32 mx-auto">
           <MenuItem icon={faCode} />
           <MenuItem icon={faMusic} />
           <MenuItem icon={faPaintBrush} />

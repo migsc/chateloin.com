@@ -15,5 +15,25 @@ p {
   @apply text-base;
 }
 
-body {
+html {
+  height: 100%;
 }
+
+body {
+  background-image: linear-gradient(to top, #37ecba 0%, #72afd3 100%);
+  min-height: 100%;
+}
+
+.text-2xs {
+  font-size: 0.5rem;
+}
+
+/* 
+  
+  Potential "Career/Code" page styling :
+    background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+
+  Make body have 100% of the browser height
+    https://stackoverflow.com/questions/6654958/make-body-have-100-of-the-browser-height
+
+    */

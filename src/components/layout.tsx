@@ -25,13 +25,9 @@ const Layout: React.FC<Props> = ({ children }) => {
 
   return (
     <>
-      <div
-        style={{
-          padding: `0 1.0875rem 1.45rem`,
-        }}
-      >
+      <div className="container mx-auto px-4 sm:px-6">
         <main>{children}</main>
-        <footer>
+        <footer className="text-2xs text-center absolute bottom-0 pb-4 left-0 right-0 sm:text-xs">
           © {new Date().getFullYear()}, Miguel Chateloin - All Rights Reserved
         </footer>
       </div>
