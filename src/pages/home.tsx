@@ -18,18 +18,17 @@ interface NavButtonProps {
   linkTo?: string
 }
 
+// When I want to build animated transitions, look into the "navigate" function
+// that you can pass into the Link component.
 const NavButton: React.FC<NavButtonProps> = ({
   icon = faCode,
-  linkTo = "#",
+  linkTo = "/#",
 }) => (
-  <Link to={linkTo}>
-    <div className="border-white border-solid border-4 h-16 w-16 rounded-full flex justify-center">
-      <FontAwesomeIcon
-        className="self-center text-xl"
-        icon={icon}
-        color="#fff"
-      />
-    </div>
+  <Link
+    to={linkTo}
+    className="nav-button border-white border-solid border-4 h-16 w-16 rounded-full flex justify-center"
+  >
+    <FontAwesomeIcon className="self-center text-xl" icon={icon} color="#fff" />
   </Link>
 )
 
@@ -56,7 +55,8 @@ const HomePage: React.FC = () => {
           chateloin
         </h1>
         <p className="text-xl">
-          A pretty cool guy with a cool guy tagline that goes here.{" "}
+          A pretty cool guy with a cool guy tagline that goes here. Maybe it can
+          go up to here? This is a nice length.
           <FontAwesomeIcon icon="code" />
         </p>
         <div className="flex flex-row justify-around mt-32 mx-auto">
