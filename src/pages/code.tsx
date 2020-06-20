@@ -18,7 +18,6 @@ const CodePage: React.FC = () => {
           A cool "Coding" page tagline would go here. This is like the
           "Objective" section of a resume.
           <FontAwesomeIcon icon="code" />
-          <Link to="/code">Link to code</Link>
         </p>
       </div>
     </Layout>
