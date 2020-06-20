@@ -36,3 +36,16 @@ const Layout: React.FC<Props> = ({ children }) => {
 }
 
 export default Layout
+
+/*
+
+small
+  640
+medium
+  768
+large
+  1024
+extra large
+  1280
+
+*/
