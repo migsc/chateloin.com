@@ -1,6 +1,5 @@
 import React from "react"
 import { Link } from "gatsby"
-import "../components/global.css"
 import SEO from "../components/seo"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import Layout from "../components/layout"

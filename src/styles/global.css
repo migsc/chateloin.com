@@ -28,15 +28,6 @@ body {
   font-size: 0.5rem;
 }
 
-.nav-button:hover {
-  background-color: white;
-  /* border-color: #72afd3; */
-}
-
-.nav-button:hover svg {
-  color: #764ba2;
-}
-
 /* 
   
   Potential "Career/Code" page styling :

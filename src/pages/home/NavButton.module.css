@@ -1,0 +1,24 @@
+.NavButton {
+  @apply border-white;
+  @apply border-solid;
+  @apply border-4;
+  @apply h-16;
+  @apply w-16;
+  @apply rounded-full;
+  @apply flex;
+  @apply justify-center;
+}
+
+.NavButton:hover {
+  background-color: white;
+  /* border-color: #72afd3; */
+}
+
+.icon {
+  @apply self-center;
+  @apply text-xl;
+}
+
+.NavButton:hover .icon {
+  color: #764ba2;
+}
