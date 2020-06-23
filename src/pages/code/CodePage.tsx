@@ -31,7 +31,9 @@ const CodePage: React.FC = () => {
         </div>
         <div className="mt-16 mb-16">
           <h2 className="mb-8">experience</h2>
-          <div>{JSON.stringify(experience)}</div>
+          <div>
+            <pre>{JSON.stringify(experience)}</pre>
+          </div>
         </div>
         <div className="mt-16 mb-16">
           <h2 className="mb-8">connect</h2>
