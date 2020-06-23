@@ -1,17 +1,19 @@
 import React from "react"
-import SEO from "../../components/seo"
+import Helmet from "react-helmet"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
   faCode,
   faMusic,
   faPaintBrush,
 } from "@fortawesome/free-solid-svg-icons"
-import Layout from "../../components/layout"
+import SEO from "../../components/seo"
+import Layout from "../../components/Layout"
 import NavButton from "./NavButton"
+import styles from "./HomePage.module.css"
 
 const HomePage: React.FC = () => {
   return (
-    <Layout>
+    <Layout bodyClassName={styles.background} scrollable={false}>
       <SEO title="Miguel Chateloin" />
       <div className="max-w-xs py-12 md:py-48 md:max-w-sm lg:max-w-lg sm:mx-auto">
         <h1 className="text-4xl mb-4">

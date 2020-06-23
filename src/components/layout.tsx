@@ -6,13 +6,30 @@
  */
 
 import React from "react"
+import { Helmet } from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
+import Footer from "./Footer"
+import styles from "./Layout.module.css"
 
 interface Props {
   children: JSX.Element[]
+  scrollable?: boolean
+  className?: string
+  bodyClassName?: string
 }
 
-const Layout: React.FC<Props> = ({ children }) => {
+const joinWithoutEmpty = (
+  ...args: (string | null | boolean | undefined)[]
+): string => {
+  return args?.filter(str => !!str)?.join(" ")
+}
+
+const Layout: React.FC<Props> = ({
+  children,
+  scrollable = true,
+  className,
+  bodyClassName: bodyClassNamePassed,
+}) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -25,11 +42,20 @@ const Layout: React.FC<Props> = ({ children }) => {
 
   return (
     <>
-      <div className="container mx-auto px-4 sm:px-6">
-        <main>{children}</main>
-        <footer className="text-2xs text-center absolute bottom-0 pb-4 left-0 right-0 sm:text-xs">
-          © {new Date().getFullYear()}, Miguel Chateloin - All Rights Reserved
-        </footer>
+      <Helmet
+        bodyAttributes={{
+          class: joinWithoutEmpty(
+            bodyClassNamePassed,
+            !scrollable && styles.noscroll
+          ),
+        }}
+        htmlAttributes={{
+          class: joinWithoutEmpty(!scrollable && styles.noscroll),
+        }}
+      />
+      <div className={className}>
+        <main className="container mx-auto px-4 sm:px-6">{children}</main>
+        <Footer absolutePosition={!scrollable} />
       </div>
     </>
   )

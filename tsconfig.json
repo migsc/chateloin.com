@@ -10,7 +10,8 @@
     "esModuleInterop": true,
     "noUnusedLocals": false,
     "allowJs": true,
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "resolveJsonModule": true
   },
   "exclude": ["node_modules", "public", ".cache"]
 }
