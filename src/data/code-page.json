@@ -26,11 +26,7 @@
       },
       {
         "name": "GatsbyJS",
-        "tags": ["frontend", "javascript", "framework"]
-      },
-      {
-        "name": "ExpressJS",
-        "tags": ["backend", "javascript", "framework"]
+        "tags": ["web", "frontend", "javascript", "framework"]
       },
       {
         "name": "ExpressJS",

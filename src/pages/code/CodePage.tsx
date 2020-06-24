@@ -1,14 +1,22 @@
-import React from "react"
-import { Link } from "gatsby"
+import React, { useState } from "react"
 import SEO from "../../components/seo"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import ScrollableLayout from "../components/ScrollableLayout"
 import pageData from "../../data/code-page.json"
 import Layout from "../../components/Layout"
+import SkillsSection from "./SkillsSection"
 import styles from "./CodePage.module.css"
 
 const CodePage: React.FC = () => {
   const { skills, experience, social } = pageData
+
+  const [searchText, setSearchText] = useState("")
+
+  const handleSearchChange = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {}
+
+  const handleHardSkillTagClick = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchText(e.target.value)
+  }
 
   return (
     <Layout className={styles.background}>
@@ -24,11 +32,13 @@ const CodePage: React.FC = () => {
             "Objective" section of a resume.
           </p>
         </div>
+        <SkillsSection
+          skills={skills}
+          searchText={searchText}
+          onSearchChange={handleSearchChange}
+          onHardSkillTagClick={handleHardSkillTagClick}
+        />
 
-        <div className="mt-16 mb-16">
-          <h2 className="mb-8">skills</h2>
-          <div>{JSON.stringify(skills)}</div>
-        </div>
         <div className="mt-16 mb-16">
           <h2 className="mb-8">experience</h2>
           <div>
