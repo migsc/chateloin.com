@@ -40,14 +40,22 @@ const SkillsSection: React.FC<Props> = ({
 
   const fuse = new Fuse(skills.hard, {
     includeScore: true,
-    // Search in `author` and in `tags` array
     keys: ["name", "tags"],
   })
+  const activeTagNames = Object.values(hardSkillTagsByName)
+    .filter(({ active }) => active)
+    .map(({ name }) => name)
 
-  const searchResults = fuse.search(searchText).map(({ item }) => item)
+  const searchResults = fuse
+    .search(searchText + " " + activeTagNames.join(" "))
+    .map(({ item }) => item)
 
-  const hardSkillsFiltered = searchText === "" ? skills.hard : searchResults
+  const hardSkillsFiltered =
+    searchText === "" && activeTagNames.length === 0
+      ? skills.hard
+      : searchResults
 
+  console.log("activeTagNames", activeTagNames)
   console.log("hardSkillTagsByName", hardSkillTagsByName)
   console.log("searchText", searchText)
   console.log("searchResults", searchResults)
