@@ -1,21 +1,73 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import SEO from "../../components/seo"
 import pageData from "../../data/code-page.json"
 import Layout from "../../components/Layout"
 import SkillsSection from "./SkillsSection"
+import { TagMap } from "../../types"
 import styles from "./CodePage.module.css"
+
+//skills.hard
+
+interface TagMapActions {
+  toggleActiveTag: (tagName: string) => void
+}
+
+type TagMapState = TagMap
+
+const useTagMap = (tags: string[]): [TagMapState, TagMapActions] => {
+  const [state, setState]: [
+    TagMapState,
+    React.Dispatch<React.SetStateAction<TagMap>>
+  ] = useState<TagMapState>({})
+
+  useEffect(() => {
+    setState(
+      tags.reduce(
+        (map: TagMap, tagName: string) => ({
+          ...map,
+          [tagName]: {
+            name: tagName,
+            active: false,
+            count: map[tagName] ? map[tagName].count + 1 : 0,
+          },
+        }),
+        {}
+      )
+    )
+  }, [])
+
+  const actions = {
+    toggleActiveTag: (tagName: string): void => {
+      setState({
+        ...state,
+        [tagName]: {
+          ...state[tagName],
+          active: !state[tagName].active,
+        },
+      })
+    },
+  }
+
+  return [state, actions]
+}
 
 const CodePage: React.FC = () => {
   const { skills, experience, social } = pageData
 
   const [searchText, setSearchText] = useState("")
+  const [tagsByName, { toggleActiveTag }] = useTagMap(
+    skills.hard.map(({ tags: tagNames }) => tagNames).flat()
+  )
 
-  const handleSearchChange = (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => {}
-
-  const handleHardSkillTagClick = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchText(e.target.value)
+  }
+
+  const handleHardSkillTagClick = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    tagName: string
+  ) => {
+    toggleActiveTag(tagName)
   }
 
   return (
@@ -34,6 +86,7 @@ const CodePage: React.FC = () => {
         </div>
         <SkillsSection
           skills={skills}
+          hardSkillTagsByName={tagsByName}
           searchText={searchText}
           onSearchChange={handleSearchChange}
           onHardSkillTagClick={handleHardSkillTagClick}

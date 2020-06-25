@@ -1,24 +1,8 @@
 import React, { useMemo } from "react"
 import Fuse from "fuse.js"
 import styles from "./SkillsSection.module.css"
-
-interface TagPillProps {
-  name: string
-  count: number
-  active?: boolean
-  onClick: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
-}
-
-const TagPill: React.FC<TagPillProps> = ({
-  name,
-  count,
-  active = false,
-  onClick,
-}) => (
-  <button onClick={onClick} className={[styles.tagPill].join("")}>
-    {name}({count})
-  </button>
-)
+import TagPill from "./TagPill"
+import { Tag, TagMap } from "../../types"
 
 const HardSkillSearchResult: React.FC<HardSkill> = ({ name, tags }) => (
   <p className="mb-4" key={name}>
@@ -36,44 +20,22 @@ interface Props {
     hard: HardSkill[]
     soft: any
   }
+  hardSkillTagsByName: TagMap
   searchText: string
   onSearchChange: (event: React.ChangeEvent<HTMLInputElement>) => void
   onHardSkillTagClick: (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    tagName: string
   ) => void
 }
 
 const SkillsSection: React.FC<Props> = ({
   skills,
   searchText,
+  hardSkillTagsByName,
   onSearchChange,
   onHardSkillTagClick,
 }) => {
-  const tagsForHardSkills = useMemo(() => {
-    return skills.hard.reduce(
-      (
-        tagMap: { [key: string]: { name: string; count: number } },
-        skillItem
-      ) => {
-        skillItem.tags.forEach(tag => {
-          if (tagMap[tag]) {
-            tagMap[tag] = {
-              name: tag,
-              count: tagMap[tag].count + 1,
-            }
-          } else {
-            tagMap[tag] = {
-              name: tag,
-              count: 1,
-            }
-          }
-        })
-        return tagMap
-      },
-      {}
-    )
-  }, [skills])
-
   // const activeTags = useState(() => {})
 
   const fuse = new Fuse(skills.hard, {
@@ -86,7 +48,7 @@ const SkillsSection: React.FC<Props> = ({
 
   const hardSkillsFiltered = searchText === "" ? skills.hard : searchResults
 
-  console.log("tagsForHardSkills", tagsForHardSkills)
+  console.log("hardSkillTagsByName", hardSkillTagsByName)
   console.log("searchText", searchText)
   console.log("searchResults", searchResults)
 
@@ -106,8 +68,8 @@ const SkillsSection: React.FC<Props> = ({
           </label>
         </div>
         <div>
-          {Object.values(tagsForHardSkills).map(({ name, count }) => (
-            <TagPill name={name} count={count} onClick={onHardSkillTagClick} />
+          {Object.values(hardSkillTagsByName).map((tag: Tag) => (
+            <TagPill {...tag} onClick={onHardSkillTagClick} />
           ))}
         </div>
         <div>
