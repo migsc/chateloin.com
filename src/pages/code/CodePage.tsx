@@ -28,7 +28,7 @@ const useTagMap = (tags: string[]): [TagMapState, TagMapActions] => {
           [tagName]: {
             name: tagName,
             active: false,
-            count: map[tagName] ? map[tagName].count + 1 : 0,
+            count: map[tagName] ? map[tagName].count + 1 : 1,
           },
         }),
         {}

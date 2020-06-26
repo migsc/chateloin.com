@@ -3,6 +3,7 @@ import Fuse from "fuse.js"
 import styles from "./SkillsSection.module.css"
 import TagPill from "./TagPill"
 import { Tag, TagMap } from "../../types"
+import { intersectionBy, intersection } from "../../utils"
 
 const HardSkillSearchResult: React.FC<HardSkill> = ({ name, tags }) => (
   <p className="mb-4" key={name}>
@@ -36,29 +37,43 @@ const SkillsSection: React.FC<Props> = ({
   onSearchChange,
   onHardSkillTagClick,
 }) => {
-  // const activeTags = useState(() => {})
-
-  const fuse = new Fuse(skills.hard, {
+  const nameSearcher = new Fuse(skills.hard, {
     includeScore: true,
-    keys: ["name", "tags"],
+    keys: ["name"],
   })
+
   const activeTagNames = Object.values(hardSkillTagsByName)
     .filter(({ active }) => active)
     .map(({ name }) => name)
 
-  const searchResults = fuse
-    .search(searchText + " " + activeTagNames.join(" "))
+  const searchResultsForName = nameSearcher
+    .search(searchText)
     .map(({ item }) => item)
+
+  const searchResultsForTag = skills.hard.filter(
+    skill =>
+      intersection(skill.tags, activeTagNames).length === activeTagNames.length
+  )
 
   const hardSkillsFiltered =
     searchText === "" && activeTagNames.length === 0
       ? skills.hard
-      : searchResults
+      : intersectionBy(
+          searchResultsForName.length > 0
+            ? searchResultsForName
+            : searchResultsForTag,
+          searchResultsForTag.length > 0
+            ? searchResultsForTag
+            : searchResultsForName,
+          "name"
+        )
 
   console.log("activeTagNames", activeTagNames)
   console.log("hardSkillTagsByName", hardSkillTagsByName)
   console.log("searchText", searchText)
-  console.log("searchResults", searchResults)
+  console.log("searchResultsForName", searchResultsForName)
+  console.log("searchResultsForTag", searchResultsForTag)
+  console.log("hardSkillsFiltered", hardSkillsFiltered)
 
   return (
     <div className="mt-16 mb-16">

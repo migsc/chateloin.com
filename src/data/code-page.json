@@ -103,6 +103,10 @@
       {
         "name": "PHP 5",
         "tags": ["language", "opensource", "php", "backend"]
+      },
+      {
+        "name": "MySQL",
+        "tags": ["database", "opensource", "backend"]
       }
     ],
 
