@@ -62,7 +62,7 @@ const SkillsSection: React.FC<Props> = ({
           searchResultsForName.length > 0
             ? searchResultsForName
             : searchResultsForTag,
-          searchResultsForTag.length > 0
+          searchResultsForTag.length > 0 || activeTagNames.length > 0
             ? searchResultsForTag
             : searchResultsForName,
           "name"
