@@ -5,7 +5,7 @@ import Layout from "../../components/Layout"
 import SkillsSection from "./SkillsSection"
 import { TagMap } from "../../types"
 import styles from "./CodePage.module.css"
-
+import { getTagMapFromTagNames } from "../../utils"
 //skills.hard
 
 interface TagMapActions {
@@ -21,19 +21,7 @@ const useTagMap = (tags: string[]): [TagMapState, TagMapActions] => {
   ] = useState<TagMapState>({})
 
   useEffect(() => {
-    setState(
-      tags.reduce(
-        (map: TagMap, tagName: string) => ({
-          ...map,
-          [tagName]: {
-            name: tagName,
-            active: false,
-            count: map[tagName] ? map[tagName].count + 1 : 1,
-          },
-        }),
-        {}
-      )
-    )
+    setState(getTagMapFromTagNames(tags))
   }, [])
 
   const actions = {

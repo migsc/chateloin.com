@@ -15,13 +15,19 @@ const TagPill: React.FC<TagPillProps> = ({
   count,
   active = false,
   onClick,
-}) => (
-  <button
-    onClick={e => onClick(e, name)}
-    className={`${styles.tagPill} ${active ? styles.tagPillActive : ""}`}
-  >
-    {name}({count})
-  </button>
-)
+}) => {
+  const disabled = count === 0
+  return (
+    <button
+      disabled={disabled}
+      onClick={e => onClick(e, name)}
+      className={`${styles.tagPill} ${active ? styles.tagPillActive : ""} ${
+        disabled ? styles.tagPillDisabled : ""
+      }`}
+    >
+      {name}({count})
+    </button>
+  )
+}
 
 export default TagPill

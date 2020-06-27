@@ -3,7 +3,12 @@ import Fuse from "fuse.js"
 import styles from "./SkillsSection.module.css"
 import TagPill from "./TagPill"
 import { Tag, TagMap } from "../../types"
-import { intersectionBy, intersection } from "../../utils"
+import {
+  intersectionBy,
+  intersection,
+  mapValues,
+  getTagMapFromTagNames,
+} from "../../utils"
 
 const HardSkillSearchResult: React.FC<HardSkill> = ({ name, tags }) => (
   <p className="mb-4" key={name}>
@@ -68,6 +73,20 @@ const SkillsSection: React.FC<Props> = ({
           "name"
         )
 
+  const hardSkillTagsByNameFromSearchResults = getTagMapFromTagNames(
+    hardSkillsFiltered.map(({ tags: tagNames }) => tagNames).flat()
+  )
+
+  const hardSkillTagsFiltered =
+    searchText === "" && activeTagNames.length === 0
+      ? Object.values(hardSkillTagsByName)
+      : Object.values(
+          mapValues(hardSkillTagsByName, (t: Tag) => ({
+            ...t,
+            count: hardSkillTagsByNameFromSearchResults[t.name]?.count ?? 0,
+          }))
+        )
+
   console.log("activeTagNames", activeTagNames)
   console.log("hardSkillTagsByName", hardSkillTagsByName)
   console.log("searchText", searchText)
@@ -91,7 +110,7 @@ const SkillsSection: React.FC<Props> = ({
           </label>
         </div>
         <div>
-          {Object.values(hardSkillTagsByName).map((tag: Tag) => (
+          {hardSkillTagsFiltered.map((tag: Tag) => (
             <TagPill {...tag} onClick={onHardSkillTagClick} />
           ))}
         </div>
