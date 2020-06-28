@@ -1,4 +1,4 @@
-import React, { useMemo } from "react"
+import React, { useState, useEffect } from "react"
 import Fuse from "fuse.js"
 import styles from "./SkillsSection.module.css"
 import TagPill from "./TagPill"
@@ -15,21 +15,26 @@ interface HardSkillSearchResults {
   skillsFiltered: HardSkill[]
 }
 
-const getHardSkillSearchResultsFiltered = (
+const useHardSkillSearchResultsFiltered = (
   skills: HardSkill[],
   tagsByName: TagMap,
   searchText: string
 ): HardSkillSearchResults => {
-  const nameSearcher = new Fuse(skills, {
-    includeScore: true,
-    keys: ["name"],
-  })
+  // TODO: You could save a few rerenders with if you use effect and state hooks
+  // to derive the HardSkillSearchResults returned from prop changes in
+  // searchText and tagsByName (i.e. active tag flags)
+  const [fuseNameSearcher] = useState(
+    new Fuse(skills, {
+      includeScore: true,
+      keys: ["name"],
+    })
+  )
 
   const activeTagNames = Object.values(tagsByName)
     .filter(({ active }) => active)
     .map(({ name }) => name)
 
-  const searchResultsForName = nameSearcher
+  const searchResultsForName = fuseNameSearcher
     .search(searchText)
     .map(({ item }) => item)
 
@@ -88,7 +93,7 @@ interface Props {
     soft: any
   }
   hardSkillTagsByName: TagMap
-  searchText: string
+  searchText?: string
   onSearchChange: (event: React.ChangeEvent<HTMLInputElement>) => void
   onHardSkillTagClick: (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
@@ -98,12 +103,12 @@ interface Props {
 
 const SkillsSection: React.FC<Props> = ({
   skills,
-  searchText,
+  searchText = "",
   hardSkillTagsByName,
   onSearchChange,
   onHardSkillTagClick,
 }) => {
-  const hardSkillSearchResults = getHardSkillSearchResultsFiltered(
+  const hardSkillSearchResults = useHardSkillSearchResultsFiltered(
     skills.hard,
     hardSkillTagsByName,
     searchText
@@ -126,12 +131,12 @@ const SkillsSection: React.FC<Props> = ({
         </div>
         <div>
           {hardSkillSearchResults.tagsFiltered.map((tag: Tag) => (
-            <TagPill {...tag} onClick={onHardSkillTagClick} />
+            <TagPill key={tag.name} {...tag} onClick={onHardSkillTagClick} />
           ))}
         </div>
         <div>
-          {hardSkillSearchResults.skillsFiltered.map(({ name, tags }) => (
-            <HardSkillSearchResult name={name} tags={tags} />
+          {hardSkillSearchResults.skillsFiltered.map((skill: HardSkill) => (
+            <HardSkillSearchResult key={skill.name} {...skill} />
           ))}
         </div>
       </div>
