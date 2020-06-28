@@ -5,3 +5,8 @@ export interface Tag {
 }
 
 export type TagMap = { [key: string]: Tag }
+
+export interface HardSkill {
+  name: string
+  tags: string[]
+}
