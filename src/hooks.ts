@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Fuse from "fuse.js"
 import { Tag, TagMap, HardSkill } from "./types"
 import {
@@ -8,16 +8,48 @@ import {
   getTagMapFromTagNames,
 } from "./utils"
 
+interface TagMapActions {
+  toggleActiveTag: (tagName: string) => void
+}
+
+type TagMapState = TagMap
+
+export const useTagMap = (tags: string[]): [TagMapState, TagMapActions] => {
+  const [state, setState]: [
+    TagMapState,
+    React.Dispatch<React.SetStateAction<TagMap>>
+  ] = useState<TagMapState>({})
+
+  useEffect(() => {
+    setState(getTagMapFromTagNames(tags))
+  }, [])
+
+  const actions = {
+    toggleActiveTag: (tagName: string): void => {
+      setState({
+        ...state,
+        [tagName]: {
+          ...state[tagName],
+          active: !state[tagName].active,
+        },
+      })
+    },
+  }
+
+  return [state, actions]
+}
+
 interface HardSkillSearchResults {
   tagsFiltered: Tag[]
   skillsFiltered: HardSkill[]
 }
 
+interface HardSkillSearchActions extends TagMapActions {}
+
 export const useHardSkillSearchResultsFiltered = (
   skills: HardSkill[],
-  tagsByName: TagMap,
   searchText: string
-): HardSkillSearchResults => {
+): [HardSkillSearchResults, HardSkillSearchActions] => {
   // TODO: You could save a few rerenders with if you use effect and state hooks
   // to derive the HardSkillSearchResults returned from prop changes in
   // searchText and tagsByName (i.e. active tag flags)
@@ -26,6 +58,9 @@ export const useHardSkillSearchResultsFiltered = (
       includeScore: true,
       keys: ["name"],
     })
+  )
+  const [tagsByName, { toggleActiveTag }] = useTagMap(
+    skills.map(({ tags: tagNames }) => tagNames).flat()
   )
 
   const activeTagNames = Object.values(tagsByName)
@@ -68,8 +103,15 @@ export const useHardSkillSearchResultsFiltered = (
           }))
         )
 
-  return {
-    skillsFiltered,
-    tagsFiltered,
+  const actions = {
+    toggleActiveTag,
   }
+
+  return [
+    {
+      skillsFiltered,
+      tagsFiltered,
+    },
+    actions,
+  ]
 }

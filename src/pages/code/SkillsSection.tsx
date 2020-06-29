@@ -6,12 +6,8 @@ import { useHardSkillSearchResultsFiltered } from "../../hooks"
 import HardSkillSearchResult from "./HardSkillSearchResult"
 
 interface Props {
-  skills: {
-    hard: HardSkill[]
-    soft: any
-  }
-  hardSkillTagsByName: TagMap
-  searchText?: string
+  hardSkillsFiltered: HardSkill[]
+  hardSkillTagsFiltered: Tag[]
   onSearchChange: (event: React.ChangeEvent<HTMLInputElement>) => void
   onHardSkillTagClick: (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
@@ -20,18 +16,11 @@ interface Props {
 }
 
 const SkillsSection: React.FC<Props> = ({
-  skills,
-  searchText = "",
-  hardSkillTagsByName,
+  hardSkillsFiltered,
+  hardSkillTagsFiltered,
   onSearchChange,
   onHardSkillTagClick,
 }) => {
-  const hardSkillSearchResults = useHardSkillSearchResultsFiltered(
-    skills.hard,
-    hardSkillTagsByName,
-    searchText
-  )
-
   return (
     <div className="mt-16 mb-16">
       <h2 className="mb-8">skills</h2>
@@ -48,12 +37,12 @@ const SkillsSection: React.FC<Props> = ({
           </label>
         </div>
         <div>
-          {hardSkillSearchResults.tagsFiltered.map((tag: Tag) => (
+          {hardSkillTagsFiltered.map((tag: Tag) => (
             <TagPill key={tag.name} {...tag} onClick={onHardSkillTagClick} />
           ))}
         </div>
         <div>
-          {hardSkillSearchResults.skillsFiltered.map((skill: HardSkill) => (
+          {hardSkillsFiltered.map((skill: HardSkill) => (
             <HardSkillSearchResult key={skill.name} {...skill} />
           ))}
         </div>

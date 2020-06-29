@@ -6,58 +6,47 @@ import SkillsSection from "./SkillsSection"
 import { TagMap } from "../../types"
 import styles from "./CodePage.module.css"
 import { getTagMapFromTagNames } from "../../utils"
+import { useHardSkillSearchResultsFiltered, useTagMap } from "../../hooks"
 //skills.hard
 
-interface TagMapActions {
-  toggleActiveTag: (tagName: string) => void
-}
-
-type TagMapState = TagMap
-
-const useTagMap = (tags: string[]): [TagMapState, TagMapActions] => {
-  const [state, setState]: [
-    TagMapState,
-    React.Dispatch<React.SetStateAction<TagMap>>
-  ] = useState<TagMapState>({})
-
-  useEffect(() => {
-    setState(getTagMapFromTagNames(tags))
-  }, [])
-
-  const actions = {
-    toggleActiveTag: (tagName: string): void => {
-      setState({
-        ...state,
-        [tagName]: {
-          ...state[tagName],
-          active: !state[tagName].active,
-        },
-      })
-    },
-  }
-
-  return [state, actions]
-}
-
-const CodePage: React.FC = () => {
+const useContainer = () => {
   const { skills, experience, social } = pageData
 
   const [searchText, setSearchText] = useState("")
-  const [tagsByName, { toggleActiveTag }] = useTagMap(
-    skills.hard.map(({ tags: tagNames }) => tagNames).flat()
-  )
 
-  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchText(e.target.value)
+  const [
+    hardSkillSearchResults,
+    { toggleActiveTag },
+  ] = useHardSkillSearchResultsFiltered(skills.hard, searchText)
+
+  const handlers = {
+    handleSearchChange: (e: React.ChangeEvent<HTMLInputElement>) => {
+      setSearchText(e.target.value)
+    },
+    handleHardSkillTagClick: (
+      e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+      tagName: string
+    ) => {
+      toggleActiveTag(tagName)
+    },
   }
 
-  const handleHardSkillTagClick = (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-    tagName: string
-  ) => {
-    toggleActiveTag(tagName)
+  return {
+    ...handlers,
+    hardSkillSearchResults,
+    experience,
+    social,
   }
+}
 
+const CodePage: React.FC = () => {
+  const {
+    handleSearchChange,
+    handleHardSkillTagClick,
+    hardSkillSearchResults,
+    experience,
+    social,
+  } = useContainer()
   return (
     <Layout className={styles.background}>
       <SEO title="miguel chateloin / code" />
@@ -73,9 +62,8 @@ const CodePage: React.FC = () => {
           </p>
         </div>
         <SkillsSection
-          skills={skills}
-          hardSkillTagsByName={tagsByName}
-          searchText={searchText}
+          hardSkillsFiltered={hardSkillSearchResults.skillsFiltered}
+          hardSkillTagsFiltered={hardSkillSearchResults.tagsFiltered}
           onSearchChange={handleSearchChange}
           onHardSkillTagClick={handleHardSkillTagClick}
         />
