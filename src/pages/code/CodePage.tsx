@@ -5,8 +5,7 @@ import Layout from "../../components/Layout"
 import SkillsSection from "./SkillsSection"
 import { TagMap } from "../../types"
 import styles from "./CodePage.module.css"
-import { getTagMapFromTagNames } from "../../utils"
-import { useHardSkillSearchResultsFiltered, useTagMap } from "../../hooks"
+import { useHardSkillSearchResultsFiltered } from "../../hooks"
 //skills.hard
 
 const useContainer = () => {

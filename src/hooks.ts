@@ -6,37 +6,40 @@ import {
   intersection,
   mapValues,
   getTagMapFromTagNames,
+  without,
 } from "./utils"
 
-interface TagMapActions {
-  toggleActiveTag: (tagName: string) => void
+interface TagWithSkills extends Tag {
+  skills: HardSkill[]
 }
 
-type TagMapState = TagMap
+interface TagToSkillsMap {
+  [key: string]: TagWithSkills
+}
 
-export const useTagMap = (tags: string[]): [TagMapState, TagMapActions] => {
-  const [state, setState]: [
-    TagMapState,
-    React.Dispatch<React.SetStateAction<TagMap>>
-  ] = useState<TagMapState>({})
+const getSkillsByTags = (skills: HardSkill[]): TagToSkillsMap => {
+  let map: TagToSkillsMap = {}
 
-  useEffect(() => {
-    setState(getTagMapFromTagNames(tags))
-  }, [])
+  skills.forEach(skill => {
+    skill.tags.forEach(tagName => {
+      if (!map[tagName]) {
+        map[tagName] = {
+          name: tagName,
+          active: false,
+          count: 1,
+          skills: [skill],
+        }
+      } else {
+        map[tagName] = {
+          ...map[tagName],
+          count: map[tagName].count + 1,
+          skills: [...map[tagName].skills, skill],
+        }
+      }
+    })
+  })
 
-  const actions = {
-    toggleActiveTag: (tagName: string): void => {
-      setState({
-        ...state,
-        [tagName]: {
-          ...state[tagName],
-          active: !state[tagName].active,
-        },
-      })
-    },
-  }
-
-  return [state, actions]
+  return map
 }
 
 interface HardSkillSearchResults {
@@ -44,7 +47,9 @@ interface HardSkillSearchResults {
   skillsFiltered: HardSkill[]
 }
 
-interface HardSkillSearchActions extends TagMapActions {}
+interface HardSkillSearchActions {
+  toggleActiveTag: (tagName: string) => void
+}
 
 export const useHardSkillSearchResultsFiltered = (
   skills: HardSkill[],
@@ -59,52 +64,68 @@ export const useHardSkillSearchResultsFiltered = (
       keys: ["name"],
     })
   )
-  const [tagsByName, { toggleActiveTag }] = useTagMap(
-    skills.map(({ tags: tagNames }) => tagNames).flat()
-  )
 
-  const activeTagNames = Object.values(tagsByName)
-    .filter(({ active }) => active)
-    .map(({ name }) => name)
+  const [tagMapWithSkills, setSkillsByTag] = useState<TagToSkillsMap>({})
+  const [activeTagNames, setActiveTagNames] = useState<string[]>([])
 
-  const searchResultsForName = fuseNameSearcher
-    .search(searchText)
-    .map(({ item }) => item)
-
-  const searchResultsForTag = skills.filter(
-    skill =>
-      intersection(skill.tags, activeTagNames).length === activeTagNames.length
-  )
-
-  const skillsFiltered =
-    searchText === "" && activeTagNames.length === 0
-      ? skills
-      : intersectionBy(
-          searchResultsForName.length > 0
-            ? searchResultsForName
-            : searchResultsForTag,
-          searchResultsForTag.length > 0 || activeTagNames.length > 0
-            ? searchResultsForTag
-            : searchResultsForName,
-          "name"
-        )
-
-  const hardSkillTagsByNameFromSearchResults = getTagMapFromTagNames(
-    skillsFiltered.map(({ tags: tagNames }) => tagNames).flat()
-  )
-
-  const tagsFiltered =
-    searchText === "" && activeTagNames.length === 0
-      ? Object.values(tagsByName)
-      : Object.values(
-          mapValues(tagsByName, (t: Tag) => ({
-            ...t,
-            count: hardSkillTagsByNameFromSearchResults[t.name]?.count ?? 0,
-          }))
-        )
+  useEffect(() => {
+    setSkillsByTag(getSkillsByTags(skills))
+  }, [skills])
 
   const actions = {
-    toggleActiveTag,
+    toggleActiveTag: (tagName: string): void => {
+      setSkillsByTag({
+        ...tagMapWithSkills,
+        [tagName]: {
+          ...tagMapWithSkills[tagName],
+          active: !tagMapWithSkills[tagName].active,
+        },
+      })
+      setActiveTagNames(
+        !tagMapWithSkills[tagName].active
+          ? [...activeTagNames, tagName]
+          : without(activeTagNames, tagName)
+      )
+    },
+  }
+
+  const skillsFiltered = intersectionBy(
+    searchText === ""
+      ? skills
+      : fuseNameSearcher.search(searchText).map(({ item }) => item),
+    ...activeTagNames.map(tagName => tagMapWithSkills[tagName].skills),
+    "name"
+  )
+
+  let tagsFiltered
+
+  if (searchText === "" && activeTagNames.length === 0) {
+    tagsFiltered = Object.values(tagMapWithSkills)
+  } else {
+    const tagCountsFromSkillsFiltered = skillsFiltered.reduce(
+      (map: { [key: string]: number }, skill: HardSkill) => {
+        let mapIncremented = map
+
+        skill.tags.forEach(tagName => {
+          mapIncremented = {
+            ...mapIncremented,
+            [tagName]: mapIncremented[tagName]
+              ? mapIncremented[tagName] + 1
+              : 1,
+          }
+        })
+
+        return mapIncremented
+      },
+      {}
+    )
+
+    tagsFiltered = Object.values(
+      mapValues(tagMapWithSkills, (t: Tag) => ({
+        ...t,
+        count: tagCountsFromSkillsFiltered[t.name] ?? 0,
+      }))
+    )
   }
 
   return [

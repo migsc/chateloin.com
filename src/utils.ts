@@ -4,6 +4,7 @@ export {
   intersection, //https://lodash.com/docs/4.17.15#intersection
   intersectionBy, //https://lodash.com/docs/4.17.15#intersectionBy
   mapValues, //https://lodash.com/docs/4.17.15#intersectionBy
+  without, //https://lodash.com/docs/4.17.15#without
 } from "lodash"
 
 export const getTagMapFromTagNames = (tags: string[]): TagMap =>
