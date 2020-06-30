@@ -16,6 +16,7 @@ const useContainer = () => {
   } = jsonData
 
   const [searchText, setSearchText] = useState("")
+  const [activeSkillTab, setActiveSkillTab] = useState("hard")
 
   const [
     hardSkillSearchResults,
@@ -32,11 +33,19 @@ const useContainer = () => {
     ) => {
       toggleActiveTag(tagName)
     },
+    handleSkillTabClick: (
+      e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+      tab: string
+    ) => {
+      setActiveSkillTab(tab)
+    },
   }
 
   return {
     ...handlers,
     hardSkillSearchResults,
+    softSkills: skills.soft,
+    activeSkillTab,
     experience,
     social,
   }
@@ -46,7 +55,10 @@ const CodePage: React.FC = () => {
   const {
     handleSearchChange,
     handleHardSkillTagClick,
+    handleSkillTabClick,
     hardSkillSearchResults,
+    softSkills,
+    activeSkillTab,
     experience,
     social,
   } = useContainer()
@@ -65,8 +77,11 @@ const CodePage: React.FC = () => {
           </p>
         </div>
         <SkillsSection
+          activeSkillTab={activeSkillTab}
           hardSkillsFiltered={hardSkillSearchResults.skillsFiltered}
           hardSkillTagsFiltered={hardSkillSearchResults.tagsFiltered}
+          softSkills={softSkills}
+          onTabClick={handleSkillTabClick}
           onSearchChange={handleSearchChange}
           onHardSkillTagClick={handleHardSkillTagClick}
         />

@@ -10,3 +10,8 @@ export interface HardSkill {
   name: string
   tags: string[]
 }
+
+export interface SoftSkill {
+  name: string
+  description: string
+}
