@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import SEO from "../../components/seo"
-import pageData from "../../data/code-page.json"
+import jsonData from "../../data.json"
 import Layout from "../../components/Layout"
 import SkillsSection from "./SkillsSection"
 import { TagMap } from "../../types"
@@ -9,7 +9,11 @@ import { useHardSkillSearchResultsFiltered } from "../../hooks"
 //skills.hard
 
 const useContainer = () => {
-  const { skills, experience, social } = pageData
+  const {
+    pages: {
+      code: { skills, experience, social },
+    },
+  } = jsonData
 
   const [searchText, setSearchText] = useState("")
 
