@@ -6,6 +6,7 @@ import SkillsSection from "./SkillsSection"
 import { TagMap } from "../../types"
 import styles from "./CodePage.module.css"
 import { useHardSkillSearchResultsFiltered } from "../../hooks"
+import HomePage from "../home"
 //skills.hard
 
 const useContainer = () => {
@@ -101,4 +102,8 @@ const CodePage: React.FC = () => {
   )
 }
 
-export default CodePage
+export default () => {
+  if (typeof window !== "undefined") {
+    window.location.assign("/")
+  }
+}
