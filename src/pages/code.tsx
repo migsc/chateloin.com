@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react"
-import SEO from "../../components/seo"
-import jsonData from "../../data.json"
-import Layout from "../../components/Layout"
-import SkillsSection from "./SkillsSection"
-import { TagMap } from "../../types"
-import styles from "./CodePage.module.css"
-import { useHardSkillSearchResultsFiltered } from "../../hooks"
-import HomePage from "../home"
-//skills.hard
+import SEO from "../components/seo"
+import jsonData from "../data.json"
+import Layout from "../components/Layout"
+import SkillsSection from "../components/code/SkillsSection"
+import { TagMap } from "../types"
+import styles from "./code.module.css"
+import { useHardSkillSearchResultsFiltered } from "../hooks"
+import HomePage from "./home"
 
 const useContainer = () => {
   const {

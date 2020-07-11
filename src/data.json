@@ -139,9 +139,50 @@
         ]
       },
       "experience": {
-        "jobs": null,
-        "projects": null,
-        "education": null
+        "jobs": [
+          {
+            "period": { "from": "2018-06" },
+            "place": "Cenergistic",
+            "name": "FRONT-END SOFTWARE ENGINEER",
+            "skills": [
+              "Javascript / ES6",
+              "TypeScript",
+              "React",
+              "React-Native",
+              "Node.js",
+              "Elasticsearch"
+            ],
+            "accomplishments": [
+              "Developed a cross-platform app to provide an analytics dashboard and internal project management features primarily for our clients to manage their building utility usage.",
+              "Wrote specs and facilitated UX discussions for several features and projects including a help website that integrated with a custom-built CMS and tutorials on all platforms.",
+              "First-hire under management, providing onboarding and documentation for many new-hires."
+            ]
+          },
+          {
+            "period": { "from": "2016-06", "to": "2018-05" },
+            "place": "Tesser Health",
+            "name": "FULL-STACK SOFTWARE ENGINEER",
+            "skills": [
+              "Javascript / ES6",
+              "TypeScript",
+              "Angular",
+              "HTML 5 / CSS 3",
+              "C#",
+              "ASP.NET MVC 5",
+              "SQL Server",
+              "Azure",
+              "Bootstrap",
+              "Webpack",
+              "Zeit"
+            ],
+            "accomplishments": [
+              "Worked across the stack with a small dev team on tight deadlines, following Agile methods to build a frontend with Angular and a backend REST API with ASP.NET, designing relational schemas, and integrating government-run medical databases.",
+              "Led UX revamp to improve registration and reduce data entry across workflow, which resulted in a 28-percent signup increase for our prescriptions savings tool."
+            ]
+          }
+        ],
+        "projects": [{}],
+        "education": [{}, {}]
       },
       "social": {}
     }

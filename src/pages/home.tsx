@@ -6,10 +6,10 @@ import {
   faMusic,
   faPaintBrush,
 } from "@fortawesome/free-solid-svg-icons"
-import SEO from "../../components/seo"
-import Layout from "../../components/Layout"
-import NavButton from "./NavButton"
-import styles from "./HomePage.module.css"
+import SEO from "../components/seo"
+import Layout from "../components/Layout"
+import NavButton from "../components/home/NavButton"
+import styles from "./home.module.css"
 
 interface HomePageState {
   underConstruction: boolean
