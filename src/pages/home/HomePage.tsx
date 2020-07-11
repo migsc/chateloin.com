@@ -19,12 +19,16 @@ interface HomePageActions {}
 
 const useContainer = (): [HomePageState, HomePageActions] => {
   const {
-    site: { underConstruction },
+    site: {
+      siteMetadata: { underConstruction },
+    },
   } = useStaticQuery(
     graphql`
       query {
         site {
-          underConstruction
+          siteMetadata {
+            underConstruction
+          }
         }
       }
     `
