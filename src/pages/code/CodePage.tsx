@@ -102,8 +102,6 @@ const CodePage: React.FC = () => {
   )
 }
 
-export default () => {
-  if (typeof window !== "undefined") {
-    window.location.assign("/")
-  }
-}
+
+// export default CodePage;
+export default HomePage;
