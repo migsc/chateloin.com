@@ -3,6 +3,7 @@ import SEO from "../components/seo"
 import jsonData from "../data.json"
 import Layout from "../components/Layout"
 import SkillsSection from "../components/code/SkillsSection"
+import { ExperienceSection } from "../components/code"
 import { TagMap } from "../types"
 import styles from "./code.module.css"
 import { useHardSkillSearchResultsFiltered } from "../hooks"
@@ -85,13 +86,7 @@ const CodePage: React.FC = () => {
           onSearchChange={handleSearchChange}
           onHardSkillTagClick={handleHardSkillTagClick}
         />
-
-        <div className="mt-16 mb-16">
-          <h2 className="mb-8">experience</h2>
-          <div>
-            <pre>{JSON.stringify(experience)}</pre>
-          </div>
-        </div>
+        <ExperienceSection {...experience} />
         <div className="mt-16 mb-16">
           <h2 className="mb-8">connect</h2>
           <div>{JSON.stringify(social)}</div>

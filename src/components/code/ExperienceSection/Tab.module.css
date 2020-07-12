@@ -1,0 +1,6 @@
+.tabActive {
+  @apply border-white;
+  @apply border-solid;
+  @apply font-bold;
+  border-bottom-width: 2px;
+}
