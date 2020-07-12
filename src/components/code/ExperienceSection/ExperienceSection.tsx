@@ -10,8 +10,8 @@ import {
 import Tab from "./Tab"
 
 enum TabName {
-  projects = "projects",
   jobs = "jobs",
+  projects = "projects",
   education = "education",
 }
 
@@ -35,8 +35,8 @@ const useHook = (): [State, Actions] => {
 }
 
 interface Props {
-  projects: ProjectExperienceItem[]
   jobs: JobExperienceItem[]
+  projects: ProjectExperienceItem[]
   education: EducationExperienceItem[]
 }
 
@@ -44,7 +44,6 @@ const ExperienceSection: React.FC<Props> = ({ projects, jobs, education }) => {
   const [{ activeTab }, { handleTabClicked }] = useHook()
   return (
     <div className="mt-16 mb-16">
-      <h2 className="mb-8">experience</h2>
       <div className="mb-8 flex justify-between">
         <div>
           <h2>experience</h2>
@@ -62,6 +61,24 @@ const ExperienceSection: React.FC<Props> = ({ projects, jobs, education }) => {
             </>
           ))}
         </div>
+      </div>
+      <div className="flex flex-row">
+        <div className="bg-red-600 flex-1"></div>
+        <div className="bg-blue-600" style={{ flex: 6 }}>
+          {activeTab === TabName.jobs &&
+            jobs.map(({ period, place, name, skills, accomplishments }) => (
+              <div>{name}</div>
+            ))}
+          {activeTab === TabName.projects &&
+            projects.map(({ period, name, skills, description, url }) => (
+              <div>{name}</div>
+            ))}
+          {activeTab === TabName.education &&
+            education.map(({ period, name, place, accomplishments }) => (
+              <div>{name}</div>
+            ))}
+        </div>
+        <div className="bg-red-600 flex-1"></div>
       </div>
     </div>
   )

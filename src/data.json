@@ -142,7 +142,7 @@
         "projects": [
           {
             "period": { "from": "2018-12", "to": "2019-07" },
-            "name": "thrive",
+            "name": "THRIVE",
             "skills": ["Javascript / ES6", "React", "Phaser Game Engine"],
             "description": "An attempt at a real-time strategy videogame. Started during Github Game Jam 2018.",
             "url": "https://github.com/migsc/thrive"
