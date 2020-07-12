@@ -139,6 +139,7 @@
         ]
       },
       "experience": {
+        "projects": [{}],
         "jobs": [
           {
             "period": { "from": "2018-06" },
@@ -170,7 +171,7 @@
               "C#",
               "ASP.NET MVC 5",
               "SQL Server",
-              "Azure",
+              "Microsoft Azure",
               "Bootstrap",
               "Webpack",
               "Zeit"
@@ -179,10 +180,93 @@
               "Worked across the stack with a small dev team on tight deadlines, following Agile methods to build a frontend with Angular and a backend REST API with ASP.NET, designing relational schemas, and integrating government-run medical databases.",
               "Led UX revamp to improve registration and reduce data entry across workflow, which resulted in a 28-percent signup increase for our prescriptions savings tool."
             ]
+          },
+          {
+            "period": { "from": "2015-08", "to": "2016-07" },
+            "place": "LifeWallet",
+            "name": "FULL-STACK SOFTWARE ENGINEER",
+            "skills": [
+              "Javascript / ES6",
+              "Ember",
+              "SASS",
+              "Node.js",
+              "Jasmine",
+              "Selenium",
+              "Cassandra",
+              "Sketch",
+              "git"
+            ],
+            "accomplishments": [
+              "Built a custom ember-runtime based JavaScript framework which we used to implement small single page applications that provided insurance and health-assesement to our clients’ employees.",
+              "Led development of a blackbox test suite using Jasmine and Selenium to confirm core feature stability of a legacy application."
+            ]
+          },
+          {
+            "period": { "from": "2014-03", "to": "2015-08" },
+            "place": "Ultimate Software",
+            "name": "FULL-STACK SOFTWARE ENGINEER",
+            "skills": [
+              "Javascript / ES6",
+              "AngularJS",
+              "jQuery",
+              "Bootstrap",
+              "C#",
+              "ASP.NET MVC 5",
+              "IIS",
+              "SQL Server",
+              "MongoDB",
+              "SVN",
+              "TFS"
+            ],
+            "accomplishments": [
+              "Built a custom ember-runtime based JavaScript framework which we used to implement small single page applications that provided insurance and health-assesement to our clients’ employees.",
+              "Led development of a blackbox test suite using Jasmine and Selenium to confirm core feature stability of a legacy application."
+            ]
+          },
+          {
+            "period": { "from": "2013-04", "to": "2014-03" },
+            "place": "Picture Marketing",
+            "name": "JUNIOR SOFTWARE ENGINEER",
+            "skills": [
+              "Javascript / ES6",
+              "AngularJS",
+              "jQuery",
+              "Bootstrap",
+              "PHP",
+              "Zend 2",
+              "Apache",
+              "Java",
+              "Spring",
+              "MySQL",
+              "AWS",
+              "git"
+            ],
+            "accomplishments": [
+              "Built a custom ember-runtime based JavaScript framework which we used to implement small single page applications that provided insurance and health-assesement to our clients’ employees.",
+              "Led development of a blackbox test suite using Jasmine and Selenium to confirm core feature stability of a legacy application."
+            ]
           }
         ],
-        "projects": [{}],
-        "education": [{}, {}]
+        "education": [
+          {
+            "name": "B.S. COMPUTER SCIENCE",
+            "period": { "from": "2012-08", "to": "2016-12" },
+            "place": "Florida International University",
+            "accomplishments": [
+              "Tutored students in Programming 1-2 courses",
+              "Senior project was an Android app built with React-Native that commanded a drone to take images of crops and reported yields using computer vision algorithms."
+            ]
+          },
+          {
+            "name": "A.A. MASS COMMUNICATIONS",
+            "period": { "from": "2008-08", "to": "2010-05" },
+            "place": "Miami Dade College",
+            "accomplishments": [
+              "Member of Deans List and Phi Theta Kappa Honor Society with a 3.75 GPA.",
+              "Managing Editor of the campus newspaper."
+            ]
+          }
+        ]
       },
       "social": {}
     }
