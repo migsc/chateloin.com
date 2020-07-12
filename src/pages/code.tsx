@@ -101,6 +101,4 @@ const CodePage: React.FC = () => {
   )
 }
 
-
-// export default CodePage;
-export default HomePage;
+export default CodePage
