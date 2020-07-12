@@ -8,6 +8,7 @@ import {
 } from "../../../types"
 
 import Tab from "./Tab"
+import TimelineCard from "./TimelineCard"
 
 enum TabName {
   jobs = "jobs",
@@ -50,32 +51,32 @@ const ExperienceSection: React.FC<Props> = ({ projects, jobs, education }) => {
         </div>
         <div className="flex">
           {Object.keys(TabName).map((tabName, i, list) => (
-            <>
-              <Tab
-                key={tabName}
-                name={tabName}
-                selected={tabName === activeTab}
-                onClick={handleTabClicked}
-              />
-              {i < list.length - 1 && <div className="mr-2">/</div>}
-            </>
+            <Tab
+              key={tabName}
+              name={tabName}
+              selected={tabName === activeTab}
+              onClick={handleTabClicked}
+              after={
+                i < list.length - 1 ? <div className="mr-2">/</div> : undefined
+              }
+            />
           ))}
         </div>
       </div>
       <div className="flex flex-row">
         <div className="bg-red-600 flex-1"></div>
-        <div className="bg-blue-600" style={{ flex: 6 }}>
+        <div className="" style={{ flex: 6 }}>
           {activeTab === TabName.jobs &&
             jobs.map(({ period, place, name, skills, accomplishments }) => (
-              <div>{name}</div>
+              <TimelineCard key={name} title={name} />
             ))}
           {activeTab === TabName.projects &&
             projects.map(({ period, name, skills, description, url }) => (
-              <div>{name}</div>
+              <TimelineCard key={name} title={name} />
             ))}
           {activeTab === TabName.education &&
             education.map(({ period, name, place, accomplishments }) => (
-              <div>{name}</div>
+              <TimelineCard key={name} title={name} />
             ))}
         </div>
         <div className="bg-red-600 flex-1"></div>
