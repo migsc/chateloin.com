@@ -1,6 +1,9 @@
 import React, { useState } from "react"
+import { faWrench, faAt } from "@fortawesome/free-solid-svg-icons"
+import moment from "moment"
 
 import {
+  ExperienceItemDateRange,
   ProjectExperienceItem,
   JobExperienceItem,
   EducationExperienceItem,
@@ -9,6 +12,12 @@ import {
 
 import Tab from "./Tab"
 import TimelineCard from "./TimelineCard"
+
+const formatDateRange = (period: ExperienceItemDateRange): string => {
+  const fromMoment = moment(period.from)
+  const toMoment = moment(period.to)
+  return `${fromMoment.format("MMMM YYYY")} - ${toMoment.format("MMMM YYYY")}`
+}
 
 enum TabName {
   jobs = "jobs",
@@ -25,7 +34,7 @@ interface Actions {
 }
 
 const useHook = (): [State, Actions] => {
-  const [activeTab, setActiveTab] = useState<string>(TabName.projects)
+  const [activeTab, setActiveTab] = useState<string>(TabName.jobs)
 
   const state: State = { activeTab }
   const actions: Actions = {
@@ -65,18 +74,39 @@ const ExperienceSection: React.FC<Props> = ({ projects, jobs, education }) => {
       </div>
       <div className="flex flex-row">
         <div className="bg-red-600 flex-1"></div>
-        <div className="" style={{ flex: 6 }}>
+        <div className="px-3" style={{ flex: 6 }}>
           {activeTab === TabName.jobs &&
-            jobs.map(({ period, place, name, skills, accomplishments }) => (
-              <TimelineCard key={name} title={name} />
+            jobs.map(({ period, place, name, skills, accomplishments }, i) => (
+              <TimelineCard
+                key={i + name}
+                title={name}
+                subtitle={place}
+                subtitleIcon={faAt}
+                tags={skills}
+                tagIcon={faWrench}
+                bullets={accomplishments}
+              />
             ))}
           {activeTab === TabName.projects &&
             projects.map(({ period, name, skills, description, url }) => (
-              <TimelineCard key={name} title={name} />
+              <TimelineCard
+                key={name}
+                title={name}
+                tags={skills}
+                tagIcon={faWrench}
+                bullets={[description]}
+                url={url}
+              />
             ))}
           {activeTab === TabName.education &&
             education.map(({ period, name, place, accomplishments }) => (
-              <TimelineCard key={name} title={name} />
+              <TimelineCard
+                key={name}
+                title={name}
+                subtitle={place}
+                subtitleIcon={faAt}
+                bullets={accomplishments}
+              />
             ))}
         </div>
         <div className="bg-red-600 flex-1"></div>

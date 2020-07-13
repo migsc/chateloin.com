@@ -164,7 +164,7 @@
               "git"
             ],
             "description": "Website that integrates with Facebook Messenger to connect personal trainers to potential clients via a personal assistant/chatbot. Handles billing and scheduling for trainers. Built for a client who works in the fitness industry.",
-            "url": "gonetraining.com"
+            "url": "https://gonetraining.com"
           },
           {
             "period": { "from": "2018-12", "to": "2017-10" },
@@ -178,21 +178,21 @@
               "git"
             ],
             "description": "A small web application built for the City of Miami officials to write and schedule meeting topics to be displayed on a TV broadcast graphic. Worked with a multimedia producer to integrate the service to a CGLive service.",
-            "url": "github.com/migsc/city-agenda-manager"
+            "url": "https://github.com/migsc/city-agenda-manager"
           },
           {
             "period": { "from": "2016-03", "to": "2016-04" },
             "name": "AUTO SYNC AMAZON WISHLIST & GOOGLE DRIVE",
             "skills": ["JS", "Node", "AWS", "S3", "Heroku"],
             "description": "A running job that queries an Amazon wishlist and posts new items to a spreadsheet on Google Drive. Built for myself to provide a better interface for following up on and sharing recommendations.",
-            "url": "github.com/migsc/amazon-wishlist-to-drive-sheet"
+            "url": "https://github.com/migsc/amazon-wishlist-to-drive-sheet"
           },
           {
             "period": { "from": "2016-03", "to": "2016-04" },
             "name": "FORGET WHAT YOU HEARD",
             "skills": ["JS", "jQuery", "Express", "Node", "Heroku"],
             "description": "A web app that creates a Spotify playlist while banning any music already collected or liked on an account. Takes multiple artist suggestions to seed the playlist. Built for myself to provide a more adventurous music discovery experience.",
-            "url": "github.com/migsc/forget-what-you-heard-playlists"
+            "url": "https://github.com/migsc/forget-what-you-heard-playlists"
           }
         ],
         "jobs": [
