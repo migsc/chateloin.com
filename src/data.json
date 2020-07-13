@@ -139,7 +139,62 @@
         ]
       },
       "experience": {
-        "projects": [{}],
+        "projects": [
+          {
+            "period": { "from": "2018-12", "to": "2019-07" },
+            "name": "THRIVE",
+            "skills": ["Javascript / ES6", "React", "Phaser Game Engine"],
+            "description": "An attempt at a real-time strategy videogame. Started during Github Game Jam 2018.",
+            "url": "https://github.com/migsc/thrive"
+          },
+          {
+            "period": { "from": "2018-12", "to": "2019-07" },
+            "name": "GONE TRAINING",
+            "skills": [
+              "Javascript / ES6",
+              "React",
+              "Webpack",
+              "PHP",
+              "Laravel",
+              "Postgres",
+              "MySQL",
+              "AWS",
+              "Docker",
+              "Chatfuel",
+              "git"
+            ],
+            "description": "Website that integrates with Facebook Messenger to connect personal trainers to potential clients via a personal assistant/chatbot. Handles billing and scheduling for trainers. Built for a client who works in the fitness industry.",
+            "url": "https://gonetraining.com"
+          },
+          {
+            "period": { "from": "2018-12", "to": "2017-10" },
+            "name": "CITY AGENDA MANAGER",
+            "skills": [
+              "Javascript",
+              "PHP",
+              "Laravel",
+              "Postgres",
+              "MySQL",
+              "git"
+            ],
+            "description": "A small web application built for the City of Miami officials to write and schedule meeting topics to be displayed on a TV broadcast graphic. Worked with a multimedia producer to integrate the service to a CGLive service.",
+            "url": "https://github.com/migsc/city-agenda-manager"
+          },
+          {
+            "period": { "from": "2016-03", "to": "2016-04" },
+            "name": "AUTO SYNC AMAZON WISHLIST & GOOGLE DRIVE",
+            "skills": ["JS", "Node", "AWS", "S3", "Heroku"],
+            "description": "A running job that queries an Amazon wishlist and posts new items to a spreadsheet on Google Drive. Built for myself to provide a better interface for following up on and sharing recommendations.",
+            "url": "https://github.com/migsc/amazon-wishlist-to-drive-sheet"
+          },
+          {
+            "period": { "from": "2016-03", "to": "2016-04" },
+            "name": "FORGET WHAT YOU HEARD",
+            "skills": ["JS", "jQuery", "Express", "Node", "Heroku"],
+            "description": "A web app that creates a Spotify playlist while banning any music already collected or liked on an account. Takes multiple artist suggestions to seed the playlist. Built for myself to provide a more adventurous music discovery experience.",
+            "url": "https://github.com/migsc/forget-what-you-heard-playlists"
+          }
+        ],
         "jobs": [
           {
             "period": { "from": "2018-06" },
@@ -184,7 +239,7 @@
           {
             "period": { "from": "2015-08", "to": "2016-07" },
             "place": "LifeWallet",
-            "name": "FULL-STACK SOFTWARE ENGINEER",
+            "name": "FRONT-END SOFTWARE ENGINEER",
             "skills": [
               "Javascript / ES6",
               "Ember",
@@ -242,8 +297,32 @@
               "git"
             ],
             "accomplishments": [
-              "Built a custom ember-runtime based JavaScript framework which we used to implement small single page applications that provided insurance and health-assesement to our clients’ employees.",
-              "Led development of a blackbox test suite using Jasmine and Selenium to confirm core feature stability of a legacy application."
+              "Built a frontend dashboard with AngularJS to create and manage event marketing campaigns, while maitaninng the large PHP/Zend backend API, and integrating AWS technologies to auto-deploy microwebsites for each campaign.",
+              "Converted PSD designs to responsive websites with full social integration for highly customized big brand name clients."
+            ]
+          },
+          {
+            "period": { "from": "2012-08", "to": "2012-03" },
+            "place": "TECKPERT",
+            "name": "INTERN WORDPRESS DEVELOPER",
+            "skills": [
+              "Javascript / ES6",
+              "AngularJS",
+              "jQuery",
+              "Bootstrap",
+              "PHP",
+              "Zend 2",
+              "Apache",
+              "Java",
+              "Spring",
+              "MySQL",
+              "AWS",
+              "git"
+            ],
+            "accomplishments": [
+              "Developed WordPress based sites with custom themes for local businesses.",
+              "Worked with clients directly, handling revisions and feedback.",
+              "Plugin development, QA testing, and writing reference guides and documentation. "
             ]
           }
         ],

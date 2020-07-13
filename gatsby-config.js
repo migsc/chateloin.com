@@ -3,7 +3,7 @@ module.exports = {
     title: `Miguel Chateloin`,
     description: `Under construction`,
     author: `@gatsbyjs`,
-    underConstruction: true,
+    underConstruction: false,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
