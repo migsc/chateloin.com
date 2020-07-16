@@ -1,0 +1,32 @@
+.VisualizationContainer {
+  @apply w-6;
+}
+
+.VisualizationContainer .visualizationGuideLine,
+.VisualizationContainer .Circle,
+.VisualizationContainer .LineRounded {
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.visualizationGuideLine {
+  @apply w-1;
+  @apply bg-white;
+  @apply absolute;
+  height: 100%;
+}
+
+.Circle {
+  @apply absolute;
+  @apply w-6;
+  @apply h-6;
+  @apply rounded-full;
+}
+
+.LineRounded {
+  @apply absolute;
+  @apply w-2;
+  @apply rounded-full;
+}

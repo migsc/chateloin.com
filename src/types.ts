@@ -19,8 +19,8 @@ export interface SoftSkill {
 }
 
 export interface ExperienceItemDateRange {
-  from: string | Date
-  to: string | Date
+  from: string
+  to: string | undefined
 }
 
 export interface ProjectExperienceItem {

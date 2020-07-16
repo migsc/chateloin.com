@@ -11,13 +11,8 @@ import {
 } from "../../../types"
 
 import Tab from "./Tab"
+import Timeline from "./Timeline"
 import TimelineCard from "./TimelineCard"
-
-const formatDateRange = (period: ExperienceItemDateRange): string => {
-  const fromMoment = moment(period.from)
-  const toMoment = moment(period.to)
-  return `${fromMoment.format("MMMM YYYY")} - ${toMoment.format("MMMM YYYY")}`
-}
 
 enum TabName {
   jobs = "jobs",
@@ -72,45 +67,54 @@ const ExperienceSection: React.FC<Props> = ({ projects, jobs, education }) => {
           ))}
         </div>
       </div>
-      <div className="flex flex-row">
-        <div className="bg-red-600 flex-1"></div>
-        <div className="px-3" style={{ flex: 6 }}>
-          {activeTab === TabName.jobs &&
-            jobs.map(({ period, place, name, skills, accomplishments }, i) => (
-              <TimelineCard
-                key={i + name}
-                title={name}
-                subtitle={place}
-                subtitleIcon={faAt}
-                tags={skills}
-                tagIcon={faWrench}
-                bullets={accomplishments}
-              />
-            ))}
-          {activeTab === TabName.projects &&
-            projects.map(({ period, name, skills, description, url }) => (
-              <TimelineCard
-                key={name}
-                title={name}
-                tags={skills}
-                tagIcon={faWrench}
-                bullets={[description]}
-                url={url}
-              />
-            ))}
-          {activeTab === TabName.education &&
-            education.map(({ period, name, place, accomplishments }) => (
-              <TimelineCard
-                key={name}
-                title={name}
-                subtitle={place}
-                subtitleIcon={faAt}
-                bullets={accomplishments}
-              />
-            ))}
-        </div>
-        <div className="bg-red-600 flex-1"></div>
-      </div>
+      {activeTab === TabName.jobs && (
+        <Timeline>
+          {jobs.map(({ period, place, name, skills, accomplishments }, i) => (
+            <TimelineCard
+              key={i + name}
+              period={period}
+              title={name}
+              subtitle={place}
+              subtitleIcon={faAt}
+              tags={skills}
+              tagIcon={faWrench}
+              bullets={accomplishments}
+            />
+          ))}
+        </Timeline>
+      )}
+
+      {activeTab === TabName.projects && (
+        <Timeline>
+          {projects.map(({ period, name, skills, description, url }) => (
+            <TimelineCard
+              key={name}
+              period={period}
+              title={name}
+              tags={skills}
+              tagIcon={faWrench}
+              bullets={[description]}
+              url={url}
+            />
+          ))}
+        </Timeline>
+      )}
+
+      {activeTab === TabName.education && (
+        <Timeline>
+          {education.map(({ period, name, place, accomplishments }) => (
+            <TimelineCard
+              key={name}
+              period={period}
+              title={name}
+              subtitle={place}
+              subtitleIcon={faAt}
+              bullets={accomplishments}
+            />
+          ))}
+          }
+        </Timeline>
+      )}
     </div>
   )
 }

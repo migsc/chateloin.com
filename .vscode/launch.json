@@ -1,5 +1,11 @@
 {
   "version": "0.2.0",
+  "compounds": [
+    {
+      "name": "Launch",
+      "configurations": ["Launch Chrome for Gatsby site", "Run Gatsby develop"]
+    }
+  ],
   "configurations": [
     {
       "type": "chrome",
@@ -29,12 +35,6 @@
       "stopOnEntry": false,
       "runtimeArgs": ["--nolazy"],
       "sourceMaps": false
-    }
-  ],
-  "compounds": [
-    {
-      "name": "Launch Chrome and run Gatsby develop",
-      "configurations": ["Launch Chrome for Gatsby site", "Run Gatsby develop"]
     }
   ]
 }

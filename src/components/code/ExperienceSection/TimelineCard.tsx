@@ -5,11 +5,12 @@ import {
   IconDefinition,
   faExternalLinkAlt,
 } from "@fortawesome/free-solid-svg-icons"
-
+import { ExperienceItemDateRange } from "../../../types"
 import styles from "./TimelineCard.module.css"
 
-interface Props {
+export interface Props {
   key?: string
+  period: ExperienceItemDateRange
   title: string
   subtitle?: string
   subtitleIcon?: IconDefinition
