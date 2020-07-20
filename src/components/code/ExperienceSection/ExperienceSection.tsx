@@ -67,8 +67,8 @@ const ExperienceSection: React.FC<Props> = ({ projects, jobs, education }) => {
           ))}
         </div>
       </div>
-      {activeTab === TabName.jobs && (
-        <Timeline>
+      <div className="flex flex-row">
+        <Timeline active={activeTab === TabName.jobs}>
           {jobs.map(({ period, place, name, skills, accomplishments }, i) => (
             <TimelineCard
               key={i + name}
@@ -82,10 +82,8 @@ const ExperienceSection: React.FC<Props> = ({ projects, jobs, education }) => {
             />
           ))}
         </Timeline>
-      )}
 
-      {activeTab === TabName.projects && (
-        <Timeline>
+        <Timeline active={activeTab === TabName.projects}>
           {projects.map(({ period, name, skills, description, url }) => (
             <TimelineCard
               key={name}
@@ -98,10 +96,8 @@ const ExperienceSection: React.FC<Props> = ({ projects, jobs, education }) => {
             />
           ))}
         </Timeline>
-      )}
 
-      {activeTab === TabName.education && (
-        <Timeline>
+        <Timeline active={activeTab === TabName.education}>
           {education.map(({ period, name, place, accomplishments }) => (
             <TimelineCard
               key={name}
@@ -112,9 +108,8 @@ const ExperienceSection: React.FC<Props> = ({ projects, jobs, education }) => {
               bullets={accomplishments}
             />
           ))}
-          }
         </Timeline>
-      )}
+      </div>
     </div>
   )
 }

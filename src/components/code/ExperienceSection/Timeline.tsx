@@ -92,17 +92,21 @@ const useContainer = (children: TimelineCardElement): [State, Actions] => {
   ]
 }
 
-interface Props {}
+interface Props {
+  active: boolean
+}
 
-const Timeline: React.FC<Props> = ({ children }) => {
+const Timeline: React.FC<Props> = ({ children, active = false }) => {
   const [
     { nowYearMonth, timelineYearMonths, timelineEvents, lastEvent },
   ] = useContainer(children as TimelineCardElement)
   return (
-    <div className="flex flex-row">
-      <div className="px-3" style={{ flex: 4 }}>
-        {children}
-      </div>
+    <>
+      {active && (
+        <div className="px-3" style={{ flex: 4 }}>
+          {children}
+        </div>
+      )}
       <div className="relative" style={{ flex: 1 }}>
         <VisualizationContainer
           style={{
@@ -128,26 +132,9 @@ const Timeline: React.FC<Props> = ({ children }) => {
             </>
           ))}
         </VisualizationContainer>
-        {timelineYearMonths.map(
-          (yM, i) => null
-          // <>
-          //   {/* {periodExistsMap[yM] ? <Circle color="green" /> : null} */}
-          //   <div
-          //     className={`bg-gray-${(i % 6) + 4}00 flex text-xs`}
-          //     style={{
-          //       flex: 1,
-          //       paddingLeft: "0.2rem",
-          //       height: `${HEIGHT_TIMELINE_SEGMENT}rem`,
-          //     }}
-          //   >
-          //     [{indexOf(nowYearMonth, yM)}]/{yM}
-          //   </div>
-          // </>
-        )}
       </div>
-    </div>
+    </>
   )
-  return null
 }
 
 export default Timeline
