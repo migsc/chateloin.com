@@ -33,7 +33,7 @@ const SkillsSection: React.FC<Props> = ({
   onHardSkillTagClick,
 }) => {
   return (
-    <div className="mt-16 mb-16">
+    <div className="pt-8 mt-8" id="skills">
       <div className="mb-8 flex justify-between">
         <div>
           <h2>skills</h2>
