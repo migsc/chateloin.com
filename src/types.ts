@@ -20,7 +20,7 @@ export interface SoftSkill {
 
 export interface ExperienceItemDateRange {
   from: string
-  to: string | undefined
+  to?: string | undefined
 }
 
 export interface ProjectExperienceItem {
@@ -45,6 +45,11 @@ export interface EducationExperienceItem {
   place: string
   accomplishments: string[]
 }
+
+export type ExperienceItem =
+  | ProjectExperienceItem
+  | JobExperienceItem
+  | EducationExperienceItem
 
 export type ClickEvent = React.MouseEvent<HTMLButtonElement, MouseEvent>
 export type ChangeEvent = React.ChangeEvent<HTMLInputElement>
