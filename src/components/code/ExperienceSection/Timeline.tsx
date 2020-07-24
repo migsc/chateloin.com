@@ -55,6 +55,8 @@ interface State {
   timelineEvents: TimelineEvent[]
   timelineYearMonths: string[]
   nowYearMonth: string
+  firstEvent: TimelineEvent
+  lastEvent: TimelineEvent
 }
 
 interface Actions {}
@@ -87,7 +89,7 @@ const useContainer = (children: TimelineCardElement): [State, Actions] => {
   const actions: Actions = {}
 
   return [
-    { nowYearMonth, timelineEvents, timelineYearMonths, lastEvent },
+    { nowYearMonth, timelineEvents, timelineYearMonths, firstEvent, lastEvent },
     actions,
   ]
 }
@@ -98,7 +100,7 @@ interface Props {
 
 const Timeline: React.FC<Props> = ({ children, active = false }) => {
   const [
-    { nowYearMonth, timelineYearMonths, timelineEvents, lastEvent },
+    { nowYearMonth, timelineYearMonths, timelineEvents, firstEvent, lastEvent },
   ] = useContainer(children as TimelineCardElement)
 
   return (
@@ -111,7 +113,9 @@ const Timeline: React.FC<Props> = ({ children, active = false }) => {
       <div className="relative" style={{ flex: 1 }}>
         <VisualizationContainer
           style={{
-            height: `${(lastEvent.indexFrom + 1) * HEIGHT_TIMELINE_SEGMENT}rem`,
+            height: `${
+              (firstEvent.indexFrom + 1) * HEIGHT_TIMELINE_SEGMENT
+            }rem`,
           }}
         >
           {timelineEvents.map(({ indexFrom, indexTo, cardElement }) => {
