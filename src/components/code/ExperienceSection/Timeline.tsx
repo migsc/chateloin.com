@@ -1,5 +1,5 @@
 import React, { CSSProperties } from "react"
-import { maxBy, minBy, moment, max, min } from "../../../utils"
+import { maxBy, minBy, moment } from "../../../utils"
 import { ExperienceItemDateRange } from "../../../types"
 import { Props as TimelineCardProps } from "./TimelineCard"
 import styles from "./Timeline.module.css"
@@ -12,7 +12,7 @@ import styles from "./Timeline.module.css"
 
 const HEIGHT_TIMELINE_SEGMENT = 3.125 //rem
 
-const indexOf = (
+export const indexOf = (
   yearMonthBase: string | Date,
   yearMonth: string | Date
 ): number => {
@@ -100,6 +100,7 @@ const Timeline: React.FC<Props> = ({ children, active = false }) => {
   const [
     { nowYearMonth, timelineYearMonths, timelineEvents, lastEvent },
   ] = useContainer(children as TimelineCardElement)
+
   return (
     <>
       {active && (
@@ -113,24 +114,35 @@ const Timeline: React.FC<Props> = ({ children, active = false }) => {
             height: `${(lastEvent.indexFrom + 1) * HEIGHT_TIMELINE_SEGMENT}rem`,
           }}
         >
-          {timelineEvents.map(({ indexFrom, indexTo }) => (
-            <>
-              <LineRounded
-                color="pink"
-                colorIndex={4}
-                style={{
-                  top: `${HEIGHT_TIMELINE_SEGMENT * indexTo}rem`,
-                  height: `${
-                    HEIGHT_TIMELINE_SEGMENT * (indexFrom - indexTo)
-                  }rem`,
-                }}
-              />
-              <Circle
-                color="pink"
-                style={{ top: `${HEIGHT_TIMELINE_SEGMENT * indexTo}rem` }}
-              />
-            </>
-          ))}
+          {timelineEvents.map(({ indexFrom, indexTo, cardElement }) => {
+            console.log(
+              console.log(
+                `TimelineEvent ${
+                  cardElement.props.title
+                } (indexFrom=${indexFrom} - indexTo=${indexTo})=${
+                  indexFrom - indexTo
+                }`
+              )
+            )
+            return (
+              <>
+                <LineRounded
+                  color="pink"
+                  colorIndex={4}
+                  style={{
+                    top: `${HEIGHT_TIMELINE_SEGMENT * indexTo}rem`,
+                    height: `${
+                      HEIGHT_TIMELINE_SEGMENT * (indexFrom - indexTo)
+                    }rem`,
+                  }}
+                />
+                <Circle
+                  color="pink"
+                  style={{ top: `${HEIGHT_TIMELINE_SEGMENT * indexTo}rem` }}
+                />
+              </>
+            )
+          })}
         </VisualizationContainer>
       </div>
     </>
