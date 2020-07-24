@@ -1,7 +1,7 @@
 import React, { CSSProperties } from "react"
 import { maxBy, minBy, moment } from "../../../utils"
 import { ExperienceItemDateRange } from "../../../types"
-import { Props as TimelineCardProps } from "./TimelineCard"
+import TimelineCard, { Props as TimelineCardProps } from "./TimelineCard"
 import styles from "./Timeline.module.css"
 
 // const dateRangeToKey = (period: ExperienceItemDateRange): string => {
@@ -35,16 +35,8 @@ const getTimelinePeriods = (
   return timelinePeriods
 }
 
-interface PeriodMap {
-  [key: string]: TimelineCardElement[]
-}
-
-interface TimelineCardElement extends React.ReactElement {
-  props: TimelineCardProps
-}
-
 interface TimelineEvent {
-  cardElement: TimelineCardElement
+  props: TimelineCardProps
   isoFrom: string
   isoTo: string
   indexFrom: number
@@ -61,23 +53,21 @@ interface State {
 
 interface Actions {}
 
-const useContainer = (children: TimelineCardElement): [State, Actions] => {
+const useContainer = (events: TimelineCardProps[]): [State, Actions] => {
   const nowYearMonth = moment().format("YYYY-MM")
-  const cardElements = [children].flat()
 
-  const timelineEvents = cardElements.map(cardElement => ({
-    cardElement,
-    isoFrom: cardElement?.props.period?.from ?? nowYearMonth,
-    isoTo: cardElement?.props.period?.to ?? nowYearMonth,
-    indexFrom: indexOf(nowYearMonth, cardElement?.props.period.from),
-    indexTo: indexOf(
-      nowYearMonth,
-      cardElement?.props.period.to ?? nowYearMonth
-    ),
+  const timelineEvents = events.map(props => ({
+    props,
+    isoFrom: props.period?.from ?? nowYearMonth,
+    isoTo: props.period?.to ?? nowYearMonth,
+    indexFrom: indexOf(nowYearMonth, props.period.from),
+    indexTo: indexOf(nowYearMonth, props.period.to ?? nowYearMonth),
   }))
 
-  const firstEvent = maxBy(timelineEvents, "indexFrom")
-  const lastEvent = minBy(timelineEvents, "indexTo")
+  const firstEvent =
+    maxBy(timelineEvents, "indexFrom") ??
+    timelineEvents[timelineEvents.length - 1]
+  const lastEvent = minBy(timelineEvents, "indexTo") ?? timelineEvents[0]
 
   const timelineYearMonths = getTimelinePeriods(
     firstEvent?.isoFrom ?? nowYearMonth,
@@ -96,18 +86,26 @@ const useContainer = (children: TimelineCardElement): [State, Actions] => {
 
 interface Props {
   active: boolean
+  events: TimelineCardProps[]
 }
 
-const Timeline: React.FC<Props> = ({ children, active = false }) => {
+const Timeline: React.FC<Props> = ({ events = [], active = false }) => {
   const [
     { nowYearMonth, timelineYearMonths, timelineEvents, firstEvent, lastEvent },
-  ] = useContainer(children as TimelineCardElement)
+  ] = useContainer(events)
 
   return (
     <>
       {active && (
-        <div className="px-3" style={{ flex: 4 }}>
-          {children}
+        <div className="px-3 relative" style={{ flex: 4 }}>
+          {timelineEvents.map(({ props, indexTo }) => (
+            <TimelineCard
+              {...props}
+              style={{
+                top: `${indexTo * HEIGHT_TIMELINE_SEGMENT}rem`,
+              }}
+            />
+          ))}
         </div>
       )}
       <div className="relative" style={{ flex: 1 }}>
@@ -118,35 +116,24 @@ const Timeline: React.FC<Props> = ({ children, active = false }) => {
             }rem`,
           }}
         >
-          {timelineEvents.map(({ indexFrom, indexTo, cardElement }) => {
-            console.log(
-              console.log(
-                `TimelineEvent ${
-                  cardElement.props.title
-                } (indexFrom=${indexFrom} - indexTo=${indexTo})=${
-                  indexFrom - indexTo
-                }`
-              )
-            )
-            return (
-              <>
-                <LineRounded
-                  color="pink"
-                  colorIndex={4}
-                  style={{
-                    top: `${HEIGHT_TIMELINE_SEGMENT * indexTo}rem`,
-                    height: `${
-                      HEIGHT_TIMELINE_SEGMENT * (indexFrom - indexTo)
-                    }rem`,
-                  }}
-                />
-                <Circle
-                  color="pink"
-                  style={{ top: `${HEIGHT_TIMELINE_SEGMENT * indexTo}rem` }}
-                />
-              </>
-            )
-          })}
+          {timelineEvents.map(({ indexFrom, indexTo }) => (
+            <>
+              <LineRounded
+                color="pink"
+                colorIndex={4}
+                style={{
+                  top: `${HEIGHT_TIMELINE_SEGMENT * indexTo}rem`,
+                  height: `${
+                    HEIGHT_TIMELINE_SEGMENT * (indexFrom - indexTo)
+                  }rem`,
+                }}
+              />
+              <Circle
+                color="pink"
+                style={{ top: `${HEIGHT_TIMELINE_SEGMENT * indexTo}rem` }}
+              />
+            </>
+          ))}
         </VisualizationContainer>
       </div>
     </>

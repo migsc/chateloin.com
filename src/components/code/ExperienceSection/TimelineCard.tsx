@@ -1,4 +1,4 @@
-import React from "react"
+import React, { CSSProperties } from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
   faTag,
@@ -9,6 +9,7 @@ import { ExperienceItemDateRange } from "../../../types"
 import styles from "./TimelineCard.module.css"
 
 export interface Props {
+  style?: CSSProperties
   key?: string
   period: ExperienceItemDateRange
   title: string
@@ -21,6 +22,7 @@ export interface Props {
 }
 
 const TimelineCard: React.FC<Props> = ({
+  style,
   title,
   subtitle,
   subtitleIcon,
@@ -29,7 +31,7 @@ const TimelineCard: React.FC<Props> = ({
   bullets,
   url,
 }) => (
-  <div className={styles.card}>
+  <div className={styles.card} style={style}>
     <h3 className={styles.title}>{title}</h3>
     {subtitle && (
       <h4 className={styles.subtitle}>

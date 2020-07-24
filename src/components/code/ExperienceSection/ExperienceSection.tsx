@@ -68,47 +68,48 @@ const ExperienceSection: React.FC<Props> = ({ projects, jobs, education }) => {
         </div>
       </div>
       <div className="flex flex-row">
-        <Timeline active={activeTab === TabName.jobs}>
-          {jobs.map(({ period, place, name, skills, accomplishments }, i) => (
-            <TimelineCard
-              key={i + name}
-              period={period}
-              title={name}
-              subtitle={place}
-              subtitleIcon={faAt}
-              tags={skills}
-              tagIcon={faWrench}
-              bullets={accomplishments}
-            />
-          ))}
-        </Timeline>
+        <Timeline
+          active={activeTab === TabName.jobs}
+          events={jobs.map(
+            ({ period, place, name, skills, accomplishments }, i) => ({
+              key: i + name,
+              period: period,
+              title: name,
+              subtitle: place,
+              subtitleIcon: faAt,
+              tags: skills,
+              tagIcon: faWrench,
+              bullets: accomplishments,
+            })
+          )}
+        />
 
-        <Timeline active={activeTab === TabName.projects}>
-          {projects.map(({ period, name, skills, description, url }) => (
-            <TimelineCard
-              key={name}
-              period={period}
-              title={name}
-              tags={skills}
-              tagIcon={faWrench}
-              bullets={[description]}
-              url={url}
-            />
-          ))}
-        </Timeline>
+        <Timeline
+          active={activeTab === TabName.projects}
+          events={projects.map(
+            ({ period, name, skills, description, url }) => ({
+              key: name,
+              period: period,
+              title: name,
+              tags: skills,
+              tagIcon: faWrench,
+              bullets: [description],
+              url: url,
+            })
+          )}
+        />
 
-        <Timeline active={activeTab === TabName.education}>
-          {education.map(({ period, name, place, accomplishments }) => (
-            <TimelineCard
-              key={name}
-              period={period}
-              title={name}
-              subtitle={place}
-              subtitleIcon={faAt}
-              bullets={accomplishments}
-            />
-          ))}
-        </Timeline>
+        <Timeline
+          active={activeTab === TabName.education}
+          events={education.map(({ period, name, place, accomplishments }) => ({
+            key: name,
+            period: period,
+            title: name,
+            subtitle: place,
+            subtitleIcon: faAt,
+            bullets: accomplishments,
+          }))}
+        />
       </div>
     </div>
   )
