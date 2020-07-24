@@ -87,9 +87,14 @@ const useContainer = (events: TimelineCardProps[]): [State, Actions] => {
 interface Props {
   active: boolean
   events: TimelineCardProps[]
+  segmentRatio?: number
 }
 
-const Timeline: React.FC<Props> = ({ events = [], active = false }) => {
+const Timeline: React.FC<Props> = ({
+  events = [],
+  active = false,
+  segmentRatio = 1,
+}) => {
   const [
     { nowYearMonth, timelineYearMonths, timelineEvents, firstEvent, lastEvent },
   ] = useContainer(events)
@@ -102,7 +107,9 @@ const Timeline: React.FC<Props> = ({ events = [], active = false }) => {
             <TimelineCard
               {...props}
               style={{
-                top: `${indexTo * HEIGHT_TIMELINE_SEGMENT}rem`,
+                top: `${
+                  indexTo * HEIGHT_TIMELINE_SEGMENT * segmentRatio
+                }rem`,
               }}
             />
           ))}
@@ -112,7 +119,9 @@ const Timeline: React.FC<Props> = ({ events = [], active = false }) => {
         <VisualizationContainer
           style={{
             height: `${
-              (firstEvent.indexFrom + 1) * HEIGHT_TIMELINE_SEGMENT
+              (firstEvent.indexFrom + 1) *
+              HEIGHT_TIMELINE_SEGMENT *
+              segmentRatio
             }rem`,
           }}
         >
@@ -122,15 +131,23 @@ const Timeline: React.FC<Props> = ({ events = [], active = false }) => {
                 color="pink"
                 colorIndex={4}
                 style={{
-                  top: `${HEIGHT_TIMELINE_SEGMENT * indexTo}rem`,
+                  top: `${
+                    HEIGHT_TIMELINE_SEGMENT * segmentRatio * indexTo
+                  }rem`,
                   height: `${
-                    HEIGHT_TIMELINE_SEGMENT * (indexFrom - indexTo)
+                    HEIGHT_TIMELINE_SEGMENT *
+                    segmentRatio *
+                    (indexFrom - indexTo)
                   }rem`,
                 }}
               />
               <Circle
                 color="pink"
-                style={{ top: `${HEIGHT_TIMELINE_SEGMENT * indexTo}rem` }}
+                style={{
+                  top: `${
+                    HEIGHT_TIMELINE_SEGMENT * segmentRatio * indexTo
+                  }rem`,
+                }}
               />
             </>
           ))}

@@ -39,6 +39,12 @@ const useHook = (): [State, Actions] => {
   return [state, actions]
 }
 
+const segmentRatioByTab: { [key: string]: number } = {
+  [TabName.jobs]: 0.5,
+  [TabName.projects]: 0.75,
+  [TabName.education]: 0.1,
+}
+
 interface Props {
   jobs: JobExperienceItem[]
   projects: ProjectExperienceItem[]
@@ -82,6 +88,7 @@ const ExperienceSection: React.FC<Props> = ({ projects, jobs, education }) => {
               bullets: accomplishments,
             })
           )}
+          segmentRatio={segmentRatioByTab[activeTab]}
         />
 
         <Timeline
@@ -97,6 +104,7 @@ const ExperienceSection: React.FC<Props> = ({ projects, jobs, education }) => {
               url: url,
             })
           )}
+          segmentRatio={segmentRatioByTab[activeTab]}
         />
 
         <Timeline
@@ -109,6 +117,7 @@ const ExperienceSection: React.FC<Props> = ({ projects, jobs, education }) => {
             subtitleIcon: faAt,
             bullets: accomplishments,
           }))}
+          segmentRatio={segmentRatioByTab[activeTab]}
         />
       </div>
     </div>
