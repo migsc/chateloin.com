@@ -11,6 +11,8 @@ import styles from "./Timeline.module.css"
 // }
 
 const HEIGHT_TIMELINE_SEGMENT = 3.125 //rem
+const TOP_POSITION_OFFSET_CARD = 1.5 //rem
+const LEFT_POSITION_OFFSET_DATE_LABEL = -4 //rem
 
 export const indexOf = (
   yearMonthBase: string | Date,
@@ -56,13 +58,17 @@ interface Actions {}
 const useContainer = (events: TimelineCardProps[]): [State, Actions] => {
   const nowYearMonth = moment().format("YYYY-MM")
 
-  const timelineEvents = events.map(props => ({
-    props,
-    isoFrom: props.period?.from ?? nowYearMonth,
-    isoTo: props.period?.to ?? nowYearMonth,
-    indexFrom: indexOf(nowYearMonth, props.period.from),
-    indexTo: indexOf(nowYearMonth, props.period.to ?? nowYearMonth),
-  }))
+  const timelineEvents = events
+    .map(props => ({
+      props,
+      isoFrom: props.period?.from ?? nowYearMonth,
+      isoTo: props.period?.to ?? nowYearMonth,
+      indexFrom: indexOf(nowYearMonth, props.period.from),
+      indexTo: indexOf(nowYearMonth, props.period.to ?? nowYearMonth),
+    }))
+    .sort((a, b) =>
+      a.indexFrom === b.indexFrom ? 0 : a.indexFrom === b.indexFrom ? -1 : 1
+    )
 
   const firstEvent =
     maxBy(timelineEvents, "indexFrom") ??
@@ -99,6 +105,8 @@ const Timeline: React.FC<Props> = ({
     { nowYearMonth, timelineYearMonths, timelineEvents, firstEvent, lastEvent },
   ] = useContainer(events)
 
+  console.log("timelineEvents", timelineEvents)
+
   return (
     <>
       {active && (
@@ -108,7 +116,8 @@ const Timeline: React.FC<Props> = ({
               {...props}
               style={{
                 top: `${
-                  indexTo * HEIGHT_TIMELINE_SEGMENT * segmentRatio
+                  indexTo * HEIGHT_TIMELINE_SEGMENT * segmentRatio +
+                  TOP_POSITION_OFFSET_CARD
                 }rem`,
               }}
             />
@@ -125,32 +134,83 @@ const Timeline: React.FC<Props> = ({
             }rem`,
           }}
         >
-          {timelineEvents.map(({ indexFrom, indexTo }) => (
-            <>
-              <LineRounded
-                color="pink"
-                colorIndex={4}
-                style={{
-                  top: `${
-                    HEIGHT_TIMELINE_SEGMENT * segmentRatio * indexTo
-                  }rem`,
-                  height: `${
-                    HEIGHT_TIMELINE_SEGMENT *
-                    segmentRatio *
-                    (indexFrom - indexTo)
-                  }rem`,
-                }}
-              />
-              <Circle
-                color="pink"
-                style={{
-                  top: `${
-                    HEIGHT_TIMELINE_SEGMENT * segmentRatio * indexTo
-                  }rem`,
-                }}
-              />
-            </>
-          ))}
+          {timelineEvents.map(
+            (
+              { indexFrom, indexTo, isoFrom, isoTo, props: { period, title } },
+              i,
+              events
+            ) => {
+              return (
+                <>
+                  <LineRounded
+                    color="pink"
+                    colorIndex={4}
+                    style={{
+                      top: `${
+                        HEIGHT_TIMELINE_SEGMENT * segmentRatio * indexTo
+                      }rem`,
+                      height: `${
+                        HEIGHT_TIMELINE_SEGMENT *
+                        segmentRatio *
+                        (indexFrom - indexTo)
+                      }rem`,
+                    }}
+                  />
+                  <Circle
+                    color="pink"
+                    style={{
+                      top: `${
+                        HEIGHT_TIMELINE_SEGMENT * segmentRatio * indexTo
+                      }rem`,
+                    }}
+                  />
+                  {active && (
+                    <>
+                      <div
+                        className="absolute bg-pink-500 rounded-full px-1"
+                        style={{
+                          top: `${
+                            HEIGHT_TIMELINE_SEGMENT * segmentRatio * indexTo
+                          }rem`,
+                          left: period.to
+                            ? `${LEFT_POSITION_OFFSET_DATE_LABEL}rem`
+                            : `${LEFT_POSITION_OFFSET_DATE_LABEL + 0.5}rem`,
+                        }}
+                      >
+                        <p className="text-xs">
+                          {period.to
+                            ? moment(period.to).format("MMM YYYY").toLowerCase()
+                            : "present"}
+                        </p>
+                      </div>
+
+                      {indexFrom > events[i + 1]?.indexTo && (
+                        <div
+                          className="absolute bg-pink-400 rounded-full px-1"
+                          style={{
+                            top: `${
+                              HEIGHT_TIMELINE_SEGMENT * segmentRatio * indexTo +
+                              HEIGHT_TIMELINE_SEGMENT *
+                                segmentRatio *
+                                (indexFrom - indexTo) -
+                              1
+                            }rem`,
+                            left: `${LEFT_POSITION_OFFSET_DATE_LABEL}rem`,
+                          }}
+                        >
+                          <p className="text-xs">
+                            {moment(period.from)
+                              .format("MMM YYYY")
+                              .toLowerCase()}
+                          </p>
+                        </div>
+                      )}
+                    </>
+                  )}
+                </>
+              )
+            }
+          )}
         </VisualizationContainer>
       </div>
     </>

@@ -141,14 +141,14 @@
       "experience": {
         "projects": [
           {
-            "period": { "from": "2018-12", "to": "2019-07" },
+            "period": { "from": "2019-01", "to": "2019-07" },
             "name": "THRIVE",
             "skills": ["Javascript / ES6", "React", "Phaser Game Engine"],
             "description": "An attempt at a real-time strategy videogame. Started during Github Game Jam 2018.",
             "url": "https://github.com/migsc/thrive"
           },
           {
-            "period": { "from": "2018-12", "to": "2019-07" },
+            "period": { "from": "2017-12", "to": "2018-03" },
             "name": "GONE TRAINING",
             "skills": [
               "Javascript / ES6",
@@ -167,7 +167,7 @@
             "url": "https://gonetraining.com"
           },
           {
-            "period": { "to": "2018-12", "from": "2017-10" },
+            "period": { "from": "2017-10", "to": "2018-12" },
             "name": "CITY AGENDA MANAGER",
             "skills": [
               "Javascript",
@@ -181,18 +181,18 @@
             "url": "https://github.com/migsc/city-agenda-manager"
           },
           {
-            "period": { "from": "2016-03", "to": "2016-04" },
-            "name": "AUTO SYNC AMAZON WISHLIST & GOOGLE DRIVE",
-            "skills": ["JS", "Node", "AWS", "S3", "Heroku"],
-            "description": "A running job that queries an Amazon wishlist and posts new items to a spreadsheet on Google Drive. Built for myself to provide a better interface for following up on and sharing recommendations.",
-            "url": "https://github.com/migsc/amazon-wishlist-to-drive-sheet"
-          },
-          {
-            "period": { "from": "2016-03", "to": "2016-04" },
+            "period": { "from": "2016-03", "to": "2016-08" },
             "name": "FORGET WHAT YOU HEARD",
             "skills": ["JS", "jQuery", "Express", "Node", "Heroku"],
             "description": "A web app that creates a Spotify playlist while banning any music already collected or liked on an account. Takes multiple artist suggestions to seed the playlist. Built for myself to provide a more adventurous music discovery experience.",
             "url": "https://github.com/migsc/forget-what-you-heard-playlists"
+          },
+          {
+            "period": { "from": "2016-02", "to": "2016-03" },
+            "name": "AUTO SYNC AMAZON WISHLIST & GOOGLE DRIVE",
+            "skills": ["JS", "Node", "AWS", "S3", "Heroku"],
+            "description": "A running job that queries an Amazon wishlist and posts new items to a spreadsheet on Google Drive. Built for myself to provide a better interface for following up on and sharing recommendations.",
+            "url": "https://github.com/migsc/amazon-wishlist-to-drive-sheet"
           }
         ],
         "jobs": [
@@ -215,7 +215,7 @@
             ]
           },
           {
-            "period": { "from": "2016-06", "to": "2018-05" },
+            "period": { "from": "2016-07", "to": "2018-05" },
             "place": "Tesser Health",
             "name": "FULL-STACK SOFTWARE ENGINEER",
             "skills": [

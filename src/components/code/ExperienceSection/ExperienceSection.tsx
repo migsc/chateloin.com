@@ -39,10 +39,15 @@ const useHook = (): [State, Actions] => {
   return [state, actions]
 }
 
+// const segmentRatioByTab: { [key: string]: number } = {
+//   [TabName.jobs]: 0.5,
+//   [TabName.projects]: 0.75,
+//   [TabName.education]: 0.1,
+// }
 const segmentRatioByTab: { [key: string]: number } = {
-  [TabName.jobs]: 0.5,
-  [TabName.projects]: 0.75,
-  [TabName.education]: 0.1,
+  [TabName.jobs]: 1,
+  [TabName.projects]: 1,
+  [TabName.education]: 1,
 }
 
 interface Props {
