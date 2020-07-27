@@ -5,7 +5,7 @@ import { faQuestion, IconDefinition } from "@fortawesome/free-solid-svg-icons"
 import styles from "./NavButton.module.css"
 
 interface NavButtonProps {
-  icon: IconDefinition
+  icon?: IconDefinition
   linkTo?: string
 }
 

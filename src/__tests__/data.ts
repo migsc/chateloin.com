@@ -1,5 +1,4 @@
 import dataJson from "../data.json"
-import moment from "moment"
 import { ExperienceItem } from "../types"
 
 describe("data.json", () => {
