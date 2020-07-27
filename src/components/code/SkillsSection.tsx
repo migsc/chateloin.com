@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import styles from "./SkillsSection.module.css"
+import * as styles from "./SkillsSection.module.css"
 import TagPill from "./TagPill"
 import {
   Tag,

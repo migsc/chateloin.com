@@ -9,7 +9,7 @@ import React from "react"
 import { Helmet } from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
 import Footer from "./Footer"
-import styles from "./Layout.module.css"
+import * as styles from "./Layout.module.css"
 
 interface Props {
   children: JSX.Element[]

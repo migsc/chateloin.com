@@ -2,7 +2,7 @@ import React from "react"
 import { Link } from "gatsby"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faQuestion, IconDefinition } from "@fortawesome/free-solid-svg-icons"
-import styles from "./NavButton.module.css"
+import * as styles from "./NavButton.module.css"
 
 interface NavButtonProps {
   icon?: IconDefinition

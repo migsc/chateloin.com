@@ -9,7 +9,7 @@ import {
 import SEO from "../components/seo"
 import Layout from "../components/Layout"
 import NavButton from "../components/home/NavButton"
-import styles from "./home.module.css"
+import * as styles from "./home.module.css"
 
 interface HomePageState {
   underConstruction: boolean

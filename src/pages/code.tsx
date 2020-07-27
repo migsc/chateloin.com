@@ -5,7 +5,7 @@ import Layout from "../components/Layout"
 import SkillsSection from "../components/code/SkillsSection"
 import { ExperienceSection } from "../components/code"
 import { TagMap } from "../types"
-import styles from "./code.module.css"
+import * as styles from "./code.module.css"
 import { useHardSkillSearchResultsFiltered } from "../hooks"
 import HomePage from "./home"
 

@@ -1,7 +1,7 @@
 import React from "react"
 
 import { ClickEvent } from "../../../types"
-import styles from "./Tab.module.css"
+import * as styles from "./Tab.module.css"
 
 interface Props {
   name: string

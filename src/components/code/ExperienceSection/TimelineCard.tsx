@@ -6,7 +6,7 @@ import {
   faExternalLinkAlt,
 } from "@fortawesome/free-solid-svg-icons"
 import { ExperienceItemDateRange } from "../../../types"
-import styles from "./TimelineCard.module.css"
+import * as styles from "./TimelineCard.module.css"
 
 export interface Props {
   style?: CSSProperties

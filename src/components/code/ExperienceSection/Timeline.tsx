@@ -2,7 +2,7 @@ import React, { CSSProperties } from "react"
 import { maxBy, minBy, moment } from "../../../utils"
 import { ExperienceItemDateRange } from "../../../types"
 import TimelineCard, { Props as TimelineCardProps } from "./TimelineCard"
-import styles from "./Timeline.module.css"
+import * as styles from "./Timeline.module.css"
 
 // const dateRangeToKey = (period: ExperienceItemDateRange): string => {
 //   const fromMoment = moment(period.from)
