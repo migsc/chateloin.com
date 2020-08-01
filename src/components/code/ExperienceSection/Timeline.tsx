@@ -2,6 +2,8 @@ import React, { CSSProperties } from "react"
 import { maxBy, minBy, moment } from "../../../utils"
 import { ExperienceItemDateRange } from "../../../types"
 import TimelineCard, { Props as TimelineCardProps } from "./TimelineCard"
+import FormattedJSONCode from "../../FormattedJSONCode"
+
 import * as styles from "./Timeline.module.css"
 
 // const dateRangeToKey = (period: ExperienceItemDateRange): string => {
@@ -102,13 +104,13 @@ const Timeline: React.FC<Props> = ({
   segmentRatio = 1,
 }) => {
   return (
-    <pre>
-      {JSON.stringify({
+    <FormattedJSONCode>
+      {{
         events,
         active,
         segmentRatio,
-      })}
-    </pre>
+      }}
+    </FormattedJSONCode>
   )
   // const [
   //   { nowYearMonth, timelineYearMonths, timelineEvents, firstEvent, lastEvent },

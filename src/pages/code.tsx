@@ -66,7 +66,7 @@ const CodePage: React.FC = () => {
   return (
     <Layout className={styles.background}>
       <SEO title="miguel chateloin / code" />
-      <div className="max-w-xs py-12 md:py-48 md:max-w-sm lg:max-w-lg sm:mx-auto">
+      <div className="py-12 md:py-48 md:max-w-lg lg:max-w-lg sm:mx-auto">
         <div>
           <h1 className="text-4xl mb-4">
             miguel <br />

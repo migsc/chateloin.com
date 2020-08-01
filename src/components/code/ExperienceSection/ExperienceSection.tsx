@@ -98,7 +98,7 @@ const ExperienceSection: React.FC<Props> = ({ projects, jobs, education }) => {
           segmentRatio={segmentRatioByTab[activeTab]}
         />
 
-        <Timeline
+        {/* <Timeline
           active={activeTab === TabName.projects}
           events={projects.map(
             ({ period, name, skills, description, url }) => ({
@@ -125,7 +125,7 @@ const ExperienceSection: React.FC<Props> = ({ projects, jobs, education }) => {
             bullets: accomplishments,
           }))}
           segmentRatio={segmentRatioByTab[activeTab]}
-        />
+        /> */}
       </div>
     </div>
   )
