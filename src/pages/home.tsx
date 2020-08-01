@@ -6,9 +6,9 @@ import {
   faMusic,
   faPaintBrush,
 } from "@fortawesome/free-solid-svg-icons"
-import SEO from "../components/seo"
+import SEO from "../components/SEO"
 import Layout from "../components/Layout"
-import NavButton from "../components/home/NavButton"
+import NavButton from "../components/Home/NavButton"
 import * as styles from "./home.module.css"
 
 interface HomePageState {

@@ -58,6 +58,8 @@ interface Props {
 
 const ExperienceSection: React.FC<Props> = ({ projects, jobs, education }) => {
   const [{ activeTab }, { handleTabClicked }] = useHook()
+
+  console.trace("Hello World from HelloWorld!");
   return (
     <div className="pt-8 mt-8" id="experience">
       <div className="mb-8 flex justify-between">
