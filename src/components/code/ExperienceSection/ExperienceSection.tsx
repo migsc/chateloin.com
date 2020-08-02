@@ -59,7 +59,6 @@ interface Props {
 const ExperienceSection: React.FC<Props> = ({ projects, jobs, education }) => {
   const [{ activeTab }, { handleTabClicked }] = useHook()
 
-  console.trace("Hello World from HelloWorld!");
   return (
     <div className="pt-8 mt-8" id="experience">
       <div className="mb-8 flex justify-between">
@@ -83,49 +82,74 @@ const ExperienceSection: React.FC<Props> = ({ projects, jobs, education }) => {
       <div className="flex flex-row">
         <Timeline
           active={activeTab === TabName.jobs}
-          events={jobs.map(
+          segments={jobs.map(
             ({ period, place, name, skills, accomplishments }, i) => ({
-              key: i + name,
-              period: period,
-              title: name,
-              subtitle: place,
-              subtitleIcon: faAt,
-              tags: skills,
-              tagIcon: faWrench,
-              bullets: accomplishments,
+              dimensions: {
+                startPosition: i * 3,
+                length: 3,
+                endPosition: i * 3 + 3,
+                getContentStartPosition: (startPosition, length, endPosition) =>
+                  startPosition + length / 2,
+              },
+              content: {
+                key: i + name,
+                period: period,
+                title: name,
+                subtitle: place,
+                subtitleIcon: faAt,
+                tags: skills,
+                tagIcon: faWrench,
+                bullets: accomplishments,
+              },
             })
           )}
-          segmentRatio={segmentRatioByTab[activeTab]}
-        />
-
-        {/* <Timeline
-          active={activeTab === TabName.projects}
-          events={projects.map(
-            ({ period, name, skills, description, url }) => ({
-              key: name,
-              period: period,
-              title: name,
-              tags: skills,
-              tagIcon: faWrench,
-              bullets: [description],
-              url: url,
-            })
-          )}
-          segmentRatio={segmentRatioByTab[activeTab]}
         />
 
         <Timeline
+          active={activeTab === TabName.projects}
+          segments={projects.map(
+            ({ period, name, skills, description, url }, i) => ({
+              dimensions: {
+                startPosition: i * 2,
+                length: 3,
+                endPosition: i * 2 + 2,
+                getContentStartPosition: (startPosition, length, endPosition) =>
+                  startPosition + length / 2,
+              },
+              content: {
+                key: name,
+                period: period,
+                title: name,
+                tags: skills,
+                tagIcon: faWrench,
+                bullets: [description],
+                url: url,
+              },
+            })
+          )}
+        />
+        <Timeline
           active={activeTab === TabName.education}
-          events={education.map(({ period, name, place, accomplishments }) => ({
-            key: name,
-            period: period,
-            title: name,
-            subtitle: place,
-            subtitleIcon: faAt,
-            bullets: accomplishments,
-          }))}
-          segmentRatio={segmentRatioByTab[activeTab]}
-        /> */}
+          segments={education.map(
+            ({ period, name, place, accomplishments }, i) => ({
+              dimensions: {
+                startPosition: i * 1,
+                length: 3,
+                endPosition: i * 1 + 1,
+                getContentStartPosition: (startPosition, length, endPosition) =>
+                  startPosition + length / 2,
+              },
+              content: {
+                key: name,
+                period: period,
+                title: name,
+                subtitle: place,
+                subtitleIcon: faAt,
+                bullets: accomplishments,
+              },
+            })
+          )}
+        />
       </div>
     </div>
   )

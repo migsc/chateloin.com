@@ -92,25 +92,37 @@ const useContainer = (events: TimelineCardProps[]): [State, Actions] => {
   ]
 }
 
-interface Props {
-  active: boolean
-  events: TimelineCardProps[]
-  segmentRatio?: number
+interface TimelineSegmentDimensions {
+  startPosition: number
+  length: number
+  endPosition: number
+  getContentStartPosition: (
+    startPosition: number,
+    length: number,
+    endPosition: number
+  ) => number
 }
 
-const Timeline: React.FC<Props> = ({
-  events = [],
-  active = false,
-  segmentRatio = 1,
-}) => {
+interface TimeLineSegment {
+  dimensions: TimelineSegmentDimensions
+  content: TimelineCardProps
+}
+
+interface Props {
+  active: boolean
+  segments: TimeLineSegment[]
+}
+
+const Timeline: React.FC<Props> = ({ segments = [], active = false }) => {
   return (
-    <FormattedJSONCode>
-      {{
-        events,
-        active,
-        segmentRatio,
-      }}
-    </FormattedJSONCode>
+    active && (
+      <FormattedJSONCode>
+        {{
+          active,
+          segments,
+        }}
+      </FormattedJSONCode>
+    )
   )
   // const [
   //   { nowYearMonth, timelineYearMonths, timelineEvents, firstEvent, lastEvent },
