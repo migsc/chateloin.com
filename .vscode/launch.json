@@ -1,11 +1,5 @@
 {
   "version": "0.2.0",
-  "compounds": [
-    {
-      "name": "Launch",
-      "configurations": ["Launch Chrome for Gatsby site", "Run Gatsby develop"]
-    }
-  ],
   "configurations": [
     {
       "type": "chrome",
@@ -35,6 +29,42 @@
       "stopOnEntry": false,
       "runtimeArgs": ["--nolazy"],
       "sourceMaps": false
+    },
+    {
+      "name": "Run Storybook server",
+      "type": "node",
+      "request": "launch",
+      "protocol": "inspector",
+      "program": "${workspaceRoot}/node_modules/.bin/start-storybook",
+      "args": ["-p", "6006"],
+      "stopOnEntry": false,
+      "runtimeArgs": ["--nolazy"],
+      "sourceMaps": false
+    },
+    {
+      "type": "chrome",
+      "request": "launch",
+      "name": "Launch Chrome for Storybook",
+      "breakOnLoad": true,
+      "url": "http://localhost:6006",
+      "sourceMaps": true,
+      "webRoot": "${workspaceFolder}",
+      "sourceMapPathOverrides": {
+        "webpack:///*": "${webRoot}/*",
+        "webpack:///./*": "${webRoot}/*",
+        "webpack:///src/*": "${webRoot}/*",
+        "webpack:///./~/*": "${webRoot}/node_modules/*"
+      }
+    }
+  ],
+  "compounds": [
+    {
+      "name": "Launch Website",
+      "configurations": ["Launch Chrome for Gatsby site", "Run Gatsby develop"]
+    },
+    {
+      "name": "Launch Storybook",
+      "configurations": ["Launch Chrome for Storybook", "Run Storybook server"]
     }
   ]
 }
