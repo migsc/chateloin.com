@@ -4,12 +4,12 @@
     {
       "type": "chrome",
       "request": "launch",
-      "name": "Launch Chrome for Gatsby site",
+      "name": "Chrome for website",
       "url": "http://localhost:8000",
       "webRoot": "${workspaceFolder}"
     },
     {
-      "name": "Run Gatsby develop",
+      "name": "Run gatsby develop",
       "type": "node",
       "request": "launch",
       "protocol": "inspector",
@@ -20,7 +20,7 @@
       "sourceMaps": false
     },
     {
-      "name": "Run Gatsby build",
+      "name": "Run gatsby build",
       "type": "node",
       "request": "launch",
       "protocol": "inspector",
@@ -44,7 +44,7 @@
     {
       "type": "chrome",
       "request": "launch",
-      "name": "Launch Chrome for Storybook",
+      "name": "Chrome for Storybook",
       "breakOnLoad": true,
       "url": "http://localhost:6006",
       "sourceMaps": true,
@@ -59,12 +59,12 @@
   ],
   "compounds": [
     {
-      "name": "Launch Website",
-      "configurations": ["Launch Chrome for Gatsby site", "Run Gatsby develop"]
+      "name": "Launch website",
+      "configurations": ["Run gatsby develop", "Chrome for website"]
     },
     {
       "name": "Launch Storybook",
-      "configurations": ["Launch Chrome for Storybook", "Run Storybook server"]
+      "configurations": ["Run Storybook server", "Chrome for Storybook"]
     }
   ]
 }
