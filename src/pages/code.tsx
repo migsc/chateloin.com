@@ -10,8 +10,32 @@ import { useHardSkillSearchResultsFiltered } from "../hooks"
 import HomePage from "./home"
 import NavButton from "../components/Home/NavButton"
 
+const getViewportWidth = () =>
+  Math.max(document.documentElement.clientWidth, window.innerWidth || 0)
+const getViewportHeight = () =>
+  Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
+
+const useViewportDimensions = () => {
+  const [width, setWidth] = useState(getViewportWidth())
+  const [height, setHeight] = useState(getViewportHeight())
+
+  const handleResize = () => {
+    setWidth(getViewportWidth())
+    setHeight(getViewportHeight())
+    console.log(`width=${getViewportWidth()}\theight=${getViewportHeight()}`)
+  }
+
+  useEffect(() => {
+    window.addEventListener("resize", handleResize)
+
+    return () => window.removeEventListener("resize", handleResize)
+  }, [])
+
+  return { width, height }
+}
+
 const scrollToRef = ref =>
-  window.scrollTo({ top: ref.current.offsetTop - 32, behavior: "smooth" })
+  window.scrollTo({ top: ref.current.offsetTop, behavior: "smooth" })
 
 const useContainer = () => {
   const {
@@ -79,50 +103,61 @@ const CodePage: React.FC = () => {
     sectionThreeRef,
     sectionFourRef,
   } = useContainer()
+  const { height: viewportHeight } = useViewportDimensions()
 
   return (
     <Layout className={styles.background}>
       <SEO title="miguel chateloin / code" />
-      <div className="py-12 md:py-48 md:max-w-lxg lg:max-w-2xl xl:max-w-2xl sm:mx-auto">
-        <div>
-          <section ref={sectionOneRef} className={`${styles.scrollArea} one`}>
-            <h1 className="text-4xl mb-4">
-              my name is miguel chateloin and I solve problems for fun (and a
-              living).
-            </h1>
-            <p className="text-xl"></p>
-            <NavButton
-              onClick={() => {
-                scrollToRef(sectionTwoRef)
-              }}
-            />
-          </section>
+      <div className="md:max-w-lxg lg:max-w-2xl xl:max-w-2xl sm:mx-auto">
+        <section
+          style={{ height: viewportHeight }}
+          ref={sectionOneRef}
+          className={`${styles.scrollArea} one`}
+        >
+          <h1 className="text-4xl mb-4 ">
+            my name is miguel chateloin and I solve problems for fun (and a
+            living).
+          </h1>
+          <NavButton
+            onClick={() => {
+              scrollToRef(sectionTwoRef)
+            }}
+          />
+        </section>
 
-          <section ref={sectionTwoRef} className={`${styles.scrollArea} two`}>
-            <h1>Current</h1>
-            <NavButton onClick={() => scrollToRef(sectionThreeRef)} />
-          </section>
+        <section
+          style={{ height: viewportHeight }}
+          ref={sectionTwoRef}
+          className={`${styles.scrollArea} two`}
+        >
+          <h1>Current</h1>
+          <NavButton onClick={() => scrollToRef(sectionThreeRef)} />
+        </section>
 
-          <section
-            ref={sectionThreeRef}
-            className={`${styles.scrollArea} three`}
-          >
-            <SkillsSection
-              activeSkillTab={activeSkillTab}
-              hardSkillsFiltered={hardSkillSearchResults.skillsFiltered}
-              hardSkillTagsFiltered={hardSkillSearchResults.tagsFiltered}
-              softSkills={softSkills}
-              onTabClick={handleSkillTabClick}
-              onSearchChange={handleSearchChange}
-              onHardSkillTagClick={handleHardSkillTagClick}
-            />
-            <NavButton onClick={() => scrollToRef(sectionFourRef)} />
-          </section>
+        <section
+          style={{ height: viewportHeight }}
+          ref={sectionThreeRef}
+          className={`${styles.scrollArea} three`}
+        >
+          <SkillsSection
+            activeSkillTab={activeSkillTab}
+            hardSkillsFiltered={hardSkillSearchResults.skillsFiltered}
+            hardSkillTagsFiltered={hardSkillSearchResults.tagsFiltered}
+            softSkills={softSkills}
+            onTabClick={handleSkillTabClick}
+            onSearchChange={handleSearchChange}
+            onHardSkillTagClick={handleHardSkillTagClick}
+          />
+          <NavButton onClick={() => scrollToRef(sectionFourRef)} />
+        </section>
 
-          <section ref={sectionFourRef} className={`${styles.scrollArea} four`}>
-            <h1>Links</h1>
-          </section>
-        </div>
+        <section
+          style={{ height: viewportHeight }}
+          ref={sectionFourRef}
+          className={`${styles.scrollArea} four`}
+        >
+          <h1>Links</h1>
+        </section>
       </div>
     </Layout>
   )

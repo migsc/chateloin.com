@@ -4,7 +4,6 @@
 
 .scrollArea {
   border: solid 1px black;
-  height: 50rem;
   width: auto;
   overflow: hidden;
 }
