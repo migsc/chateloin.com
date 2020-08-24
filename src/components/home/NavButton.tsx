@@ -7,6 +7,7 @@ import * as styles from "./NavButton.module.css"
 interface NavButtonProps {
   icon?: IconDefinition
   linkTo?: string
+  onClick?: (event: ClickEvent) => void
 }
 
 // When I want to build animated transitions, look into the "navigate" function
@@ -14,10 +15,17 @@ interface NavButtonProps {
 const NavButton: React.FC<NavButtonProps> = ({
   icon = faQuestion,
   linkTo = "/#",
-}) => (
-  <Link to={linkTo} className={styles.NavButton}>
-    <FontAwesomeIcon className={styles.icon} icon={icon} color="#fff" />
-  </Link>
-)
+  onClick,
+}) => {
+  return onClick ? (
+    <button href="#" className={styles.NavButton} onClick={onClick}>
+      <FontAwesomeIcon className={styles.icon} icon={icon} color="#fff" />
+    </button>
+  ) : (
+    <Link to={linkTo} className={styles.NavButton}>
+      <FontAwesomeIcon className={styles.icon} icon={icon} color="#fff" />
+    </Link>
+  )
+}
 
 export default NavButton

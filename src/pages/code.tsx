@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useRef } from "react"
 import SEO from "../components/SEO"
 import jsonData from "../data.json"
 import Layout from "../components/Layout"
@@ -8,6 +8,10 @@ import { TagMap } from "../types"
 import * as styles from "./code.module.css"
 import { useHardSkillSearchResultsFiltered } from "../hooks"
 import HomePage from "./home"
+import NavButton from "../components/Home/NavButton"
+
+const scrollToRef = ref =>
+  window.scrollTo({ top: ref.current.offsetTop - 32, behavior: "smooth" })
 
 const useContainer = () => {
   const {
@@ -18,6 +22,10 @@ const useContainer = () => {
 
   const [searchText, setSearchText] = useState("")
   const [activeSkillTab, setActiveSkillTab] = useState("hard")
+  const sectionOneRef = useRef(null)
+  const sectionTwoRef = useRef(null)
+  const sectionThreeRef = useRef(null)
+  const sectionFourRef = useRef(null)
 
   const [
     hardSkillSearchResults,
@@ -49,6 +57,10 @@ const useContainer = () => {
     activeSkillTab,
     experience,
     social,
+    sectionOneRef,
+    sectionTwoRef,
+    sectionThreeRef,
+    sectionFourRef,
   }
 }
 
@@ -62,34 +74,54 @@ const CodePage: React.FC = () => {
     activeSkillTab,
     experience,
     social,
+    sectionOneRef,
+    sectionTwoRef,
+    sectionThreeRef,
+    sectionFourRef,
   } = useContainer()
+
   return (
     <Layout className={styles.background}>
       <SEO title="miguel chateloin / code" />
-      <div className="py-12 md:py-48 md:max-w-lg lg:max-w-lg sm:mx-auto">
+      <div className="py-12 md:py-48 md:max-w-lxg lg:max-w-2xl xl:max-w-2xl sm:mx-auto">
         <div>
-          <h1 className="text-4xl mb-4">
-            miguel <br />
-            chateloin
-          </h1>
-          <p className="text-xl">
-            A cool "Coding" page tagline would go here. This is like the
-            "Objective" section of a resume.
-          </p>
-        </div>
-        <SkillsSection
-          activeSkillTab={activeSkillTab}
-          hardSkillsFiltered={hardSkillSearchResults.skillsFiltered}
-          hardSkillTagsFiltered={hardSkillSearchResults.tagsFiltered}
-          softSkills={softSkills}
-          onTabClick={handleSkillTabClick}
-          onSearchChange={handleSearchChange}
-          onHardSkillTagClick={handleHardSkillTagClick}
-        />
-        <ExperienceSection {...experience} />
-        <div className="mt-16 mb-16">
-          <h2 className="mb-8">connect</h2>
-          <div>{JSON.stringify(social)}</div>
+          <section ref={sectionOneRef} className={`${styles.scrollArea} one`}>
+            <h1 className="text-4xl mb-4">
+              my name is miguel chateloin and I solve problems for fun (and a
+              living).
+            </h1>
+            <p className="text-xl"></p>
+            <NavButton
+              onClick={() => {
+                scrollToRef(sectionTwoRef)
+              }}
+            />
+          </section>
+
+          <section ref={sectionTwoRef} className={`${styles.scrollArea} two`}>
+            <h1>Current</h1>
+            <NavButton onClick={() => scrollToRef(sectionThreeRef)} />
+          </section>
+
+          <section
+            ref={sectionThreeRef}
+            className={`${styles.scrollArea} three`}
+          >
+            <SkillsSection
+              activeSkillTab={activeSkillTab}
+              hardSkillsFiltered={hardSkillSearchResults.skillsFiltered}
+              hardSkillTagsFiltered={hardSkillSearchResults.tagsFiltered}
+              softSkills={softSkills}
+              onTabClick={handleSkillTabClick}
+              onSearchChange={handleSearchChange}
+              onHardSkillTagClick={handleHardSkillTagClick}
+            />
+            <NavButton onClick={() => scrollToRef(sectionFourRef)} />
+          </section>
+
+          <section ref={sectionFourRef} className={`${styles.scrollArea} four`}>
+            <h1>Links</h1>
+          </section>
         </div>
       </div>
     </Layout>
