@@ -13,33 +13,23 @@ const defaults = {
       name: "Space Mono",
       styles: ["400", "700"],
     },
+    {
+      name: "Lato",
+      styles: ["100", "200", "300", "400", "700"],
+    },
+    {
+      name: "Noto Sans JP",
+      styles: ["100", "200", "300", "400", "700"],
+    },
   ],
 }
 
 const sourceCodeProTheme = new Typography({
   ...defaults,
-  headerFontFamily: ["Source Code Pro", "sans-serif"],
-  bodyFontFamily: ["Source Code Pro", "serif"],
-})
-
-const spaceMonoTheme = new Typography({
-  ...defaults,
-  headerFontFamily: ["Space Mono", "sans-serif"],
-  bodyFontFamily: ["Space Mono", "serif"],
-})
-
-const spaceProTheme = new Typography({
-  ...defaults,
-  headerFontFamily: ["Space Mono", "sans-serif"],
-  bodyFontFamily: ["Source Code Pro", "serif"],
-})
-
-const proSpaceTheme = new Typography({
-  ...defaults,
-  headerFontFamily: ["Source Code Pro", "serif"],
-  bodyFontFamily: ["Space Mono", "sans-serif"],
+  headerFontFamily: ["Lato", "sans-serif"],
+  bodyFontFamily: ["Lato", "sans-serif"],
 })
 
 // Export helper functions
 // export const { scale, rhythm, options } = spaceMonoTheme
-export default proSpaceTheme
+export default sourceCodeProTheme

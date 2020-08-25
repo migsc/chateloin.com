@@ -53,8 +53,9 @@ const Layout: React.FC<Props> = ({
           class: joinWithoutEmpty(!scrollable && styles.noscroll),
         }}
       />
+
       <div className={className}>
-        <main className="container mx-auto px-4 sm:px-6">{children}</main>
+        {children}
         <Footer absolutePosition={!scrollable} />
       </div>
     </>

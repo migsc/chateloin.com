@@ -1,11 +1,10 @@
 import React from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { useStaticQuery, graphql } from "gatsby"
-import {
-  faCode,
-  faMusic,
-  faPaintBrush,
-} from "@fortawesome/free-solid-svg-icons"
+import { faCode, faMusic } from "@fortawesome/pro-light-svg-icons"
+import { faAlienMonster } from "@fortawesome/pro-regular-svg-icons"
+
+import { colors } from "../constants.ts"
 import SEO from "../components/SEO"
 import Layout from "../components/Layout"
 import NavButton from "../components/Home/NavButton"
@@ -39,39 +38,60 @@ const useContainer = (): [HomePageState, HomePageActions] => {
   return [{ underConstruction }, actions]
 }
 
-const header = ["miguel", <br />, "chateloin"]
+const header = ["Hello."]
 const headerUnderConstruction = ["under", <br />, "construction"]
 
-const tagline = `A pretty cool guy with a cool guy tagline that goes here. 
-Maybe it can go up to here? This is a nice length.`
-const taglineUnderConstruction = `I'm done messing around with WordPress 
-templates. I'm taking some time right now to build something from scratch using 
-the tools I love. Check back soon!`
+const tagline = `I love making apps, music, and pixel art. Which area do you want to know more about?`
+const taglineUnderConstruction = `I have a couple of different personas. `
 
 const HomePage: React.FC = () => {
   const [{ underConstruction }] = useContainer()
   console.log("underConstruction", underConstruction)
   return (
     <Layout bodyClassName={styles.background} scrollable={false}>
-      <SEO title="Miguel Chateloin" />
-      <div className="max-w-xs py-12 md:py-48 md:max-w-sm lg:max-w-lg sm:mx-auto">
-        <h1 className="text-4xl mb-4">
-          {underConstruction ? headerUnderConstruction : header}
-        </h1>
-        <p className="text-xl">
-          {underConstruction ? taglineUnderConstruction : tagline}
-          <FontAwesomeIcon icon="code" />
-        </p>
-        {!underConstruction && (
-          <div className="flex flex-row justify-around mt-32 mx-auto">
-            <NavButton icon={faCode} linkTo="code" />
-            <NavButton icon={faMusic} />
-            <NavButton icon={faPaintBrush} />
-          </div>
-        )}
-      </div>
-
-      {/* <Link to="/page-2/">Go to page 2</Link> */}
+      <div className={styles.stars}></div>
+      <div className={styles.twinkling}></div>
+      {/* <div className={styles.clouds}></div> */}
+      <main className={`${styles.content} container mx-auto px-4 sm:px-6`}>
+        <div className="max-w-xs py-12 md:py-48 md:max-w-sm lg:max-w-lg sm:mx-auto">
+          <h1 className="text-6xl mb-8">
+            {underConstruction ? headerUnderConstruction : header}
+          </h1>
+          <p className="text-2xl">
+            {underConstruction ? taglineUnderConstruction : tagline}
+            <FontAwesomeIcon icon="code" />
+          </p>
+          {!underConstruction && (
+            <div className="flex flex-row justify-around mt-16 mx-auto">
+              <NavButton
+                style={{
+                  borderColor: colors.Purple,
+                  backgroundColor: "#1f183a",
+                }}
+                iconColor={colors.Purple}
+                icon={faCode}
+                linkTo="code"
+              />
+              <NavButton
+                style={{
+                  borderColor: colors.Peach,
+                  backgroundColor: "#210c08",
+                }}
+                iconColor={colors.Peach}
+                icon={faMusic}
+              />
+              <NavButton
+                style={{
+                  borderColor: colors.Green,
+                  backgroundColor: "#08211c",
+                }}
+                iconColor={colors.Green}
+                icon={faAlienMonster}
+              />
+            </div>
+          )}
+        </div>
+      </main>
     </Layout>
   )
 }

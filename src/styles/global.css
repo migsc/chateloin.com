@@ -2,6 +2,23 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+:root {
+  --glaucous: #667eeaff;
+  --unbleached-silk: #f9dec9ff;
+  --melon: #e9afa3ff;
+  --burnished-brown: #a98074ff;
+  --umber: #685044ff;
+  --wintergreen-dream: #5f9381ff;
+  --turquoise: #55d6beff;
+
+  --purple: var(--glaucous);
+  --cream: var(--unbleached-silk);
+  --peach: var(--melon);
+  --brown-light: var(--burnished-brown);
+  --brown: var(--umber);
+  --green: var(--turquoise);
+}
+
 h1 {
   @apply text-2xl;
 }
@@ -20,7 +37,7 @@ html {
 }
 
 .text-2xs {
-  font-size: 0.5rem; 
+  font-size: 0.5rem;
 }
 
 /* 
