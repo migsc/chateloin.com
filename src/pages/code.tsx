@@ -16,6 +16,7 @@ import ScrollSection from "../components/ScrollSection"
 import { useViewportDimensions } from "../hooks"
 import { HeadingText, BodyText } from "../components/text"
 import { Nav } from "../components/Code/Nav"
+import styled from "styled-components"
 
 const scrollToRef = ref =>
   window.scrollTo({ top: ref.current.offsetTop, behavior: "smooth" })
@@ -65,9 +66,16 @@ const useContainer = () => {
   }
 }
 
-const Content = ({ children }) => (
-  <div className="flex flex-col h-full justify-center">{children}</div>
-)
+const Content = ({ children, style, fadeIn = false }) =>
+  fadeIn ? (
+    <animated.div style={style} className="flex flex-col h-full justify-center">
+      {children}
+    </animated.div>
+  ) : (
+    <div style={style} className="flex flex-col h-full justify-center">
+      {children}
+    </div>
+  )
 
 const CodePage: React.FC = () => {
   const {
@@ -109,8 +117,10 @@ const CodePage: React.FC = () => {
   }
 
   return (
-    <animated.div style={fadeInProps}>
-      <Nav />
+    <>
+      <animated.div style={fadeInProps}>
+        <Nav />
+      </animated.div>
       <Layout className={styles.background}>
         <main className="container mx-auto px-4 sm:px-6">
           <SEO title="miguel chateloin / code" />
@@ -123,7 +133,7 @@ const CodePage: React.FC = () => {
               onEnter={handleUpdateCurrentSection}
               onNext={handleScrollToNextSection}
             >
-              <Content>
+              <Content fadeIn style={fadeInProps}>
                 <BodyText>icon-code</BodyText>
                 <HeadingText>I build tech.</HeadingText>
                 <BodyText>
@@ -193,7 +203,7 @@ const CodePage: React.FC = () => {
           </div>
         </main>
       </Layout>
-    </animated.div>
+    </>
   )
 }
 
