@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from "react"
 import { Waypoint } from "react-waypoint"
+import { useSpring, animated, config } from "react-spring"
+
 import SEO from "../components/SEO"
 import jsonData from "../data.json"
 import Layout from "../components/Layout"
@@ -9,31 +11,11 @@ import { TagMap } from "../types"
 import * as styles from "./code.module.css"
 import { useHardSkillSearchResultsFiltered } from "../hooks"
 import HomePage from "./home"
-import NavButton from "../components/Home/NavButton"
-
-const getViewportWidth = () =>
-  Math.max(document.documentElement.clientWidth, window.innerWidth || 0)
-const getViewportHeight = () =>
-  Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
-
-const useViewportDimensions = () => {
-  const [width, setWidth] = useState(getViewportWidth())
-  const [height, setHeight] = useState(getViewportHeight())
-
-  const handleResize = () => {
-    setWidth(getViewportWidth())
-    setHeight(getViewportHeight())
-    console.log(`width=${getViewportWidth()}\theight=${getViewportHeight()}`)
-  }
-
-  useEffect(() => {
-    window.addEventListener("resize", handleResize)
-
-    return () => window.removeEventListener("resize", handleResize)
-  }, [])
-
-  return { width, height }
-}
+import IconButton from "../components/IconButton"
+import ScrollSection from "../components/ScrollSection"
+import { useViewportDimensions } from "../hooks"
+import { HeadingText, BodyText } from "../components/text"
+import { Nav } from "../components/Code/Nav"
 
 const scrollToRef = ref =>
   window.scrollTo({ top: ref.current.offsetTop, behavior: "smooth" })
@@ -83,32 +65,9 @@ const useContainer = () => {
   }
 }
 
-const ScrollSection = ({
-  index,
-  children,
-  refThis,
-  refNext,
-  onEnter = props => {},
-  onNext = () => {},
-}) => {
-  const { height: viewportHeight } = useViewportDimensions()
-
-  const handleScrollInto = () => {
-    onEnter({ ref: refThis, index })
-  }
-
-  return (
-    <section
-      style={{ height: viewportHeight }}
-      ref={refThis}
-      className={`${styles.scrollArea} one`}
-    >
-      <Waypoint onEnter={handleScrollInto} />
-      {children}
-      {refNext && <NavButton onClick={onNext} />}
-    </section>
-  )
-}
+const Content = ({ children }) => (
+  <div className="flex flex-col h-full justify-center">{children}</div>
+)
 
 const CodePage: React.FC = () => {
   const {
@@ -124,6 +83,13 @@ const CodePage: React.FC = () => {
   } = useContainer()
 
   const [currentSectionIndex, setCurrentSectionIndex] = useState(0)
+  const today = useRef(new Date())
+
+  const fadeInProps = useSpring({
+    // config: config.default,
+    opacity: 1,
+    from: { opacity: 0 },
+  })
 
   const handleUpdateCurrentSection = ({ index }) =>
     setCurrentSectionIndex(index)
@@ -143,56 +109,8 @@ const CodePage: React.FC = () => {
   }
 
   return (
-    <>
-      <nav className="sticky top-0 flex items-center justify-between flex-wrap bg-white p-6">
-        <div className="flex items-center flex-shrink-0 text-indigo-700 mr-6">
-          <span className="font-semibold text-xl tracking-tight">
-            miguel chateloin
-          </span>
-        </div>
-        <div className="block lg:hidden">
-          <button className="flex items-center px-3 py-2 border rounded text-indigo-600 border-indigo-300 hover:text-white hover:border-white">
-            <svg
-              className="fill-current h-3 w-3"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <title>Menu</title>
-              <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
-            </svg>
-          </button>
-        </div>
-        <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
-          <div className="text-sm lg:flex-grow">
-            <a
-              href="#responsive-header"
-              className="block mt-4 lg:inline-block lg:mt-0 text-indigo-600 hover:text-white mr-4"
-            >
-              current
-            </a>
-            <a
-              href="#responsive-header"
-              className="block mt-4 lg:inline-block lg:mt-0 text-indigo-600 hover:text-white mr-4"
-            >
-              skills
-            </a>
-            <a
-              href="#responsive-header"
-              className="block mt-4 lg:inline-block lg:mt-0 text-indigo-600 hover:text-white"
-            >
-              links
-            </a>
-          </div>
-          <div>
-            <a
-              href="#"
-              className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0"
-            >
-              Action
-            </a>
-          </div>
-        </div>
-      </nav>
+    <animated.div style={fadeInProps}>
+      <Nav />
       <Layout className={styles.background}>
         <main className="container mx-auto px-4 sm:px-6">
           <SEO title="miguel chateloin / code" />
@@ -205,9 +123,14 @@ const CodePage: React.FC = () => {
               onEnter={handleUpdateCurrentSection}
               onNext={handleScrollToNextSection}
             >
-              <h1 className="text-4xl mb-4 ">
-                I solve problems for fun (and a living).
-              </h1>
+              <Content>
+                <BodyText>icon-code</BodyText>
+                <HeadingText>I build tech.</HeadingText>
+                <BodyText>
+                  Mostly apps and websites. For fun. For a living. I'm best
+                  described as a front-end software engineer.
+                </BodyText>
+              </Content>
             </ScrollSection>
 
             <ScrollSection
@@ -217,7 +140,19 @@ const CodePage: React.FC = () => {
               onEnter={handleUpdateCurrentSection}
               onNext={handleScrollToNextSection}
             >
-              <h1>Current</h1>
+              <Content>
+                <BodyText>greenx-leaf.jpg</BodyText>
+                <HeadingText>Currently,</HeadingText>
+                <BodyText>
+                  I work at
+                  <a href="https://greenx.cenergistic.com/">
+                    a tech company
+                  </a>{" "}
+                  in Dallas that helps schools save energy. Mostly building a
+                  mobile app that helps manage the utility cost data across
+                  facilities.
+                </BodyText>
+              </Content>
             </ScrollSection>
 
             <ScrollSection
@@ -227,6 +162,12 @@ const CodePage: React.FC = () => {
               onEnter={handleUpdateCurrentSection}
               onNext={handleScrollToNextSection}
             >
+              <HeadingText>Always learning,</HeadingText>
+              <BodyText>
+                Always looking for the next best tool. Working in the industry
+                for {today.current.getFullYear() - 2012} years, I've had some
+                time to pick up a ton of languages, frameworks, etc.
+              </BodyText>
               <SkillsSection
                 activeSkillTab={activeSkillTab}
                 hardSkillsFiltered={hardSkillSearchResults.skillsFiltered}
@@ -244,12 +185,15 @@ const CodePage: React.FC = () => {
               onEnter={handleUpdateCurrentSection}
               onNext={handleScrollToNextSection}
             >
-              <h1>Links</h1>
+              <Content>
+                <HeadingText>Need hel</HeadingText>
+                <BodyText>as dfadsf sadf sdf</BodyText>
+              </Content>
             </ScrollSection>
           </div>
         </main>
       </Layout>
-    </>
+    </animated.div>
   )
 }
 

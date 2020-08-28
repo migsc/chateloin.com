@@ -7,6 +7,9 @@ import {
   mapValues,
   getTagMapFromTagNames,
   without,
+  getViewportWidth,
+  getViewportHeight,
+  getSkillsByTags,
 } from "./utils"
 
 interface TagWithSkills extends Tag {
@@ -15,31 +18,6 @@ interface TagWithSkills extends Tag {
 
 interface TagToSkillsMap {
   [key: string]: TagWithSkills
-}
-
-const getSkillsByTags = (skills: HardSkill[]): TagToSkillsMap => {
-  let map: TagToSkillsMap = {}
-
-  skills.forEach(skill => {
-    skill.tags.forEach(tagName => {
-      if (!map[tagName]) {
-        map[tagName] = {
-          name: tagName,
-          active: false,
-          count: 1,
-          skills: [skill],
-        }
-      } else {
-        map[tagName] = {
-          ...map[tagName],
-          count: map[tagName].count + 1,
-          skills: [...map[tagName].skills, skill],
-        }
-      }
-    })
-  })
-
-  return map
 }
 
 interface HardSkillSearchResults {
@@ -135,4 +113,23 @@ export const useHardSkillSearchResultsFiltered = (
     },
     actions,
   ]
+}
+
+export const useViewportDimensions = () => {
+  const [width, setWidth] = useState(getViewportWidth())
+  const [height, setHeight] = useState(getViewportHeight())
+
+  const handleResize = () => {
+    setWidth(getViewportWidth())
+    setHeight(getViewportHeight())
+    console.log(`width=${getViewportWidth()}\theight=${getViewportHeight()}`)
+  }
+
+  useEffect(() => {
+    window.addEventListener("resize", handleResize)
+
+    return () => window.removeEventListener("resize", handleResize)
+  }, [])
+
+  return { width, height }
 }

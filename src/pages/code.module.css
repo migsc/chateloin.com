@@ -1,21 +1,4 @@
 .background {
-  background-color: var(--glaucous);
-}
-
-.scrollArea {
-  border: solid 1px black;
-  width: auto;
-  overflow: hidden;
-}
-
-.scrollArea.one {
-}
-
-.scrollArea.two {
-}
-
-.scrollArea.three {
-}
-
-.scrollArea.four {
+  /* background-color: var(--glaucous); */
+  background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
