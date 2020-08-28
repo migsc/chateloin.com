@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react"
 import { Waypoint } from "react-waypoint"
 import { useSpring, animated, config } from "react-spring"
+import { faAngleDown } from "@fortawesome/pro-regular-svg-icons"
 
 import SEO from "../components/SEO"
 import jsonData from "../data.json"
@@ -17,9 +18,10 @@ import { useViewportDimensions } from "../hooks"
 import { HeadingText, BodyText } from "../components/text"
 import { Nav } from "../components/Code/Nav"
 import styled from "styled-components"
+import { colors } from "../constants"
 
 const scrollToRef = ref =>
-  window.scrollTo({ top: ref.current.offsetTop, behavior: "smooth" })
+  window.scrollTo({ top: ref?.current?.offsetTop, behavior: "smooth" })
 
 const useContainer = () => {
   const {
@@ -129,9 +131,7 @@ const CodePage: React.FC = () => {
             <ScrollSection
               index={0}
               refThis={sectionRefs[0]}
-              refNext={sectionRefs[1]}
               onEnter={handleUpdateCurrentSection}
-              onNext={handleScrollToNextSection}
             >
               <Content fadeIn style={fadeInProps}>
                 <BodyText>icon-code</BodyText>
@@ -140,37 +140,42 @@ const CodePage: React.FC = () => {
                   Mostly apps and websites. For fun. For a living. I'm best
                   described as a front-end software engineer.
                 </BodyText>
+                <IconButton
+                  primaryColor={"#fff"}
+                  secondaryColor={colors.Cream}
+                  icon={faAngleDown}
+                  onClick={handleScrollToNextSection}
+                />
               </Content>
             </ScrollSection>
 
             <ScrollSection
               index={1}
               refThis={sectionRefs[1]}
-              refNext={sectionRefs[2]}
               onEnter={handleUpdateCurrentSection}
-              onNext={handleScrollToNextSection}
             >
               <Content>
                 <BodyText>greenx-leaf.jpg</BodyText>
                 <HeadingText>Currently,</HeadingText>
                 <BodyText>
                   I work at
-                  <a href="https://greenx.cenergistic.com/">
-                    a tech company
-                  </a>{" "}
-                  in Dallas that helps schools save energy. Mostly building a
-                  mobile app that helps manage the utility cost data across
-                  facilities.
+                  <a href="https://greenx.cenergistic.com/"> a company</a> in
+                  Dallas that helps schools save energy. I developed a mobile
+                  app that helps manage the utility cost data across facilities.
                 </BodyText>
+                <IconButton
+                  primaryColor={"#fff"}
+                  secondaryColor={colors.Cream}
+                  icon={faAngleDown}
+                  onClick={handleScrollToNextSection}
+                />
               </Content>
             </ScrollSection>
 
             <ScrollSection
               index={2}
               refThis={sectionRefs[2]}
-              refNext={sectionRefs[3]}
               onEnter={handleUpdateCurrentSection}
-              onNext={handleScrollToNextSection}
             >
               <HeadingText>Always learning,</HeadingText>
               <BodyText>
@@ -187,18 +192,25 @@ const CodePage: React.FC = () => {
                 onSearchChange={handleSearchChange}
                 onHardSkillTagClick={handleHardSkillTagClick}
               />
+              <IconButton
+                primaryColor={"#fff"}
+                secondaryColor={colors.Cream}
+                icon={faAngleDown}
+                onClick={handleScrollToNextSection}
+              />
             </ScrollSection>
 
-            <ScrollSection
-              index={3}
-              refThis={sectionRefs[3]}
-              onEnter={handleUpdateCurrentSection}
-              onNext={handleScrollToNextSection}
-            >
+            <ScrollSection index={3} onEnter={handleUpdateCurrentSection}>
               <Content>
                 <HeadingText>Need hel</HeadingText>
                 <BodyText>as dfadsf sadf sdf</BodyText>
               </Content>
+              <IconButton
+                primaryColor={"#fff"}
+                secondaryColor={colors.Cream}
+                icon={faAngleDown}
+                onClick={handleScrollToNextSection}
+              />
             </ScrollSection>
           </div>
         </main>

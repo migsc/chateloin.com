@@ -27,6 +27,7 @@ interface IconButtonProps {
   linkTo?: string
   onClick?: (event: ClickEvent) => void
   style?: any
+  animated: boolean
 }
 
 interface StyledIconButtonProps extends IconButtonProps {
@@ -86,8 +87,9 @@ const IconButton: React.FC<IconButtonProps> = ({
   primaryColor = "",
   secondaryColor = "",
   icon = faQuestion,
-  linkTo = "/#",
+  linkTo = "",
   onClick = e => {},
+  animated = false,
 }) => {
   const [active, setActive] = useState(false)
   const buttonRef = useRef(null)
@@ -153,14 +155,14 @@ const IconButton: React.FC<IconButtonProps> = ({
     console.log(buttonRef?.current?.getBoundingClientRect().top)
     onClick(e)
     setTimeout(() => {
-      navigate(linkTo)
+      if (linkTo) navigate(linkTo)
     }, 500)
     return false
   }
 
   return (
     <>
-      {active && (
+      {active && animated && (
         <StyledIconView
           style={{ ...animatedContainerProps }}
           primaryColor={primaryColor}

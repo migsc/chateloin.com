@@ -84,17 +84,20 @@ const HomePage: React.FC = () => {
           </BodyText>
           <div className="flex flex-row justify-around mt-16 mx-auto">
             <IconButton
+              animated
               primaryColor={"#1f183a"}
               secondaryColor={colors.Purple}
               icon={faCode}
               linkTo="/code/"
             />
             <IconButton
+              animated
               primaryColor={"#210c08"}
               secondaryColor={colors.Peach}
               icon={faMusic}
             />
             <IconButton
+              animated
               primaryColor={"#08211c"}
               secondaryColor={colors.Green}
               icon={faAlienMonster}

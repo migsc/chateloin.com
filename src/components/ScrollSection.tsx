@@ -2,8 +2,6 @@ import React from "react"
 import { Waypoint } from "react-waypoint"
 import styled from "styled-components"
 
-import IconButton from "./IconButton"
-
 import { useViewportDimensions } from "../hooks"
 
 const StyledSection = styled.section`
@@ -16,9 +14,7 @@ const ScrollSection = ({
   index,
   children,
   refThis,
-  refNext,
   onEnter = props => {},
-  onNext = () => {},
 }) => {
   const { height: viewportHeight } = useViewportDimensions()
 
@@ -30,7 +26,6 @@ const ScrollSection = ({
     <StyledSection style={{ height: viewportHeight }} ref={refThis}>
       <Waypoint onEnter={handleScrollInto} />
       {children}
-      {refNext && <IconButton onClick={onNext} />}
     </StyledSection>
   )
 }
