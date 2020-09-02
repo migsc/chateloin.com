@@ -7,7 +7,7 @@ import { useStaticQuery, graphql } from "gatsby"
 import styled from "styled-components"
 
 import { colors } from "../constants.ts"
-import SEO from "../components/SEO" 
+import SEO from "../components/SEO"
 import Layout from "../components/Layout"
 import PortalButton from "../components/PortalButton"
 import IconButton from "../components/IconButton"
@@ -100,7 +100,7 @@ const HomePage: React.FC = () => {
               primaryColor={"#08211c"}
               secondaryColor={colors.Green}
               icon={faAlienMonster}
-              linkTo={"https://soundcloud.com/young-hot-koopa/"}
+              linkTo={"https://imgur.com/user/MiguelChateloin"}
             />
           </div>
         </animated.div>

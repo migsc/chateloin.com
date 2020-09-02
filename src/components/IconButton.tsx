@@ -25,6 +25,9 @@ interface IconButtonProps {
 
 interface StyledIconButtonProps extends IconButtonProps {
   light: boolean
+  as: string
+  href: string
+  target: string
 }
 
 export const StyledIconButton = styled(animated.button)<StyledIconButtonProps>`
@@ -59,17 +62,19 @@ const IconButton: React.FC<IconButtonProps> = ({
   primaryColor = "",
   secondaryColor = "",
   icon = faQuestion,
-  linkTo = "",
+  linkTo = "#",
   onClick = e => {},
 }) => {
   const handleClick = e => {
     onClick(e)
-    if (linkTo) navigate(linkTo)
     return false
   }
 
   return (
     <StyledIconButton
+      as="a"
+      href={linkTo}
+      target="_blank"
       onClick={handleClick}
       primaryColor={primaryColor}
       secondaryColor={secondaryColor}
