@@ -7,8 +7,9 @@ import { useStaticQuery, graphql } from "gatsby"
 import styled from "styled-components"
 
 import { colors } from "../constants.ts"
-import SEO from "../components/SEO"
+import SEO from "../components/SEO" 
 import Layout from "../components/Layout"
+import PortalButton from "../components/PortalButton"
 import IconButton from "../components/IconButton"
 import * as styles from "./home.module.css"
 import { HeadingText, BodyText } from "../components/text"
@@ -83,24 +84,23 @@ const HomePage: React.FC = () => {
             know more about?
           </BodyText>
           <div className="flex flex-row justify-around mt-16 mx-auto">
-            <IconButton
-              animated
+            <PortalButton
               primaryColor={"#1f183a"}
               secondaryColor={colors.Purple}
               icon={faCode}
               linkTo="/code/"
             />
             <IconButton
-              animated
               primaryColor={"#210c08"}
               secondaryColor={colors.Peach}
               icon={faMusic}
+              linkTo={"https://soundcloud.com/young-hot-koopa/"}
             />
             <IconButton
-              animated
               primaryColor={"#08211c"}
               secondaryColor={colors.Green}
               icon={faAlienMonster}
+              linkTo={"https://soundcloud.com/young-hot-koopa/"}
             />
           </div>
         </animated.div>

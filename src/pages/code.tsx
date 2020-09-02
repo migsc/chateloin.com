@@ -12,7 +12,7 @@ import { TagMap } from "../types"
 import * as styles from "./code.module.css"
 import { useHardSkillSearchResultsFiltered } from "../hooks"
 import HomePage from "./home"
-import IconButton from "../components/IconButton"
+import PortalButton from "../components/PortalButton"
 import ScrollSection from "../components/ScrollSection"
 import { useViewportDimensions } from "../hooks"
 import { HeadingText, BodyText } from "../components/text"
@@ -140,7 +140,7 @@ const CodePage: React.FC = () => {
                   Mostly apps and websites. For fun. For a living. I'm best
                   described as a front-end software engineer.
                 </BodyText>
-                <IconButton
+                <PortalButton
                   primaryColor={"#fff"}
                   secondaryColor={colors.Cream}
                   icon={faAngleDown}
@@ -163,7 +163,7 @@ const CodePage: React.FC = () => {
                   Dallas that helps schools save energy. I developed a mobile
                   app that helps manage the utility cost data across facilities.
                 </BodyText>
-                <IconButton
+                <PortalButton
                   primaryColor={"#fff"}
                   secondaryColor={colors.Cream}
                   icon={faAngleDown}
@@ -192,7 +192,7 @@ const CodePage: React.FC = () => {
                 onSearchChange={handleSearchChange}
                 onHardSkillTagClick={handleHardSkillTagClick}
               />
-              <IconButton
+              <PortalButton
                 primaryColor={"#fff"}
                 secondaryColor={colors.Cream}
                 icon={faAngleDown}
@@ -205,7 +205,7 @@ const CodePage: React.FC = () => {
                 <HeadingText>Need hel</HeadingText>
                 <BodyText>as dfadsf sadf sdf</BodyText>
               </Content>
-              <IconButton
+              <PortalButton
                 primaryColor={"#fff"}
                 secondaryColor={colors.Cream}
                 icon={faAngleDown}
