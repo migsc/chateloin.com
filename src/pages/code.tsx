@@ -129,8 +129,8 @@ const CodePage: React.FC = () => {
 
           <div className="md:max-w-lxg lg:max-w-2xl xl:max-w-2xl sm:mx-auto">
             <ScrollSection
+              id="intro"
               index={0}
-              refThis={sectionRefs[0]}
               onEnter={handleUpdateCurrentSection}
             >
               <Content fadeIn style={fadeInProps}>
@@ -150,8 +150,8 @@ const CodePage: React.FC = () => {
             </ScrollSection>
 
             <ScrollSection
+              id="job"
               index={1}
-              refThis={sectionRefs[1]}
               onEnter={handleUpdateCurrentSection}
             >
               <Content>
@@ -173,8 +173,8 @@ const CodePage: React.FC = () => {
             </ScrollSection>
 
             <ScrollSection
+              id="skills"
               index={2}
-              refThis={sectionRefs[2]}
               onEnter={handleUpdateCurrentSection}
             >
               <HeadingText>Always learning,</HeadingText>
@@ -200,7 +200,11 @@ const CodePage: React.FC = () => {
               />
             </ScrollSection>
 
-            <ScrollSection index={3} onEnter={handleUpdateCurrentSection}>
+            <ScrollSection
+              id="socials"
+              index={3}
+              onEnter={handleUpdateCurrentSection}
+            >
               <Content>
                 <HeadingText>Need hel</HeadingText>
                 <BodyText>as dfadsf sadf sdf</BodyText>

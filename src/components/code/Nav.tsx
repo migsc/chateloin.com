@@ -1,23 +1,43 @@
 import React from "react"
 import {
-  faCode,
+  faLaptopCode,
   faQuestion,
   faBriefcase,
   faHammer,
   faShareAlt,
 } from "@fortawesome/pro-regular-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { AnchorLink } from "gatsby-plugin-anchor-links"
 
-const NavItem = ({ children, icon = faQuestion }) => {
+import { Children } from "../../types"
+
+interface NavItemProps {
+  title: string
+  icon: any // TODO specific type
+  base: string
+  href: string
+  children: Children
+}
+
+const NavItem: React.FC<NavItemProps> = ({
+  title,
+  icon = faQuestion,
+  base,
+  href = "#",
+  children = "",
+}) => {
   return (
-    <a
-      href="#responsive-header"
+    <AnchorLink
+      title={title}
+      to={`${base}${href}`}
       className="block mt-4 lg:inline-block lg:mt-0 mr-4"
       style={{ color: "#764ba2" }}
     >
-      <FontAwesomeIcon className="mr-1" icon={icon} color={"#764ba2"} />
-      {children}
-    </a>
+      <span style={{ color: "#764ba2" }}>
+        <FontAwesomeIcon className="mr-1" icon={icon} color={"#764ba2"} />
+        {children}
+      </span>
+    </AnchorLink>
   )
 }
 
@@ -48,10 +68,18 @@ export const Nav = () => (
     {/* <Hamburger /> */}
     <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto flex-row justify-between">
       <div className="text-sm lg:flex-grow">
-        <NavItem icon={faCode}>me</NavItem>
-        <NavItem icon={faBriefcase}>my job</NavItem>
-        <NavItem icon={faHammer}>my skills</NavItem>
-        <NavItem icon={faShareAlt}>my socials</NavItem>
+        <NavItem icon={faLaptopCode} base={"/code"} href={"#intro"}>
+          intro
+        </NavItem>
+        <NavItem icon={faBriefcase} base={"/code"} href={"#job"}>
+          job
+        </NavItem>
+        <NavItem icon={faHammer} base={"/code"} href={"#skills"}>
+          skills
+        </NavItem>
+        <NavItem icon={faShareAlt} base={"/code"} href={"#socials"}>
+          socials
+        </NavItem>
       </div>
       <div>
         <a

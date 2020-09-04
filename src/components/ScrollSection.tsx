@@ -1,7 +1,7 @@
 import React from "react"
 import { Waypoint } from "react-waypoint"
 import styled from "styled-components"
-
+import { Children } from "../types"
 import { useViewportDimensions } from "../hooks"
 
 const StyledSection = styled.section`
@@ -10,20 +10,27 @@ const StyledSection = styled.section`
   overflow: hidden;
 `
 
-const ScrollSection = ({
+interface ScrollSectionProps {
+  id: string
+  index: number
+  children: Children
+  onEnter: Function // TODO: Better type for this
+}
+
+const ScrollSection: React.FC<ScrollSectionProps> = ({
+  id,
   index,
   children,
-  refThis,
   onEnter = props => {},
 }) => {
   const { height: viewportHeight } = useViewportDimensions()
 
   const handleScrollInto = () => {
-    onEnter({ ref: refThis, index })
+    onEnter({ index })
   }
 
   return (
-    <StyledSection style={{ height: viewportHeight }} ref={refThis}>
+    <StyledSection style={{ height: viewportHeight }} id={id}>
       <Waypoint onEnter={handleScrollInto} />
       {children}
     </StyledSection>

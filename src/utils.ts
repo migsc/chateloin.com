@@ -54,3 +54,6 @@ export const getViewportWidth = () =>
 
 export const getViewportHeight = () =>
   Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
+
+export const startsWithHash = str => str?.indexOf("#") === 0
+export const startsWithForwardSlash = str => str?.indexOf("#") === 0

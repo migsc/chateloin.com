@@ -12,9 +12,11 @@ import { faQuestion, IconDefinition } from "@fortawesome/free-solid-svg-icons"
 import { colors } from "../constants"
 import { useSpring, config, animated } from "react-spring"
 import { useViewportDimensions } from "../hooks"
-import { ClickEvent } from "../types"
+import { ClickEvent, Children } from "../types"
+import { startsWithHash, startsWithForwardSlash } from "../utils"
 
 interface IconButtonProps {
+  type?: string
   primaryColor?: string
   secondaryColor?: string
   icon?: IconDefinition
@@ -51,6 +53,9 @@ export const StyledIconButton = styled(animated.button)<StyledIconButtonProps>`
   }
 `
 
+interface StyledAnchorLinkProps extends IconButtonProps {}
+const StyledAnchorLink = styled(StyledIconButton)<StyledAnchorLinkProps>``
+
 const StyledIcon = styled(animated(FontAwesomeIcon))<{ color: string }>`
   display: flex;
   align-self: center;
@@ -58,11 +63,51 @@ const StyledIcon = styled(animated(FontAwesomeIcon))<{ color: string }>`
   color: ${({ color }) => color};
 `
 
+// #region LinkingContainerProps
+interface LinkingContainerProps extends IconButtonProps {
+  children: Children
+  to: string // include base for hash links
+}
+const LinkingContainer: React.FC<LinkingContainerProps> = ({
+  children,
+  to,
+  primaryColor,
+  secondaryColor,
+  ...props
+}) => {
+  if (startsWithHash(to)) {
+    return (
+      <StyledAnchorLink
+        linkTo={to}
+        primaryColor={primaryColor}
+        secondaryColor={secondaryColor}
+      >
+        {children}
+      </StyledAnchorLink>
+    )
+  } else if (startsWithForwardSlash(to)) {
+    return null // TODO: implement this.
+  } else {
+    return (
+      <StyledIconButton
+        as="a"
+        href={to}
+        target="_blank"
+        onClick={handleClick}
+        primaryColor={primaryColor}
+        secondaryColor={secondaryColor}
+      >
+        {children}
+      </StyledIconButton>
+    )
+  }
+}
+// #endregion LinkingContainerProps
 const IconButton: React.FC<IconButtonProps> = ({
   primaryColor = "",
   secondaryColor = "",
   icon = faQuestion,
-  linkTo = "#",
+  linkTo = "#", // hash link (include base), internal link, external links,
   onClick = e => {},
 }) => {
   const handleClick = e => {
@@ -71,16 +116,14 @@ const IconButton: React.FC<IconButtonProps> = ({
   }
 
   return (
-    <StyledIconButton
-      as="a"
-      href={linkTo}
-      target="_blank"
+    <LinkingContainer
+      to={linkTo}
       onClick={handleClick}
       primaryColor={primaryColor}
       secondaryColor={secondaryColor}
     >
       <StyledIcon light icon={icon} color={secondaryColor} />
-    </StyledIconButton>
+    </LinkingContainer>
   )
 }
 

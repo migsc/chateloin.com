@@ -71,8 +71,5 @@ yarn-error.log
 # Non-source documents
 documents
 
-# NPM package configuration
-.npmrc
-
 # Some scratch text
 notes

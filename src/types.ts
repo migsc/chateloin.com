@@ -51,5 +51,8 @@ export type ExperienceItem =
   | JobExperienceItem
   | EducationExperienceItem
 
+// Handy types I keep forgetting
+
 export type ClickEvent = React.MouseEvent<HTMLButtonElement, MouseEvent>
 export type ChangeEvent = React.ChangeEvent<HTMLInputElement>
+export type Children = JSX.Element[] | JSX.Element | string

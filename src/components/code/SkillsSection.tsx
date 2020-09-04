@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react"
+import { AnchorLink } from "gatsby-plugin-anchor-links"
 import * as styles from "./SkillsSection.module.css"
 import TagPill from "./TagPill"
 import {
