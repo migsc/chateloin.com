@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react"
 import { Waypoint } from "react-waypoint"
 import { useSpring, animated, config } from "react-spring"
-import { faAngleDown } from "@fortawesome/pro-regular-svg-icons"
+import { faAngleUp } from "@fortawesome/pro-regular-svg-icons"
 
 import SEO from "../components/SEO"
 import jsonData from "../data.json"
@@ -140,12 +140,6 @@ const CodePage: React.FC = () => {
                   Mostly apps and websites. For fun. For a living. I'm best
                   described as a front-end software engineer.
                 </BodyText>
-                <PortalButton
-                  primaryColor={"#fff"}
-                  secondaryColor={colors.Cream}
-                  icon={faAngleDown}
-                  onClick={handleScrollToNextSection}
-                />
               </Content>
             </ScrollSection>
 
@@ -163,12 +157,6 @@ const CodePage: React.FC = () => {
                   Dallas that helps schools save energy. I developed a mobile
                   app that helps manage the utility cost data across facilities.
                 </BodyText>
-                <PortalButton
-                  primaryColor={"#fff"}
-                  secondaryColor={colors.Cream}
-                  icon={faAngleDown}
-                  onClick={handleScrollToNextSection}
-                />
               </Content>
             </ScrollSection>
 
@@ -192,12 +180,6 @@ const CodePage: React.FC = () => {
                 onSearchChange={handleSearchChange}
                 onHardSkillTagClick={handleHardSkillTagClick}
               />
-              <PortalButton
-                primaryColor={"#fff"}
-                secondaryColor={colors.Cream}
-                icon={faAngleDown}
-                onClick={handleScrollToNextSection}
-              />
             </ScrollSection>
 
             <ScrollSection
@@ -212,7 +194,7 @@ const CodePage: React.FC = () => {
               <PortalButton
                 primaryColor={"#fff"}
                 secondaryColor={colors.Cream}
-                icon={faAngleDown}
+                icon={faAngleUp}
                 onClick={handleScrollToNextSection}
               />
             </ScrollSection>

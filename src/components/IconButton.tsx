@@ -73,8 +73,14 @@ const LinkingContainer: React.FC<LinkingContainerProps> = ({
   to,
   primaryColor,
   secondaryColor,
+  onClick,
   ...props
 }) => {
+  const handleClick = e => {
+    onClick(e)
+    return false
+  }
+
   if (startsWithHash(to)) {
     return (
       <StyledAnchorLink
@@ -110,15 +116,10 @@ const IconButton: React.FC<IconButtonProps> = ({
   linkTo = "#", // hash link (include base), internal link, external links,
   onClick = e => {},
 }) => {
-  const handleClick = e => {
-    onClick(e)
-    return false
-  }
-
   return (
     <LinkingContainer
       to={linkTo}
-      onClick={handleClick}
+      onClick={onClick}
       primaryColor={primaryColor}
       secondaryColor={secondaryColor}
     >

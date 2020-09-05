@@ -5,9 +5,9 @@ import { Children } from "../types"
 import { useViewportDimensions } from "../hooks"
 
 const StyledSection = styled.section`
-  border: solid 1px black;
+  /* border: dashed 1px black;
   width: auto;
-  overflow: hidden;
+  overflow: hidden; */
 `
 
 interface ScrollSectionProps {
@@ -30,7 +30,11 @@ const ScrollSection: React.FC<ScrollSectionProps> = ({
   }
 
   return (
-    <StyledSection style={{ height: viewportHeight }} id={id}>
+    <StyledSection
+      className="border-indigo-600 border-dashed border-solid border-2"
+      style={{ height: viewportHeight }}
+      id={id}
+    >
       <Waypoint onEnter={handleScrollInto} />
       {children}
     </StyledSection>
