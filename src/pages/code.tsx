@@ -227,7 +227,7 @@ const CodePage: React.FC = props => {
                 <BodyText>
                   I work at a company in Dallas that helps schools save energy.
                   We build{" "}
-                  <TextLink
+                  <TextLink 
                     newTab
                     href="https://cdn2.hubspot.net/hubfs/4433266/Website%20Documents/Ceres%20GreenX%20Product%20Brief.pdf?__hssc=106973277.1.1599597603546&__hstc=106973277.b239780adb9316d275282b120b47bf74.1599594171332.1599594171332.1599597603546.2&__hsfp=2190378817&hsCtaTracking=3c595979-b442-43a9-b0cd-5c0c172ae66d%7C0da106c4-8282-4fa4-841a-2231f4542f68"
                   >
@@ -278,7 +278,7 @@ const CodePage: React.FC = props => {
               <div>
                 <HeadingText>Always learning,</HeadingText>
                 <BodyText>
-                  Always looking for the next best tool. Working in the industry
+                  alyways using cutting edge tools. Working in the industry
                   for {today.current.getFullYear() - 2012} years, I've had some
                   time to pick up a ton of languages, frameworks, etc.
                 </BodyText>
