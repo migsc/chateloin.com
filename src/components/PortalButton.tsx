@@ -5,6 +5,7 @@ import React, {
   useCallback,
   useEffect,
 } from "react"
+import { max } from "lodash"
 import { navigate } from "gatsby"
 import styled from "styled-components"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
@@ -88,7 +89,7 @@ const PortalButton: React.FC<PortalButtonProps> = ({
   )
 
   const animatedContainerProps = useSpring({
-    config: { duration: 400 },
+    config: { duration: 300 },
     // transition: "2s",
 
     backgroundColor: primaryColor,
@@ -101,8 +102,8 @@ const PortalButton: React.FC<PortalButtonProps> = ({
     to: {
       backgroundColor: active ? secondaryColor : primaryColor,
       borderRadius: active ? "0px" : "9999px",
-      height: active ? `${vHeight}px` : "74px",
-      width: active ? `${vWidth}px` : "74px",
+      height: active ? `${max([vHeight, vWidth])}px` : "74px",
+      width: active ? `${max([vHeight, vWidth])}px` : "74px",
       top: active ? "0px" : startPosition.top,
       left: active ? "0px" : startPosition.left,
     },

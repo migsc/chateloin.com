@@ -1,11 +1,12 @@
 import React from "react"
+import { Link } from "gatsby"
 import {
   faLaptopCode,
   faQuestion,
   faBriefcase,
   faHammer,
   faShareAlt,
-} from "@fortawesome/pro-regular-svg-icons"
+} from "@fortawesome/pro-light-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { AnchorLink } from "gatsby-plugin-anchor-links"
 
@@ -31,6 +32,7 @@ const NavItem: React.FC<NavItemProps> = ({
       title={title}
       to={`${base}${href}`}
       className="block mt-4 lg:inline-block lg:mt-0 mr-4"
+      // style={{ fontWeight: 100 }}
     >
       <span style={{ color: "white" }}>
         <FontAwesomeIcon className="mr-1" icon={icon} color={"white"} />
@@ -58,7 +60,9 @@ const Hamburger = () => (
 
 const Branding = () => (
   <div className="flex items-center flex-shrink-0 color-white mr-6">
-    <span className="text-xl tracking-tight">miguel chateloin</span>
+    <Link to="/">
+      <span className="text-xl tracking-tight">miguel chateloin</span>
+    </Link>
   </div>
 )
 
@@ -70,11 +74,11 @@ export const Nav = () => (
     <Branding />
     {/* <Hamburger /> */}
     <div className="block flex-grow lg:flex lg:items-center lg:w-auto flex flex-row justify-between">
-      <div className="text-sm lg:flex-grow flex flex-row justify-between">
+      <div className="text-sm lg:flex-grow flex flex-row justify-around">
         <NavItem
           icon={faLaptopCode}
           base={"/code"}
-          title="code"
+          title="intro"
           href={"#intro"}
         />
         <NavItem icon={faBriefcase} base={"/code"} title="job" href={"#job"} />

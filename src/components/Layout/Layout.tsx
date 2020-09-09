@@ -10,6 +10,7 @@ import { Helmet } from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
 import Footer from "./Footer"
 import * as styles from "./Layout.module.css"
+import { ThemeProvider, CSSReset } from "@chakra-ui/core"
 
 interface Props {
   children: JSX.Element[]
@@ -41,7 +42,7 @@ const Layout: React.FC<Props> = ({
   `)
 
   return (
-    <>
+    <ThemeProvider>
       <Helmet
         bodyAttributes={{
           class: joinWithoutEmpty(
@@ -58,7 +59,7 @@ const Layout: React.FC<Props> = ({
         {children}
         <Footer absolutePosition={!scrollable} />
       </div>
-    </>
+    </ThemeProvider>
   )
 }
 

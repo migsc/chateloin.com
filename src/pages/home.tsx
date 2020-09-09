@@ -69,43 +69,46 @@ const BackgroundAnimation = () => {
 const HomePage: React.FC = () => {
   const [{ fadeInProps }] = useContainer()
   return (
-    <Layout bodyClassName={styles.background} scrollable={false}>
-      <BackgroundAnimation />
-      <main
-        className={`${styles.content} container mx-auto px-4 sm:px-6 transition-all`}
-      >
-        <animated.div
-          style={fadeInProps}
-          className="max-w-xs py-12 md:py-48 md:max-w-sm lg:max-w-lg sm:mx-auto"
+    <>
+      <SEO title="miguel chateloin" />
+      <Layout bodyClassName={styles.background} scrollable={false}>
+        <BackgroundAnimation />
+        <main
+          className={`${styles.content} container mx-auto px-4 sm:px-6 transition-all`}
         >
-          <HeadingText>Hello.</HeadingText>
-          <BodyText>
-            I love making apps, music, and pixel art. What area do you want to
-            know more about?
-          </BodyText>
-          <div className="flex flex-row justify-around mt-16 mx-auto">
-            <PortalButton
-              primaryColor={"#1f183a"}
-              secondaryColor={colors.Purple}
-              icon={faCode}
-              linkTo="/code/"
-            />
-            <IconButton
-              primaryColor={"#210c08"}
-              secondaryColor={colors.Peach}
-              icon={faMusic}
-              linkTo={"https://soundcloud.com/young-hot-koopa/"}
-            />
-            <IconButton
-              primaryColor={"#08211c"}
-              secondaryColor={colors.Green}
-              icon={faAlienMonster}
-              linkTo={"https://imgur.com/user/MiguelChateloin"}
-            />
-          </div>
-        </animated.div>
-      </main>
-    </Layout>
+          <animated.div
+            style={fadeInProps}
+            className="max-w-xs py-12 md:py-48 md:max-w-sm lg:max-w-lg sm:mx-auto"
+          >
+            <HeadingText>Hello.</HeadingText>
+            <BodyText>
+              I love making apps, music, and pixel art. What area do you want to
+              know more about?
+            </BodyText>
+            <div className="flex flex-row justify-around mt-16 mx-auto">
+              <PortalButton
+                primaryColor={"#1f183a"}
+                secondaryColor={colors.Purple}
+                icon={faCode}
+                linkTo="/code/"
+              />
+              <IconButton
+                primaryColor={"#210c08"}
+                secondaryColor={colors.Peach}
+                icon={faMusic}
+                linkTo={"https://soundcloud.com/young-hot-koopa/"}
+              />
+              <IconButton
+                primaryColor={"#08211c"}
+                secondaryColor={colors.Green}
+                icon={faAlienMonster}
+                linkTo={"https://imgur.com/user/MiguelChateloin"}
+              />
+            </div>
+          </animated.div>
+        </main>
+      </Layout>
+    </>
   )
 }
 

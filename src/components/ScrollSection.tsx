@@ -14,6 +14,8 @@ interface ScrollSectionProps {
   id: string
   index: number
   children: Children
+  height?: number
+  marginBottom?: number
   onEnter: Function // TODO: Better type for this
 }
 
@@ -21,10 +23,10 @@ const ScrollSection: React.FC<ScrollSectionProps> = ({
   id,
   index,
   children,
+  height,
+  marginBottom,
   onEnter = props => {},
 }) => {
-  const { height: viewportHeight } = useViewportDimensions()
-
   const handleScrollInto = () => {
     onEnter({ index })
   }
@@ -32,7 +34,7 @@ const ScrollSection: React.FC<ScrollSectionProps> = ({
   return (
     <StyledSection
       className="border-indigo-600 border-dashed border-solid border-2"
-      style={{ height: viewportHeight }}
+      style={{ height, marginBottom }}
       id={id}
     >
       <Waypoint onEnter={handleScrollInto} />
