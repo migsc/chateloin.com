@@ -6,6 +6,8 @@ import {
   faBriefcase,
   faHammer,
   faShareAlt,
+  faHeart,
+  faCommentSmile
 } from "@fortawesome/pro-light-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { AnchorLink } from "gatsby-plugin-anchor-links"
@@ -87,6 +89,18 @@ export const Nav = () => (
           base={"/code"}
           title="skills"
           href={"#skills"}
+        />
+        <NavItem
+          icon={faHeart}
+          base={"/code"}
+          title="projects"
+          href={"#projects"}
+        />
+        <NavItem
+          icon={faCommentSmile}
+          base={"/code"}
+          title="testimonials"
+          href={"#testimonials"}
         />
         <NavItem
           icon={faShareAlt}
