@@ -1,6 +1,8 @@
 import React from "react"
 import { graphql, useStaticQuery } from "gatsby"
 import { queryCodeAvatarImage } from "../graphql"
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 import { faAngleUp } from "@fortawesome/pro-regular-svg-icons"
 // import { faCode, faMusic } from "@fortawesome/pro-light-svg-icons"
@@ -22,6 +24,7 @@ import JSLogoSVG from "../img/js-logo.svg"
 import TSLogoSVG from "../img/ts-logo.svg"
 import NodeLogoSVG from "../img/node-logo.svg"
 
+import Button from "../components/Button"
 import PortalButton from "../components/PortalButton"
 import ScrollSection from "../components/ScrollSection"
 import { useViewportDimensions } from "../hooks"
@@ -38,7 +41,7 @@ import {
   ModalBody,
   ModalFooter,
   ModalCloseButton,
-  Button,
+  // Button,
   useDisclosure,
   SlideIn,
 } from "@chakra-ui/core"
@@ -70,7 +73,14 @@ const useContainer = () => {
 
   const [searchText, setSearchText] = useState("")
   const [activeSkillTab, setActiveSkillTab] = useState("hard")
-  const sectionRefs = [useRef(null), useRef(null), useRef(null), useRef(null)]
+  const sectionRefs = [
+    useRef(null),
+    useRef(null),
+    useRef(null),
+    useRef(null),
+    useRef(null),
+    useRef(null),
+  ]
 
   const [
     hardSkillSearchResults,
@@ -137,20 +147,23 @@ export const query = graphql`
   }
 `
 
+//TODO: Implement projects carousel. See example code and demo here: https://github.com/akiran/react-slick#playground
+
 const CodePage: React.FC = props => {
   console.log("codeAvatarImage", props)
-  const {
-    handleSearchChange,
-    handleHardSkillTagClick,
-    handleSkillTabClick,
-    hardSkillSearchResults,
-    softSkills,
-    activeSkillTab,
-    experience,
-    social,
-    sectionRefs,
-  } = useContainer()
+  // const {
+  //   handleSearchChange,
+  //   handleHardSkillTagClick,
+  //   handleSkillTabClick,
+  //   hardSkillSearchResults,
+  //   softSkills,
+  //   activeSkillTab,
+  //   experience,
+  //   social,
+  //   sectionRefs,
+  // } = useContainer()
 
+  const sectionRefs = [useRef(null), useRef(null), useRef(null), useRef(null)]
   const [currentSectionIndex, setCurrentSectionIndex] = useState(0)
   const { isOpen, onOpen, onClose } = useDisclosure()
   const today = useRef(new Date())
@@ -227,13 +240,13 @@ const CodePage: React.FC = props => {
                 <BodyText>
                   I work at a company in Dallas that helps schools save energy.
                   We build{" "}
-                  <TextLink 
+                  <TextLink
                     newTab
                     href="https://cdn2.hubspot.net/hubfs/4433266/Website%20Documents/Ceres%20GreenX%20Product%20Brief.pdf?__hssc=106973277.1.1599597603546&__hstc=106973277.b239780adb9316d275282b120b47bf74.1599594171332.1599594171332.1599597603546.2&__hsfp=2190378817&hsCtaTracking=3c595979-b442-43a9-b0cd-5c0c172ae66d%7C0da106c4-8282-4fa4-841a-2231f4542f68"
                   >
                     a cross-platform app
                   </TextLink>{" "}
-                  that helps manage huge utility costs across many facilities.
+                  that helps our clients visualize huge utility costs across many facilities.
                 </BodyText>
               </Content>
             </ScrollSection>
@@ -243,83 +256,116 @@ const CodePage: React.FC = props => {
               index={2}
               onEnter={handleUpdateCurrentSection}
               height={viewportHeight}
-              marginBottom={viewportHeight * 0.4}
+              marginBottom={viewportHeight * 0.5}
             >
-              <div
-                className="flex flex-row justify-between mb-8"
-                style={{ height: "3.125rem", alignItems: "center" }}
-              >
-                <ReactLogoSVG
-                  style={{ opacity: 0.6 }}
-                  width="3.125rem"
-                  height="3.125rem"
-                />
-                <ReduxLogoSVG
-                  style={{ opacity: 0.6 }}
-                  width="3.125rem"
-                  height="3.125rem"
-                />
-                <JSLogoSVG
-                  style={{ opacity: 0.6 }}
-                  width="3.125rem"
-                  height="3.125rem"
-                />
-                <TSLogoSVG
-                  style={{ opacity: 0.6 }}
-                  width="3.125rem"
-                  height="3.125rem"
-                />
-                <NodeLogoSVG
-                  style={{ opacity: 0.6 }}
-                  width="3.125rem"
-                  height="3.125rem"
-                />
-              </div>
-              <div>
-                <HeadingText>Always learning,</HeadingText>
-                <BodyText>
-                  alyways using cutting edge tools. Working in the industry
-                  for {today.current.getFullYear() - 2012} years, I've had some
-                  time to pick up a ton of languages, frameworks, etc.
-                </BodyText>
+              <Content>
+                <div
+                  className="flex flex-row justify-between mb-8"
+                  style={{ height: "3.125rem", alignItems: "center" }}
+                >
+                  <ReactLogoSVG
+                    style={{ opacity: 0.6 }}
+                    width="3.125rem"
+                    height="3.125rem"
+                  />
+                  <ReduxLogoSVG
+                    style={{ opacity: 0.6 }}
+                    width="3.125rem"
+                    height="3.125rem"
+                  />
+                  <JSLogoSVG
+                    style={{ opacity: 0.6 }}
+                    width="3.125rem"
+                    height="3.125rem"
+                  />
+                  <TSLogoSVG
+                    style={{ opacity: 0.6 }}
+                    width="3.125rem"
+                    height="3.125rem"
+                  />
+                  <NodeLogoSVG
+                    style={{ opacity: 0.6 }}
+                    width="3.125rem"
+                    height="3.125rem"
+                  />
+                </div>
+                <div>
+                  <HeadingText>Always learning,</HeadingText>
+                  <BodyText>
+                    and always using cutting edge tools. Working in the industry
+                    for {today.current.getFullYear() - 2012} years, I've had
+                    some time to pick up a ton of languages, frameworks, etc.
+                  </BodyText>
 
-                <Button onClick={onOpen}>Trigger modal</Button>
-              </div>
-
-              <Modal onClose={onClose} isOpen={isOpen} isCentered>
+                  <Button onClick={onOpen}>See more skills</Button>
+                </div>
+              </Content>
+              {/* <Modal onClose={onClose} isOpen={isOpen} isCentered>
                 <ModalOverlay />
                 <ModalContent>
                   <ModalHeader>Modal Title</ModalHeader>
                   <ModalCloseButton />
                   <ModalBody>
-                    askdjf lsjasdhf lasjd dkjf adslkf jadslkfjadslfkjadsflksdjf
+                    <SkillsSection
+                      activeSkillTab={activeSkillTab}
+                      hardSkillsFiltered={hardSkillSearchResults.skillsFiltered}
+                      hardSkillTagsFiltered={
+                        hardSkillSearchResults.tagsFiltered
+                      }
+                      softSkills={softSkills}
+                      onTabClick={handleSkillTabClick}
+                      onSearchChange={handleSearchChange}
+                      onHardSkillTagClick={handleHardSkillTagClick}
+                    />
                   </ModalBody>
                   <ModalFooter>
                     <Button>Close</Button>
                   </ModalFooter>
                 </ModalContent>
-              </Modal>
-
-              {/* <SkillsSection
-                activeSkillTab={activeSkillTab}
-                hardSkillsFiltered={hardSkillSearchResults.skillsFiltered}
-                hardSkillTagsFiltered={hardSkillSearchResults.tagsFiltered}
-                softSkills={softSkills}
-                onTabClick={handleSkillTabClick}
-                onSearchChange={handleSearchChange}
-                onHardSkillTagClick={handleHardSkillTagClick}
-              /> */}
+              </Modal> */}
             </ScrollSection>
 
             <ScrollSection
-              id="socials"
+              id="projects"
               index={3}
               onEnter={handleUpdateCurrentSection}
               height={viewportHeight}
             >
               <Content>
-                <HeadingText>Need hel</HeadingText>
-                <BodyText>as dfadsf sadf sdf</BodyText>
+                <HeadingText>In my free time,</HeadingText>
+                <BodyText>
+                  I build tools for myself. Usually, it's stuff that helps me 
+                  work better, be more productive, or explore a new domain 
+                  for fun.
+                </BodyText>
+              </Content>
+            </ScrollSection>
+
+            <ScrollSection
+              id="testimonials"
+              index={4}
+              onEnter={handleUpdateCurrentSection}
+              height={viewportHeight}
+            >
+              <Content>
+                <HeadingText>People say</HeadingText>
+                <BodyText>
+                  good things about me. I've
+                </BodyText>
+              </Content>
+            </ScrollSection>
+
+            <ScrollSection
+              id="socials"
+              index={5}
+              onEnter={handleUpdateCurrentSection}
+              height={viewportHeight}
+            >
+              <Content>
+                <HeadingText>I'm out there,</HeadingText>
+                <BodyText>Pretty active on Github, and I use Twitter to stay in 
+                  touch with the industry. Got a resume too if you want it.
+                </BodyText>
               </Content>
               <PortalButton
                 primaryColor={"#fff"}
