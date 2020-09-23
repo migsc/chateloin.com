@@ -14,6 +14,8 @@ import {
   faHammer,
   faShareAlt,
 } from "@fortawesome/pro-light-svg-icons"
+import { faFileUser } from "@fortawesome/pro-regular-svg-icons"
+import { faGithub, faTwitter } from "@fortawesome/free-brands-svg-icons"
 
 import { useState, useEffect, useRef } from "react"
 import { useHardSkillSearchResultsFiltered } from "../hooks"
@@ -355,6 +357,26 @@ const CodePage: React.FC = props => {
                   Pretty active on Github, and I use Twitter to stay in touch
                   with the industry. Got a resume too if you want it.
                 </BodyText>
+                <div className="flex flex-row justify-around mt-16">
+                  <IconButton
+                    primaryColor={"transparent"}
+                    secondaryColor={"#fff"}
+                    icon={faGithub}
+                    linkTo={"https://github.com/migsc"}
+                  />
+                  <IconButton
+                    primaryColor={"transparent"}
+                    secondaryColor={"#fff"}
+                    icon={faTwitter}
+                    linkTo={"https://twitter.com/mchateloin"}
+                  />
+                  <IconButton
+                    primaryColor={"transparent"}
+                    secondaryColor={"#fff"}
+                    icon={faFileUser}
+                    linkTo={"https://imgur.com/user/MiguelChateloin"}
+                  />
+                </div>
               </Content>
               <PortalButton
                 primaryColor={"#fff"}

@@ -56,7 +56,11 @@ export const StyledIconButton = styled(animated.button)<StyledIconButtonProps>`
 interface StyledAnchorLinkProps extends IconButtonProps {}
 const StyledAnchorLink = styled(StyledIconButton)<StyledAnchorLinkProps>``
 
-const StyledIcon = styled(animated(FontAwesomeIcon))<{ color: string }>`
+const StyledIcon = styled(animated(FontAwesomeIcon))<{
+  color: string
+  size: number
+}>`
+  font-size: ${({ size }) => size}rem;
   display: flex;
   align-self: center;
   transition: 0.3s;
@@ -102,6 +106,7 @@ const LinkingContainer: React.FC<LinkingContainerProps> = ({
         onClick={handleClick}
         primaryColor={primaryColor}
         secondaryColor={secondaryColor}
+        size={1.5}
       >
         {children}
       </StyledIconButton>

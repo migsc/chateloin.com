@@ -42,6 +42,7 @@
     "react-spring": "^8.0.27",
     "react-typography": "^0.16.19",
     "react-waypoint": "^9.0.3",
+    "slick-carousel": "^1.8.1",
     "styled-components": "^5.1.1",
     "tailwindcss": "^1.4.6",
     "typography": "^0.16.19"
