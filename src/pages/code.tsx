@@ -1,8 +1,9 @@
 import React from "react"
 import { graphql, useStaticQuery } from "gatsby"
 import { queryCodeAvatarImage } from "../graphql"
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import "slick-carousel/slick/slick.css"
+import "slick-carousel/slick/slick-theme.css"
+import IconButton from "../components/IconButton"
 
 import { faAngleUp } from "@fortawesome/pro-regular-svg-icons"
 // import { faCode, faMusic } from "@fortawesome/pro-light-svg-icons"
@@ -246,7 +247,8 @@ const CodePage: React.FC = props => {
                   >
                     a cross-platform app
                   </TextLink>{" "}
-                  that helps our clients visualize huge utility costs across many facilities.
+                  that helps our clients visualize huge utility costs across
+                  many facilities.
                 </BodyText>
               </Content>
             </ScrollSection>
@@ -334,23 +336,9 @@ const CodePage: React.FC = props => {
               <Content>
                 <HeadingText>In my free time,</HeadingText>
                 <BodyText>
-                  I build tools for myself. Usually, it's stuff that helps me 
-                  work better, be more productive, or explore a new domain 
-                  for fun.
-                </BodyText>
-              </Content>
-            </ScrollSection>
-
-            <ScrollSection
-              id="testimonials"
-              index={4}
-              onEnter={handleUpdateCurrentSection}
-              height={viewportHeight}
-            >
-              <Content>
-                <HeadingText>People say</HeadingText>
-                <BodyText>
-                  good things about me. I've
+                  I build tools for myself. Usually, it's stuff that helps me
+                  work better, be more productive, or explore a new domain for
+                  fun.
                 </BodyText>
               </Content>
             </ScrollSection>
@@ -363,8 +351,9 @@ const CodePage: React.FC = props => {
             >
               <Content>
                 <HeadingText>I'm out there,</HeadingText>
-                <BodyText>Pretty active on Github, and I use Twitter to stay in 
-                  touch with the industry. Got a resume too if you want it.
+                <BodyText>
+                  Pretty active on Github, and I use Twitter to stay in touch
+                  with the industry. Got a resume too if you want it.
                 </BodyText>
               </Content>
               <PortalButton

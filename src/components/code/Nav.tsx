@@ -97,12 +97,6 @@ export const Nav = () => (
           href={"#projects"}
         />
         <NavItem
-          icon={faCommentSmile}
-          base={"/code"}
-          title="testimonials"
-          href={"#testimonials"}
-        />
-        <NavItem
           icon={faShareAlt}
           base={"/code"}
           title="socials"
