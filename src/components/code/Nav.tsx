@@ -7,7 +7,7 @@ import {
   faHammer,
   faShareAlt,
   faHeart,
-  faCommentSmile
+  faCommentSmile,
 } from "@fortawesome/pro-light-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { AnchorLink } from "gatsby-plugin-anchor-links"
@@ -32,7 +32,7 @@ const NavItem: React.FC<NavItemProps> = ({
   return (
     <AnchorLink
       title={title}
-      to={`${base}${href}`}
+      to={`${href}`}
       className="block mt-4 lg:inline-block lg:mt-0 mr-4"
       // style={{ fontWeight: 100 }}
     >
@@ -77,31 +77,11 @@ export const Nav = () => (
     {/* <Hamburger /> */}
     <div className="block flex-grow lg:flex lg:items-center lg:w-auto flex flex-row justify-between">
       <div className="text-sm lg:flex-grow flex flex-row justify-around">
-        <NavItem
-          icon={faLaptopCode}
-          base={"/code"}
-          title="intro"
-          href={"#intro"}
-        />
-        <NavItem icon={faBriefcase} base={"/code"} title="job" href={"#job"} />
-        <NavItem
-          icon={faHammer}
-          base={"/code"}
-          title="skills"
-          href={"#skills"}
-        />
-        <NavItem
-          icon={faHeart}
-          base={"/code"}
-          title="projects"
-          href={"#projects"}
-        />
-        <NavItem
-          icon={faShareAlt}
-          base={"/code"}
-          title="socials"
-          href={"#socials"}
-        />
+        <NavItem icon={faLaptopCode} title="intro" href={"#intro"} />
+        <NavItem icon={faBriefcase} title="job" href={"#job"} />
+        <NavItem icon={faHammer} title="skills" href={"#skills"} />
+        <NavItem icon={faHeart} title="projects" href={"#projects"} />
+        <NavItem icon={faShareAlt} title="socials" href={"#socials"} />
       </div>
       <div>
         <a

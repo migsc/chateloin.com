@@ -20,6 +20,7 @@ import { faGithub, faTwitter } from "@fortawesome/free-brands-svg-icons"
 import { useState, useEffect, useRef } from "react"
 import { useHardSkillSearchResultsFiltered } from "../hooks"
 import { useSpring, animated, config } from "react-spring"
+import Slider from "react-slick"
 
 import ReactLogoSVG from "../img/react-logo.svg"
 import ReduxLogoSVG from "../img/redux-logo.svg"
@@ -152,6 +153,10 @@ export const query = graphql`
 
 //TODO: Implement projects carousel. See example code and demo here: https://github.com/akiran/react-slick#playground
 
+const NextButton = () => {
+  ;<IconButton></IconButton>
+}
+
 const CodePage: React.FC = props => {
   console.log("codeAvatarImage", props)
   // const {
@@ -221,7 +226,7 @@ const CodePage: React.FC = props => {
               height={viewportHeight}
             >
               <Content fadeIn style={fadeInProps}>
-                <CircleImage src={srcCodeAvatar} />
+                {/* <CircleImage src={srcCodeAvatar} /> */}
                 <HeadingText>I build tech.</HeadingText>
                 <BodyText>
                   Mostly apps and websites. For fun. For a living. I'm best
@@ -342,6 +347,32 @@ const CodePage: React.FC = props => {
                   work better, be more productive, or explore a new domain for
                   fun.
                 </BodyText>
+                <Slider
+                  dots={true}
+                  infinite={true}
+                  speed={500}
+                  slidesToShow={1}
+                  slidesToScroll={1}
+                >
+                  <div>
+                    <h3>1</h3>
+                  </div>
+                  <div>
+                    <h3>2</h3>
+                  </div>
+                  <div>
+                    <h3>3</h3>
+                  </div>
+                  <div>
+                    <h3>4</h3>
+                  </div>
+                  <div>
+                    <h3>5</h3>
+                  </div>
+                  <div>
+                    <h3>6</h3>
+                  </div>
+                </Slider>
               </Content>
             </ScrollSection>
 
@@ -363,27 +394,24 @@ const CodePage: React.FC = props => {
                     secondaryColor={"#fff"}
                     icon={faGithub}
                     linkTo={"https://github.com/migsc"}
+                    iconSize={1.5}
                   />
                   <IconButton
                     primaryColor={"transparent"}
                     secondaryColor={"#fff"}
                     icon={faTwitter}
                     linkTo={"https://twitter.com/mchateloin"}
+                    iconSize={1.5}
                   />
                   <IconButton
                     primaryColor={"transparent"}
                     secondaryColor={"#fff"}
                     icon={faFileUser}
                     linkTo={"https://imgur.com/user/MiguelChateloin"}
+                    iconSize={1.5}
                   />
                 </div>
               </Content>
-              <PortalButton
-                primaryColor={"#fff"}
-                secondaryColor={colors.Cream}
-                icon={faAngleUp}
-                onClick={handleScrollToNextSection}
-              />
             </ScrollSection>
           </div>
         </main>

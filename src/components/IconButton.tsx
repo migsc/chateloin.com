@@ -22,6 +22,7 @@ interface IconButtonProps {
   icon?: IconDefinition
   linkTo?: string
   onClick?: (event: ClickEvent) => void
+  iconSize?: number
   style?: any
 }
 
@@ -120,6 +121,7 @@ const IconButton: React.FC<IconButtonProps> = ({
   icon = faQuestion,
   linkTo = "#", // hash link (include base), internal link, external links,
   onClick = e => {},
+  iconSize = 1,
 }) => {
   return (
     <LinkingContainer
@@ -128,7 +130,7 @@ const IconButton: React.FC<IconButtonProps> = ({
       primaryColor={primaryColor}
       secondaryColor={secondaryColor}
     >
-      <StyledIcon light icon={icon} color={secondaryColor} />
+      <StyledIcon light icon={icon} color={secondaryColor} size={iconSize} />
     </LinkingContainer>
   )
 }
