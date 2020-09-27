@@ -11,6 +11,7 @@ import {
   getViewportHeight,
   getSkillsByTags,
 } from "./utils"
+import { useSpring, animated, config } from "react-spring"
 
 interface TagWithSkills extends Tag {
   skills: HardSkill[]
@@ -132,4 +133,18 @@ export const useViewportDimensions = () => {
   }, [])
 
   return { width, height }
+}
+
+interface FadeInOpts {
+  fromOpacity: number
+  toOpacity: number
+}
+export const useFadeInRenderProps = (opts?: FadeInOpts) => {
+  const fromOpacity = opts?.fromOpacity || 0
+  const toOpacity = opts?.toOpacity || 1
+  useSpring({
+    // config: config.default,
+    opacity: toOpacity,
+    from: { opacity: fromOpacity },
+  })
 }

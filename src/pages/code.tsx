@@ -33,7 +33,8 @@ import PortalButton from "../components/PortalButton"
 import ScrollSection from "../components/ScrollSection"
 import { useViewportDimensions } from "../hooks"
 import { HeadingText, BodyText } from "../components/text"
-import { Nav } from "../components/Code/Nav"
+import HeaderBar from "../components/Code/HeaderBar"
+import BottomNavBar from "../components/Code/BottomNavBar"
 import styled from "styled-components"
 import { colors } from "../constants"
 
@@ -59,6 +60,7 @@ import { ExperienceSection } from "../components/Code"
 import CircleImage from "../components/CircleImage"
 import TextLink from "../components/TextLink"
 
+import { useFadeInRenderProps } from "../hooks"
 import srcCodeAvatar from "../img/code-avatar.jpg"
 import srcCenergisticLogo from "../img/cenergistic-logo.png"
 
@@ -177,11 +179,7 @@ const CodePage: React.FC = props => {
   const today = useRef(new Date())
   const { height: viewportHeight } = useViewportDimensions()
 
-  const fadeInProps = useSpring({
-    // config: config.default,
-    opacity: 1,
-    from: { opacity: 0 },
-  })
+  const fadeInProps = useFadeInRenderProps()
 
   const handleUpdateCurrentSection = ({ index }) =>
     setCurrentSectionIndex(index)
@@ -211,9 +209,7 @@ const CodePage: React.FC = props => {
 
   return (
     <>
-      <animated.div style={fadeInProps}>
-        <Nav />
-      </animated.div>
+      <HeaderBar />
       <Layout className={styles.background}>
         <main className="container mx-auto px-4 sm:px-6">
           <SEO title="miguel chateloin / code" />
@@ -416,6 +412,7 @@ const CodePage: React.FC = props => {
           </div>
         </main>
       </Layout>
+      <BottomNavBar />
     </>
   )
 }
