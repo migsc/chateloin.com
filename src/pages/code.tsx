@@ -209,8 +209,8 @@ const CodePage: React.FC = props => {
 
   return (
     <>
-      <HeaderBar />
-      <Layout className={styles.background}>
+      <Layout className={styles.background} showFooter={false}>
+        <HeaderBar />
         <main className="container mx-auto px-4 sm:px-6">
           <SEO title="miguel chateloin / code" />
 
@@ -411,8 +411,8 @@ const CodePage: React.FC = props => {
             </ScrollSection>
           </div>
         </main>
+        <BottomNavBar />
       </Layout>
-      <BottomNavBar />
     </>
   )
 }

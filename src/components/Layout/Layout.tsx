@@ -17,6 +17,7 @@ interface Props {
   scrollable?: boolean
   className?: string
   bodyClassName?: string
+  showFooter?: boolean
 }
 
 const joinWithoutEmpty = (
@@ -30,6 +31,7 @@ const Layout: React.FC<Props> = ({
   scrollable = true,
   className,
   bodyClassName: bodyClassNamePassed,
+  showFooter = true,
 }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
@@ -57,7 +59,7 @@ const Layout: React.FC<Props> = ({
 
       <div className={className}>
         {children}
-        <Footer absolutePosition={!scrollable} />
+        {showFooter && <Footer absolutePosition={!scrollable} />}
       </div>
     </ThemeProvider>
   )

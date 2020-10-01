@@ -1,5 +1,6 @@
 import React from "react"
 import { Link } from "gatsby"
+import styled from "styled-components"
 import {
   faLaptopCode,
   faQuestion,
@@ -8,10 +9,19 @@ import {
   faShareAlt,
   faHeart,
   faCommentSmile,
+} from "@fortawesome/pro-light-svg-icons"
+import {
+  faLaptopCode as faLaptopCodeActive,
+  faQuestion as faQuestionActive,
+  faBriefcase as faBriefcaseActive,
+  faHammer as faHammerActive,
+  faShareAlt as faShareAltActive,
+  faHeart as faHeartActive,
+  faCommentSmile as faCommentSmileActive,
 } from "@fortawesome/pro-duotone-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { AnchorLink } from "gatsby-plugin-anchor-links"
-
+import FrostedGlass from "../../components/FrostedGlass"
 import { Children } from "../../types"
 
 interface NavItemProps {
@@ -21,6 +31,13 @@ interface NavItemProps {
   href: string
   children?: Children
 }
+
+const NavItemContainer = styled.div`
+  &:hover span {
+    font-size: 1.4rem;
+    color: #667eeaff;
+  }
+`
 
 const NavItem: React.FC<NavItemProps> = ({
   title,
@@ -33,36 +50,37 @@ const NavItem: React.FC<NavItemProps> = ({
     <AnchorLink
       title={title}
       to={`${href}`}
-      className="block mt-4 lg:inline-block lg:mt-0 mr-4"
-      // style={{ fontWeight: 100 }}
+      className="block mt-4 mb-4 lg:inline-block"
     >
-      <div>
+      <NavItemContainer>
         <div className="text-center">
-          <span style={{ color: "white" }}>
+          <span style={{ color: "white", transition: "0.3s" }}>
             <FontAwesomeIcon className="mr-1" icon={icon} color={"white"} />
           </span>
         </div>
         <div>
-          <h6 className="text-center font-thin">{title}</h6>
+          <h6 style={{ transition: "0.3s" }} className="text-center font-thin">
+            {title}
+          </h6>
           {children}
         </div>
-      </div>
+      </NavItemContainer>
     </AnchorLink>
   )
 }
 
 const BottomNavBar = () => (
   <nav
-    className="sticky bottom-0 items-center justify-between flex flex-row flex-wrap p-4 border-top border-white"
+    className="sticky bottom-0"
     style={{
-      position: "fixed",
       width: "100%",
-      borderTopWidth: `${1 / 64}rem`,
-
-      backdropFilter: `blur(10px)`,
     }}
   >
-    <div className="flex-grow flex items-center w-auto  flex-row justify-around">
+    <FrostedGlass />
+    <div
+      style={{ zIndex: 0, background: "none", height: "4rem" }}
+      className="flex-grow flex items-center w-auto flex-row justify-around"
+    >
       <NavItem icon={faLaptopCode} title="intro" href={"#intro"} />
       <NavItem icon={faBriefcase} title="job" href={"#job"} />
       <NavItem icon={faHammer} title="skills" href={"#skills"} />
