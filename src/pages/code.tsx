@@ -1,11 +1,14 @@
 import React from "react"
 import { graphql, useStaticQuery } from "gatsby"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+
 import { queryCodeAvatarImage } from "../graphql"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import IconButton from "../components/IconButton"
+import ChevronLinkContainer from "../components/ChevronLinkContainer"
 
-import { faAngleUp } from "@fortawesome/pro-regular-svg-icons"
+import { faAngleUp, faCircle } from "@fortawesome/pro-regular-svg-icons"
 // import { faCode, faMusic } from "@fortawesome/pro-light-svg-icons"
 import {
   faLaptopCode,
@@ -13,9 +16,26 @@ import {
   faBriefcase,
   faHammer,
   faShareAlt,
+  faBrowser,
+  faChevronRight,
+  faChevronLeft,
+  faSortSizeDown,
+  faListMusic,
+  faHexagon,
+  faCalendarAlt,
+  faCalendarEdit,
+  faInfinity,
+  faMusicSlash,
+  faNotEqual,
+  faShoppingCart,
 } from "@fortawesome/pro-light-svg-icons"
 import { faFileUser } from "@fortawesome/pro-regular-svg-icons"
-import { faGithub, faTwitter } from "@fortawesome/free-brands-svg-icons"
+import {
+  faGithub,
+  faGithubSquare,
+  faSpotify,
+  faTwitter,
+} from "@fortawesome/free-brands-svg-icons"
 
 import { useState, useEffect, useRef } from "react"
 import { useHardSkillSearchResultsFiltered } from "../hooks"
@@ -35,6 +55,7 @@ import { useViewportDimensions } from "../hooks"
 import { HeadingText, BodyText } from "../components/text"
 import HeaderBar from "../components/Code/HeaderBar"
 import BottomNavBar from "../components/Code/BottomNavBar"
+import ContactModal from "../components/ContactModal";
 import styled from "styled-components"
 import { colors } from "../constants"
 
@@ -59,6 +80,7 @@ import SkillsSection from "../components/Code/SkillsSection"
 import { ExperienceSection } from "../components/Code"
 import CircleImage from "../components/CircleImage"
 import TextLink from "../components/TextLink"
+import SlideItem from "../components/SlideItem"
 
 import { useFadeInRenderProps } from "../hooks"
 import srcCodeAvatar from "../img/code-avatar.jpg"
@@ -67,60 +89,123 @@ import srcCenergisticLogo from "../img/cenergistic-logo.png"
 import { TagMap } from "../types"
 import * as styles from "./code.module.css"
 
+import { faImage } from "@fortawesome/free-regular-svg-icons"
+
+const projectIcons = {
+  "sort-size-down": faSortSizeDown,
+  "list-music": faListMusic,
+  hexagon: faHexagon,
+  question: faQuestion,
+  "calendar-alt": faCalendarAlt,
+  "not-equal": faNotEqual,
+  "shopping-cart": faShoppingCart,
+  "calendar-edit": faCalendarEdit,
+  spotify: faSpotify,
+  image: faImage,
+  infinity: faInfinity,
+}
+
+const SlickArrow = styled.div`
+  font-size: 1rem;
+  &:before {
+    content: none;
+  }
+  & svg {
+    width: 1rem;
+  }
+`
+
+const SlickDot = styled.div`
+  opacity: 0.5;
+  transition: 0.3s;
+  &.slick-active {
+    opacity: 1;
+  }
+`
+
+function NextArrow(props) {
+  const { className, style, onClick } = props
+  return (
+    <SlickArrow className={className} onClick={onClick}>
+      <FontAwesomeIcon icon={faChevronRight} color="white" />
+    </SlickArrow>
+  )
+}
+
+function PrevArrow(props) {
+  const { className, style, onClick } = props
+  return (
+    <SlickArrow className={className} onClick={onClick}>
+      <FontAwesomeIcon icon={faChevronLeft} color="white" />
+    </SlickArrow>
+  )
+}
+
+function Dot(props) {
+  console.log({ props })
+  const { className, style, onClick } = props
+  return (
+    <SlickDot className={className} onClick={onClick}>
+      <FontAwesomeIcon icon={faCircle} />
+    </SlickDot>
+  )
+}
+
 const scrollToRef = ref =>
   window.scrollTo({ top: ref?.current?.offsetTop, behavior: "smooth" })
 
-const useContainer = () => {
-  const {
-    pages: {
-      code: { skills, experience, social },
-    },
-  } = jsonData
+// const useContainer = () => {
+//   const {
+//     pages: {
+//       code: { skills, experience, projects, social },
+//     },
+//   } = jsonData
 
-  const [searchText, setSearchText] = useState("")
-  const [activeSkillTab, setActiveSkillTab] = useState("hard")
-  const sectionRefs = [
-    useRef(null),
-    useRef(null),
-    useRef(null),
-    useRef(null),
-    useRef(null),
-    useRef(null),
-  ]
+//   const [searchText, setSearchText] = useState("")
+//   const [activeSkillTab, setActiveSkillTab] = useState("hard")
+//   const sectionRefs = [
+//     useRef(null),
+//     useRef(null),
+//     useRef(null),
+//     useRef(null),
+//     useRef(null),
+//     useRef(null),
+//   ]
 
-  const [
-    hardSkillSearchResults,
-    { toggleActiveTag },
-  ] = useHardSkillSearchResultsFiltered(skills.hard, searchText)
+//   const [
+//     hardSkillSearchResults,
+//     { toggleActiveTag },
+//   ] = useHardSkillSearchResultsFiltered(skills.hard, searchText)
 
-  const handlers = {
-    handleSearchChange: (e: React.ChangeEvent<HTMLInputElement>) => {
-      setSearchText(e.target.value)
-    },
-    handleHardSkillTagClick: (
-      e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-      tagName: string
-    ) => {
-      toggleActiveTag(tagName)
-    },
-    handleSkillTabClick: (
-      e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-      tab: string
-    ) => {
-      setActiveSkillTab(tab)
-    },
-  }
+//   const handlers = {
+//     handleSearchChange: (e: React.ChangeEvent<HTMLInputElement>) => {
+//       setSearchText(e.target.value)
+//     },
+//     handleHardSkillTagClick: (
+//       e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+//       tagName: string
+//     ) => {
+//       toggleActiveTag(tagName)
+//     },
+//     handleSkillTabClick: (
+//       e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+//       tab: string
+//     ) => {
+//       setActiveSkillTab(tab)
+//     },
+//   }
 
-  return {
-    ...handlers,
-    hardSkillSearchResults,
-    softSkills: skills.soft,
-    activeSkillTab,
-    experience,
-    social,
-    sectionRefs,
-  }
-}
+//   return {
+//     ...handlers,
+//     hardSkillSearchResults,
+//     softSkills: skills.soft,
+//     activeSkillTab,
+//     experience,
+//     social,
+//     sectionRefs,
+//     projects,
+//   }
+// }
 
 interface ContentProps {
   children?: any // TODO: Be more specific
@@ -172,6 +257,11 @@ const CodePage: React.FC = props => {
   //   social,
   //   sectionRefs,
   // } = useContainer()
+  const {
+    pages: {
+      code: { projects },
+    },
+  } = jsonData
 
   const sectionRefs = [useRef(null), useRef(null), useRef(null), useRef(null)]
   const [currentSectionIndex, setCurrentSectionIndex] = useState(0)
@@ -199,7 +289,6 @@ const CodePage: React.FC = props => {
   }
 
   const handleOpenAllSkillsModal = () => {
-    debugger
     setAllSkillsModalOpen(true)
   }
 
@@ -344,34 +433,103 @@ const CodePage: React.FC = props => {
                   fun.
                 </BodyText>
                 <Slider
-                  dots={true}
+                  draggable
+                  swipeToSlide
+                  swipe
+                  className="mt-8"
+                  style={{ backgroundColor: "none" }}
+                  dots={false}
+                  // dotsClass="slick-dots"
                   infinite={true}
                   speed={500}
-                  slidesToShow={1}
-                  slidesToScroll={1}
+                  slidesToShow={2}
+                  slidesToScroll={2}
+                  prevArrow={<PrevArrow />}
+                  nextArrow={<NextArrow />}
+                  // customPaging={i => <Dot />}
+                  responsive={[
+                    {
+                      breakpoint: 1024,
+                      settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 2,
+                      },
+                    },
+                    {
+                      breakpoint: 960,
+                      settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                      },
+                    },
+                  ]}
                 >
-                  <div>
-                    <h3>1</h3>
-                  </div>
-                  <div>
-                    <h3>2</h3>
-                  </div>
-                  <div>
-                    <h3>3</h3>
-                  </div>
-                  <div>
-                    <h3>4</h3>
-                  </div>
-                  <div>
-                    <h3>5</h3>
-                  </div>
-                  <div>
-                    <h3>6</h3>
-                  </div>
+                  {projects.map(({ icon, name, description, repo, demo }) => (
+                    <SlideItem>
+                      <div
+                        style={{ height: "12rem" }}
+                        className="flex flex-col justify-between"
+                      >
+                        <div className="flex flex-col mb-2">
+                          <div className="flex flex-row className mb-2">
+                            <div className="flex flex-col justify-center mr-2">
+                              <FontAwesomeIcon icon={projectIcons[icon]} />
+                            </div>
+                            <div className="flex flex-col justify-center">
+                              <h3 className="font-light">{name}</h3>
+                            </div>
+                          </div>
+                          <p>{description}</p>
+                        </div>
+                        <div
+                          style={{ width: "100%" }}
+                          className="flex flex-row"
+                        >
+                          {repo && (
+                            <ChevronLinkContainer>
+                              <a
+                                href={repo}
+                                className="font-light mr-8"
+                                target="_blank"
+                              >
+                                <FontAwesomeIcon
+                                  icon={faGithubSquare}
+                                  className="mr-1 type"
+                                />
+                                Code
+                                <FontAwesomeIcon
+                                  className="ml-1 chevron"
+                                  icon={faChevronRight}
+                                />
+                              </a>
+                            </ChevronLinkContainer>
+                          )}
+                          {demo && (
+                            <ChevronLinkContainer>
+                              <a
+                                href={demo}
+                                target="_blank"
+                                className="font-light "
+                              >
+                                <FontAwesomeIcon
+                                  icon={faBrowser}
+                                  className="mr-1 type"
+                                />
+                                Demo
+                                <FontAwesomeIcon
+                                  className="ml-1 chevron"
+                                  icon={faChevronRight}
+                                />
+                              </a>
+                            </ChevronLinkContainer>
+                          )}
+                        </div>
+                      </div>
+                    </SlideItem>
+                  ))}
                 </Slider>
               </Content>
             </ScrollSection>
-
             <ScrollSection
               id="socials"
               index={5}

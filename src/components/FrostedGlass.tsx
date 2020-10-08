@@ -1,6 +1,6 @@
 import styled from "styled-components"
 
-const FrostedGlass = styled.div`
+const FrostedEffect = styled.div`
   width: 100%;
   height: 100%;
   box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
@@ -17,10 +17,15 @@ const FrostedGlass = styled.div`
     left: 0;
     right: 0;
     bottom: 0;
-    box-shadow: inset 0 0 2000px rgba(255, 255, 255, 0.8);
+    box-shadow: ${({ boxShadow }) => boxShadow};
     filter: blur(10px);
     margin: -20px;
   }
 `
+
+const FrostedGlass = ({
+  style,
+  boxShadow = "inset 0 0 2000px rgba(255, 255, 255, 0.8)",
+}) => <FrostedEffect style={style} boxShadow={boxShadow} />
 
 export default FrostedGlass

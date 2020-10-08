@@ -1,7 +1,10 @@
 import React from "react"
 import { Link } from "gatsby"
-import FrostedGlass from "../../components/FrostedGlass"
 import styled from "styled-components"
+import { useDisclosure } from "@chakra-ui/core"
+
+import FrostedGlass from "../../components/FrostedGlass"
+import ContactModal from "../../components/ContactModal"
 
 const BrandingContainer = styled.div`
   &:hover span {
@@ -33,10 +36,11 @@ const AnchorButton = styled.a`
   }
 `
 
-const ContactButton = () => (
+const ContactButton = ({ onClick }) => (
   <div className="m-4">
     <AnchorButton
       href="#"
+      onClick={onClick}
       className="inline-block text-sm px-4 py-2 leading-none border rounded color-white hover:border-transparent  hover:text-white mt-4 lg:mt-0"
     >
       contact
@@ -44,24 +48,39 @@ const ContactButton = () => (
   </div>
 )
 
-const HeaderBar = () => (
-  <nav
-    className="sticky top-0"
-    style={{
-      height: "4rem",
-      width: "100%",
-      zIndex: 1, // need this because opacity of later elements affects stacking order
-    }}
-  >
-    <FrostedGlass />
-    <div
-      style={{ zIndex: 0, background: "none" }}
-      className="justify-between flex flex-row flex-wrap"
-    >
-      <Branding />
-      <ContactButton />
-    </div>
-  </nav>
-)
+const HeaderBar = () => {
+  const {
+    isOpen: isContactFormOpen,
+    onOpen: onContactFormOpen,
+    onClose: onContactFormClose,
+  } = useDisclosure()
+
+  return (
+    <>
+      <nav
+        className="sticky top-0"
+        style={{
+          height: "4rem",
+          width: "100%",
+          zIndex: 1, // need this because opacity of later elements affects stacking order
+        }}
+      >
+        <FrostedGlass />
+        <div
+          style={{ zIndex: 0, background: "none" }}
+          className="justify-between flex flex-row flex-wrap"
+        >
+          <Branding />
+          <ContactButton onClick={onContactFormOpen} />
+        </div>
+      </nav>
+      <ContactModal
+        isOpen={isContactFormOpen}
+        onOpen={onContactFormOpen}
+        onClose={onContactFormClose}
+      />
+    </>
+  )
+}
 
 export default HeaderBar

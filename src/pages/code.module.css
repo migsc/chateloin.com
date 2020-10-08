@@ -19,6 +19,13 @@
   background: inherit;
 }
 
-.background * {
-  background: inherit;
+.slick-active {
+  opacity: 1 !important;
 }
+
+body .slick-dots li.slick-active button:before {
+  color: white !important;
+}
+/* .background * {
+  background: inherit;
+} */
