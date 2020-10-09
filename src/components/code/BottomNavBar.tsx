@@ -33,9 +33,15 @@ interface NavItemProps {
 }
 
 const NavItemContainer = styled.div`
+  opacity: ${({ active }) => (active ? 1 : 0.6)};
+  cursor: pointer;
+
   &:hover span {
-    font-size: 1.4rem;
-    color: #667eeaff;
+    font-size: 1.2rem;
+  }
+
+  &:active {
+    opacity: 1;
   }
 `
 
@@ -45,14 +51,20 @@ const NavItem: React.FC<NavItemProps> = ({
   base,
   href = "#",
   children = "",
+  active,
+  onPress,
 }) => {
+  const [clicked, setClicked] = useState(false)
+
+  const handleClick = () => {
+    setClicked(true)
+    setTimeout(() => setClicked(false), 2000)
+    onPress()
+  }
+
   return (
-    <AnchorLink
-      title={title}
-      to={`${href}`}
-      className="block mt-4 mb-4 lg:inline-block"
-    >
-      <NavItemContainer>
+    <a onClick={handleClick} title={title} className="block lg:inline-block">
+      <NavItemContainer active={active || clicked}>
         <div className="text-center">
           <span style={{ color: "white", transition: "0.3s" }}>
             <FontAwesomeIcon className="mr-1" icon={icon} color={"white"} />
@@ -65,29 +77,75 @@ const NavItem: React.FC<NavItemProps> = ({
           {children}
         </div>
       </NavItemContainer>
-    </AnchorLink>
+    </a>
   )
 }
 
-const BottomNavBar = () => (
-  <nav
-    className="sticky bottom-0"
-    style={{
-      width: "100%",
-    }}
-  >
-    <FrostedGlass />
-    <div
-      style={{ zIndex: 0, background: "none", height: "4rem" }}
-      className="flex-grow flex items-center w-auto flex-row justify-around"
+const BottomNavBar = ({
+  currentSectionIndex,
+  currentPageIndex,
+  onPageChange,
+}) => {
+  return (
+    <nav
+      className="fixed bottom-0"
+      style={{
+        width: "100%",
+      }}
     >
-      <NavItem icon={faLaptopCode} title="intro" href={"#intro"} />
-      <NavItem icon={faBriefcase} title="job" href={"#job"} />
-      <NavItem icon={faHammer} title="skills" href={"#skills"} />
-      <NavItem icon={faHeart} title="projects" href={"#projects"} />
-      <NavItem icon={faShareAlt} title="socials" href={"#socials"} />
-    </div>
-  </nav>
-)
+      <FrostedGlass />
+      <div
+        style={{ zIndex: 0, background: "none", height: "4rem" }}
+        className="flex-grow flex items-center w-auto flex-row justify-around"
+      >
+        <NavItem
+          icon={faLaptopCode}
+          title="intro"
+          href={"#intro"}
+          active={currentPageIndex === 0}
+          onPress={() => {
+            onPageChange(0)
+          }}
+        />
+        <NavItem
+          icon={faBriefcase}
+          title="job"
+          href={"#job"}
+          active={currentPageIndex === 1}
+          onPress={() => {
+            onPageChange(1)
+          }}
+        />
+        <NavItem
+          icon={faHammer}
+          title="skills"
+          href={"#skills"}
+          active={currentPageIndex === 2}
+          onPress={() => {
+            onPageChange(2)
+          }}
+        />
+        <NavItem
+          icon={faHeart}
+          title="projects"
+          href={"#projects"}
+          active={currentPageIndex === 3}
+          onPress={() => {
+            onPageChange(3)
+          }}
+        />
+        <NavItem
+          icon={faShareAlt}
+          title="socials"
+          href={"#socials"}
+          active={currentPageIndex === 4}
+          onPress={() => {
+            onPageChange(4)
+          }}
+        />
+      </div>
+    </nav>
+  )
+}
 
 export default BottomNavBar

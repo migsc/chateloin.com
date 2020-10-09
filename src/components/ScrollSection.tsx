@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { Waypoint } from "react-waypoint"
 import styled from "styled-components"
 import { Children } from "../types"
@@ -27,18 +27,29 @@ const ScrollSection: React.FC<ScrollSectionProps> = ({
   marginBottom,
   onEnter = props => {},
 }) => {
+  const [ready, setReady] = useState(false)
+
+  useEffect(() => {
+    setReady(true)
+    return () => setReady(false)
+  }, [])
+
   const handleScrollInto = () => {
-    onEnter({ index })
+    if (ready) {
+      window.location.hash = `#${id}`
+      onEnter({ index })
+    }
   }
 
   return (
     <StyledSection
-      className="border-indigo-600 border-dashed border-solid border-2"
+      // className="border-indigo-600 border-dashed border-solid border-2"
       style={{ height, marginBottom }}
       id={id}
     >
-      <Waypoint onEnter={handleScrollInto} />
+      {/* <Waypoint onEnter={handleScrollInto} /> */}
       {children}
+      {/* <Waypoint onEnter={handleScrollInto} /> */}
     </StyledSection>
   )
 }

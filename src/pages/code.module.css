@@ -26,6 +26,15 @@
 body .slick-dots li.slick-active button:before {
   color: white !important;
 }
+
+/* no scrolling */
+/* html,
+body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+} */
+
 /* .background * {
   background: inherit;
 } */

@@ -13,7 +13,7 @@ const BrandingContainer = styled.div`
 `
 
 const Branding = () => (
-  <BrandingContainer className="flex items-center flex-shrink-0 color-white m-4">
+  <BrandingContainer className="flex items-center flex-shrink-0 color-white">
     <Link to="/">
       <span
         style={{ transition: "0.3s" }}
@@ -37,11 +37,11 @@ const AnchorButton = styled.a`
 `
 
 const ContactButton = ({ onClick }) => (
-  <div className="m-4">
+  <div>
     <AnchorButton
       href="#"
       onClick={onClick}
-      className="inline-block text-sm px-4 py-2 leading-none border rounded color-white hover:border-transparent  hover:text-white mt-4 lg:mt-0"
+      className="inline-block text-sm px-4 py-2 leading-none border rounded color-white hover:border-transparent  hover:text-white"
     >
       contact
     </AnchorButton>
@@ -58,7 +58,7 @@ const HeaderBar = () => {
   return (
     <>
       <nav
-        className="sticky top-0"
+        className="fixed top-0"
         style={{
           height: "4rem",
           width: "100%",
@@ -68,7 +68,7 @@ const HeaderBar = () => {
         <FrostedGlass />
         <div
           style={{ zIndex: 0, background: "none" }}
-          className="justify-between flex flex-row flex-wrap"
+          className="justify-between flex flex-row flex-wrap pl-4 pr-4 h-full items-center"
         >
           <Branding />
           <ContactButton onClick={onContactFormOpen} />
