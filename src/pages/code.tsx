@@ -254,7 +254,7 @@ const Content: React.FC<ContentProps> = ({
 }) => (
   <div
     style={{ ...style }}
-    className={`${classNamesBordered} pt-24 max-w-2xl h-screen mx-auto md:h-screen md:pt-0 md:flex md:flex-col md:justify-center`}
+    className={`pt-24 max-w-2xl h-screen mx-auto md:h-screen md:pt-0 md:flex md:flex-col md:justify-center`}
   >
     {children}
   </div>
