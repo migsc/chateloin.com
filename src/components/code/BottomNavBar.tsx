@@ -21,7 +21,7 @@ import {
 } from "@fortawesome/pro-duotone-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { AnchorLink } from "gatsby-plugin-anchor-links"
-import FrostedGlass from "../../components/FrostedGlass"
+import FrostedGlass from "../FrostedGlass"
 import { Children } from "../../types"
 
 interface NavItemProps {

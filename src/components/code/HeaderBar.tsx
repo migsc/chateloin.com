@@ -3,8 +3,8 @@ import { Link } from "gatsby"
 import styled from "styled-components"
 import { useDisclosure } from "@chakra-ui/core"
 
-import FrostedGlass from "../../components/FrostedGlass"
-import ContactModal from "../../components/ContactModal"
+import FrostedGlass from "../FrostedGlass"
+import ContactModal from "../ContactModal"
 
 const BrandingContainer = styled.div`
   &:hover span {
