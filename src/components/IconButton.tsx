@@ -11,7 +11,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faQuestion, IconDefinition } from "@fortawesome/free-solid-svg-icons"
 import { colors } from "../constants"
 import { useSpring, config, animated } from "react-spring"
-import { useViewportDimensions } from "../hooks"
 import { ClickEvent, Children } from "../types"
 import { startsWithHash, startsWithForwardSlash } from "../utils"
 

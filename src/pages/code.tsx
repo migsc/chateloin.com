@@ -3,7 +3,6 @@ import { graphql, useStaticQuery } from "gatsby"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { debounce } from "lodash"
 import PageScroller from "react-page-scroller"
-import { queryCodeAvatarImage } from "../graphql"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import IconButton from "../components/IconButton"
@@ -53,7 +52,6 @@ import NodeLogoSVG from "../img/node-logo.svg"
 import Button from "../components/Button"
 import PortalButton from "../components/PortalButton"
 import ScrollSection from "../components/ScrollSection"
-import { useViewportDimensions } from "../hooks"
 import { HeadingText, BodyText } from "../components/text"
 import HeaderBar from "../components/Code/HeaderBar"
 import BottomNavBar from "../components/Code/BottomNavBar"
@@ -176,7 +174,6 @@ function PrevArrow(props) {
 }
 
 function Dot(props) {
-  console.log({ props })
   const { className, style, onClick } = props
   return (
     <SlickDot className={className} onClick={onClick}>
@@ -186,7 +183,6 @@ function Dot(props) {
 }
 
 const scrollToRef = ref => {
-  console.log(ref?.current?.offsetTop)
   window.scrollTo({ top: ref?.current?.offsetTop, behavior: "smooth" })
 }
 
@@ -279,7 +275,6 @@ export const query = graphql`
 `
 
 const CodePage: React.FC = props => {
-  console.log("codeAvatarImage", props)
   // const {
   //   handleSearchChange,
   //   handleHardSkillTagClick,
@@ -309,7 +304,6 @@ const CodePage: React.FC = props => {
 
   const { isOpen, onOpen, onClose } = useDisclosure()
   const today = useRef(new Date())
-  const { height: viewportHeight } = useViewportDimensions()
 
   const fadeInProps = useFadeInRenderProps()
 
@@ -356,8 +350,6 @@ const CodePage: React.FC = props => {
     // return () =>
     //   window.removeEventListener("wheel", throttledScrollWheelHandler)
   }, [])
-
-  console.log({ sectionRefs })
 
   return (
     <>

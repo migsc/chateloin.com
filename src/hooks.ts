@@ -123,7 +123,6 @@ export const useViewportDimensions = () => {
   const handleResize = () => {
     setWidth(getViewportWidth())
     setHeight(getViewportHeight())
-    console.log(`width=${getViewportWidth()}\theight=${getViewportHeight()}`)
   }
 
   useEffect(() => {

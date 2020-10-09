@@ -11,7 +11,6 @@ interface TagPillProps {
   ) => void
 }
 
-console.log("styles", styles)
 
 const TagPill: React.FC<TagPillProps> = ({
   name = "Tag",

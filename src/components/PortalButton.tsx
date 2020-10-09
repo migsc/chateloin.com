@@ -79,14 +79,8 @@ const PortalButton: React.FC<PortalButtonProps> = ({
         top: `${Math.ceil(rect?.top || 0)}px`,
         left: `${Math.ceil(rect?.left || 0)}px`,
       })
-      console.log("buttonRef.current", buttonRef.current)
     }
   }, [])
-
-  console.log(
-    "buttonRef?.current?.getBoundingClientRect().top",
-    buttonRef?.current?.getBoundingClientRect()
-  )
 
   const animatedContainerProps = useSpring({
     config: { duration: 300 },
@@ -125,7 +119,6 @@ const PortalButton: React.FC<PortalButtonProps> = ({
   const handleClick = e => {
     setActive(true)
 
-    console.log(buttonRef?.current?.getBoundingClientRect().top)
     onClick(e)
     setTimeout(() => {
       if (linkTo) navigate(linkTo)

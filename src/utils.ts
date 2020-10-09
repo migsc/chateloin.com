@@ -50,10 +50,20 @@ export const getSkillsByTags = (skills: HardSkill[]): TagToSkillsMap => {
 }
 
 export const getViewportWidth = () =>
-  Math.max(document.documentElement.clientWidth, window.innerWidth || 0)
+  typeof window === "undefined"
+    ? 0
+    : Math.max(
+        window.document.documentElement.clientWidth,
+        window.innerWidth || 0
+      )
 
 export const getViewportHeight = () =>
-  Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
+  typeof window === "undefined"
+    ? 0
+    : Math.max(
+        window.document.documentElement.clientHeight,
+        window.innerHeight || 0
+      )
 
 export const startsWithHash = str => str?.indexOf("#") === 0
 export const startsWithForwardSlash = str => str?.indexOf("#") === 0

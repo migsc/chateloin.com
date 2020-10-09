@@ -11,7 +11,6 @@ interface ButtonProps {
   ) => void
 }
 
-console.log("styles", styles)
 
 const Button: React.FC<ButtonProps> = ({
   children = "Tag",

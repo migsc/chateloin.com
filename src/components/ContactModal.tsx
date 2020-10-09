@@ -53,7 +53,6 @@ const ContactModal: React.FC<Props> = ({ isOpen, onOpen, onClose }) => {
   const toast = useToast()
 
   const isFormFilled = Object.values(form).every(value => !!value)
-  console.log({ isFormFilled })
 
   const handleFormChange = fieldName => ({ target: { value } }) => {
     setForm({

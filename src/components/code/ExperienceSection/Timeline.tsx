@@ -82,8 +82,6 @@ const useContainer = (events: TimelineCardProps[]): [State, Actions] => {
     nowYearMonth
   )
 
-  console.log("timelinePeriods", timelineYearMonths)
-
   const actions: Actions = {}
 
   return [

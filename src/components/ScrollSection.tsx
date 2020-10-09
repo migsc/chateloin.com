@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react"
 import { Waypoint } from "react-waypoint"
 import styled from "styled-components"
 import { Children } from "../types"
-import { useViewportDimensions } from "../hooks"
 
 const StyledSection = styled.section`
   /* border: dashed 1px black;
