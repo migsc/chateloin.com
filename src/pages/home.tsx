@@ -70,7 +70,7 @@ const HomePage: React.FC = () => {
   const [{ fadeInProps }] = useContainer()
   return (
     <>
-      <SEO title="miguel chateloin" />
+      <SEO title="Home" />
       <Layout bodyClassName={styles.background} scrollable={false}>
         <BackgroundAnimation />
         <main

@@ -356,7 +356,7 @@ const CodePage: React.FC = props => {
       <Layout className={styles.background} showFooter={false}>
         <HeaderBar />
         {/* <main className="container mx-auto px-4 sm:px-6"> */}
-        <SEO title="miguel chateloin / code" />
+        <SEO title="Code" />
 
         {/* <div className="md:max-w-lxg lg:max-w-2xl xl:max-w-2xl sm:mx-auto"> */}
         <PageScroller
