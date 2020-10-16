@@ -1,7 +1,15 @@
 import React, { useState, useEffect } from "react"
-import styles from "./SkillsSection.module.css"
+import { AnchorLink } from "gatsby-plugin-anchor-links"
+import * as styles from "./SkillsSection.module.css"
 import TagPill from "./TagPill"
-import { Tag, TagMap, HardSkill, SoftSkill } from "../../types"
+import {
+  Tag,
+  TagMap,
+  HardSkill,
+  SoftSkill,
+  ClickEvent,
+  ChangeEvent,
+} from "../../types"
 import { useHardSkillSearchResultsFiltered } from "../../hooks"
 import HardSkillSearchResult from "./HardSkillSearchResult"
 import SoftSkillListItem from "./SoftSkillListItem"
@@ -11,15 +19,9 @@ interface Props {
   hardSkillsFiltered: HardSkill[]
   hardSkillTagsFiltered: Tag[]
   softSkills: SoftSkill[]
-  onTabClick: (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-    tab: string
-  ) => void
-  onSearchChange: (event: React.ChangeEvent<HTMLInputElement>) => void
-  onHardSkillTagClick: (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-    tagName: string
-  ) => void
+  onTabClick: (event: ClickEvent, tab: string) => void
+  onSearchChange: (event: ChangeEvent) => void
+  onHardSkillTagClick: (event: ClickEvent, tagName: string) => void
 }
 
 const SkillsSection: React.FC<Props> = ({
@@ -32,7 +34,7 @@ const SkillsSection: React.FC<Props> = ({
   onHardSkillTagClick,
 }) => {
   return (
-    <div className="mt-16 mb-16">
+    <div className="pt-8 mt-8" id="skills">
       <div className="mb-8 flex justify-between">
         <div>
           <h2>skills</h2>

@@ -139,7 +139,62 @@
         ]
       },
       "experience": {
-        "projects": [{}],
+        "projects": [
+          {
+            "period": { "from": "2019-01", "to": "2019-07" },
+            "name": "THRIVE",
+            "skills": ["Javascript / ES6", "React", "Phaser Game Engine"],
+            "description": "An attempt at a real-time strategy videogame. Started during Github Game Jam 2018.",
+            "url": "https://github.com/migsc/thrive"
+          },
+          {
+            "period": { "from": "2017-12", "to": "2018-03" },
+            "name": "GONE TRAINING",
+            "skills": [
+              "Javascript / ES6",
+              "React",
+              "Webpack",
+              "PHP",
+              "Laravel",
+              "Postgres",
+              "MySQL",
+              "AWS",
+              "Docker",
+              "Chatfuel",
+              "git"
+            ],
+            "description": "Website that integrates with Facebook Messenger to connect personal trainers to potential clients via a personal assistant/chatbot. Handles billing and scheduling for trainers. Built for a client who works in the fitness industry.",
+            "url": "https://gonetraining.com"
+          },
+          {
+            "period": { "from": "2017-10", "to": "2018-12" },
+            "name": "CITY AGENDA MANAGER",
+            "skills": [
+              "Javascript",
+              "PHP",
+              "Laravel",
+              "Postgres",
+              "MySQL",
+              "git"
+            ],
+            "description": "A small web application built for the City of Miami officials to write and schedule meeting topics to be displayed on a TV broadcast graphic. Worked with a multimedia producer to integrate the service to a CGLive service.",
+            "url": "https://github.com/migsc/city-agenda-manager"
+          },
+          {
+            "period": { "from": "2016-03", "to": "2016-08" },
+            "name": "FORGET WHAT YOU HEARD",
+            "skills": ["JS", "jQuery", "Express", "Node", "Heroku"],
+            "description": "A web app that creates a Spotify playlist while banning any music already collected or liked on an account. Takes multiple artist suggestions to seed the playlist. Built for myself to provide a more adventurous music discovery experience.",
+            "url": "https://github.com/migsc/forget-what-you-heard-playlists"
+          },
+          {
+            "period": { "from": "2016-02", "to": "2016-03" },
+            "name": "AUTO SYNC AMAZON WISHLIST & GOOGLE DRIVE",
+            "skills": ["JS", "Node", "AWS", "S3", "Heroku"],
+            "description": "A running job that queries an Amazon wishlist and posts new items to a spreadsheet on Google Drive. Built for myself to provide a better interface for following up on and sharing recommendations.",
+            "url": "https://github.com/migsc/amazon-wishlist-to-drive-sheet"
+          }
+        ],
         "jobs": [
           {
             "period": { "from": "2018-06" },
@@ -160,7 +215,7 @@
             ]
           },
           {
-            "period": { "from": "2016-06", "to": "2018-05" },
+            "period": { "from": "2016-07", "to": "2018-05" },
             "place": "Tesser Health",
             "name": "FULL-STACK SOFTWARE ENGINEER",
             "skills": [
@@ -184,7 +239,7 @@
           {
             "period": { "from": "2015-08", "to": "2016-07" },
             "place": "LifeWallet",
-            "name": "FULL-STACK SOFTWARE ENGINEER",
+            "name": "FRONT-END SOFTWARE ENGINEER",
             "skills": [
               "Javascript / ES6",
               "Ember",
@@ -242,8 +297,32 @@
               "git"
             ],
             "accomplishments": [
-              "Built a custom ember-runtime based JavaScript framework which we used to implement small single page applications that provided insurance and health-assesement to our clients’ employees.",
-              "Led development of a blackbox test suite using Jasmine and Selenium to confirm core feature stability of a legacy application."
+              "Built a frontend dashboard with AngularJS to create and manage event marketing campaigns, while maitaninng the large PHP/Zend backend API, and integrating AWS technologies to auto-deploy microwebsites for each campaign.",
+              "Converted PSD designs to responsive websites with full social integration for highly customized big brand name clients."
+            ]
+          },
+          {
+            "period": { "to": "2012-08", "from": "2012-03" },
+            "place": "TECKPERT",
+            "name": "INTERN WORDPRESS DEVELOPER",
+            "skills": [
+              "Javascript / ES6",
+              "AngularJS",
+              "jQuery",
+              "Bootstrap",
+              "PHP",
+              "Zend 2",
+              "Apache",
+              "Java",
+              "Spring",
+              "MySQL",
+              "AWS",
+              "git"
+            ],
+            "accomplishments": [
+              "Developed WordPress based sites with custom themes for local businesses.",
+              "Worked with clients directly, handling revisions and feedback.",
+              "Plugin development, QA testing, and writing reference guides and documentation. "
             ]
           }
         ],
@@ -268,6 +347,74 @@
           }
         ]
       },
+      "projects": [
+        {
+          "icon": "sort-size-down",
+          "name": "react-native-scroll-direction",
+          "description": "A React Native component that slightly improved on the existing ScrollView and Flatlist components by deriving and exposing the direction the user is currently scrolling.",
+          "repo": "https://github.com/migsc/react-native-scroll-direction"
+        },
+        {
+          "icon": "list-music",
+          "name": "chord-sketch",
+          "description": "A small prototype for an audio tool that generates random chords and let's you modify them. Supports exporting to MIDI files. I currently use it to find creativity and make my music!",
+          "repo": "https://github.com/migsc/chord-sketch",
+          "demo": "https://fj7vn.csb.app/"
+        },
+        {
+          "icon": "hexagon",
+          "name": "thrive",
+          "description": "My attempt at an RTS game when I entered in a Github Game Jam. I learned a lot about rendering and pathfinding in hexagonal coordinate systems while working on this.",
+          "repo": "https://github.com/migsc/thrive",
+          "demo": "https://beees.herokuapp.com"
+        },
+        {
+          "icon": "calendar-alt",
+          "name": "react-native-calendars",
+          "description": "A calendar component for React Native that I had to extend in order to support some extra date-picking features.",
+          "repo": "https://github.com/migsc/react-native-calendars"
+        },
+        {
+          "icon": "not-equal",
+          "name": "deep-object-diff",
+          "description": "A small library that can deep diff two JavaScript Objects, including nested structures of arrays and objects. ",
+          "repo": "https://github.com/migsc/deep-object-diff"
+        },
+        {
+          "icon": "shopping-cart",
+          "name": "amazon-wishlist-to-drive-sheet",
+          "description": "An integration that checks for new items from an Amazon wishlist to post to a Google Sheet.",
+          "repo": "https://github.com/migsc/amazon-wishlist-to-drive-sheet"
+        },
+        {
+          "icon": "calendar-edit",
+          "name": "city-agenda-manager",
+          "description": "A small web app I built for the City of Miami to manage meetings saved in a CGLive text file. Pretty basic CRUD capabilities running on Laravel (PHP) backend.",
+          "repo": "https://github.com/migsc/city-agenda-manager",
+          "demo": "https://city-agenda-manager.herokuapp.com"
+        },
+        {
+          "icon": "spotify",
+          "name": "forget-what-you-heard-playlists",
+          "description": "Built on an older Spotify API, this web app generates a playlist based off artist suggestions choosing music that is not already in the user's Spotify library.",
+          "repo": "https://github.com/migsc/forget-what-you-heard-playlists",
+          "demo": "http://forgetwhatyouheard.herokuapp.com/"
+        },
+        {
+          "icon": "image",
+          "name": "lattice.js",
+          "description": "A jQuery plugin built to handle every carousel use-case imaginable! Handles both HTML content and images, 2-dimensional navigation, responsive, dynamic thumbnail support and more.",
+          "repo": "https://github.com/migsc/lattice.js",
+          "demo": "https://migsc.github.io/lattice.js/"
+        },
+        {
+          "icon": "infinity",
+          "name": "8tracks-mix-feeds",
+          "description": "My first side project ever! It's a WordPress plugin that display collections of mixes from the 8tracks.com website. It uses WordPress' built-in shortcodes.",
+          "repo": "https://github.com/migsc/8tracks-mix-feeds"
+        }
+      ],
+
       "social": {}
     }
   }

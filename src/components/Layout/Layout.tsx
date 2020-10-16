@@ -9,13 +9,15 @@ import React from "react"
 import { Helmet } from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
 import Footer from "./Footer"
-import styles from "./Layout.module.css"
+import * as styles from "./Layout.module.css"
+import { ThemeProvider, CSSReset } from "@chakra-ui/core"
 
 interface Props {
   children: JSX.Element[]
   scrollable?: boolean
   className?: string
   bodyClassName?: string
+  showFooter?: boolean
 }
 
 const joinWithoutEmpty = (
@@ -29,6 +31,7 @@ const Layout: React.FC<Props> = ({
   scrollable = true,
   className,
   bodyClassName: bodyClassNamePassed,
+  showFooter = true,
 }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
@@ -41,7 +44,7 @@ const Layout: React.FC<Props> = ({
   `)
 
   return (
-    <>
+    <ThemeProvider>
       <Helmet
         bodyAttributes={{
           class: joinWithoutEmpty(
@@ -53,11 +56,12 @@ const Layout: React.FC<Props> = ({
           class: joinWithoutEmpty(!scrollable && styles.noscroll),
         }}
       />
+
       <div className={className}>
-        <main className="container mx-auto px-4 sm:px-6">{children}</main>
-        <Footer absolutePosition={!scrollable} />
+        {children}
+        {showFooter && <Footer absolutePosition={!scrollable} />}
       </div>
-    </>
+    </ThemeProvider>
   )
 }
 

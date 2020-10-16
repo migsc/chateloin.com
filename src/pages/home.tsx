@@ -1,18 +1,21 @@
 import React from "react"
+import { useSpring, animated } from "react-spring"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faCode, faMusic } from "@fortawesome/pro-light-svg-icons"
+import { faAlienMonster } from "@fortawesome/pro-regular-svg-icons"
 import { useStaticQuery, graphql } from "gatsby"
-import {
-  faCode,
-  faMusic,
-  faPaintBrush,
-} from "@fortawesome/free-solid-svg-icons"
-import SEO from "../components/seo"
+import styled from "styled-components"
+
+import { colors } from "../constants.ts"
+import SEO from "../components/SEO"
 import Layout from "../components/Layout"
-import NavButton from "../components/home/NavButton"
-import styles from "./home.module.css"
+import PortalButton from "../components/PortalButton"
+import IconButton from "../components/IconButton"
+import * as styles from "./home.module.css"
+import { HeadingText, BodyText } from "../components/text"
 
 interface HomePageState {
-  underConstruction: boolean
+  fadeInProps: any
 }
 
 interface HomePageActions {}
@@ -34,45 +37,78 @@ const useContainer = (): [HomePageState, HomePageActions] => {
     `
   )
 
+  // const fadeInProps = useSpring({ opacity: 1, from: { opacity: 0 } })
+  const fadeInProps = {}
+
   const actions = {}
 
-  return [{ underConstruction }, actions]
+  return [{ fadeInProps }, actions]
 }
 
-const header = ["miguel", <br />, "chateloin"]
-const headerUnderConstruction = ["under", <br />, "construction"]
+const StyledBackgroundElement = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+`
 
-const tagline = `A pretty cool guy with a cool guy tagline that goes here. 
-Maybe it can go up to here? This is a nice length.`
-const taglineUnderConstruction = `I'm done messing around with WordPress 
-templates. I'm taking some time right now to build something from scratch using 
-the tools I love. Check back soon!`
+const BackgroundAnimation = () => {
+  return (
+    <>
+      <StyledBackgroundElement className={styles.stars} />
+      <StyledBackgroundElement className={styles.twinkling} />
+      {/* <StyledBackgroundElement className={styles.clouds} /> */}
+    </>
+  )
+}
 
 const HomePage: React.FC = () => {
-  const [{ underConstruction }] = useContainer()
-  console.log("underConstruction", underConstruction)
+  const [{ fadeInProps }] = useContainer()
   return (
-    <Layout bodyClassName={styles.background} scrollable={false}>
-      <SEO title="Miguel Chateloin" />
-      <div className="max-w-xs py-12 md:py-48 md:max-w-sm lg:max-w-lg sm:mx-auto">
-        <h1 className="text-4xl mb-4">
-          {underConstruction ? headerUnderConstruction : header}
-        </h1>
-        <p className="text-xl">
-          {underConstruction ? taglineUnderConstruction : tagline}
-          <FontAwesomeIcon icon="code" />
-        </p>
-        {!underConstruction && (
-          <div className="flex flex-row justify-around mt-32 mx-auto">
-            <NavButton icon={faCode} linkTo="code" />
-            <NavButton icon={faMusic} />
-            <NavButton icon={faPaintBrush} />
-          </div>
-        )}
-      </div>
-
-      {/* <Link to="/page-2/">Go to page 2</Link> */}
-    </Layout>
+    <>
+      <SEO title="Home" />
+      <Layout bodyClassName={styles.background} scrollable={false}>
+        <BackgroundAnimation />
+        <main
+          className={`${styles.content} container mx-auto px-4 sm:px-6 transition-all`}
+        >
+          <animated.div
+            style={fadeInProps}
+            className="max-w-xs py-12 md:py-48 md:max-w-sm lg:max-w-lg sm:mx-auto"
+          >
+            <HeadingText>Hello.</HeadingText>
+            <BodyText>
+              I love making apps, music, and pixel art. What area do you want to
+              know more about?
+            </BodyText>
+            <div className="flex flex-row justify-around mt-16 mx-auto">
+              <PortalButton
+                primaryColor={"#1f183a"}
+                secondaryColor={colors.Purple}
+                icon={faCode}
+                linkTo="/code/"
+              />
+              <IconButton
+                primaryColor={"#210c08"}
+                secondaryColor={colors.Peach}
+                icon={faMusic}
+                linkTo={"https://soundcloud.com/young-hot-koopa/"}
+              />
+              <IconButton
+                primaryColor={"#08211c"}
+                secondaryColor={colors.Green}
+                icon={faAlienMonster}
+                linkTo={"https://imgur.com/user/MiguelChateloin"}
+              />
+            </div>
+          </animated.div>
+        </main>
+      </Layout>
+    </>
   )
 }
 

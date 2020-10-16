@@ -1,20 +1,22 @@
 import React, { useMemo } from "react"
-import Fuse from "fuse.js"
-import styles from "./TagPill.module.css"
-import { Tag } from "../../types"
+import * as styles from "./TagPill.module.css"
 
-interface TagPillProps extends Tag {
-  onClick: (
+interface TagPillProps {
+  name?: string
+  count?: number
+  active?: boolean
+  onClick?: (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
     tagName: string
   ) => void
 }
 
+
 const TagPill: React.FC<TagPillProps> = ({
-  name,
-  count,
+  name = "Tag",
+  count = 0,
   active = false,
-  onClick,
+  onClick = () => {},
 }) => {
   const disabled = count === 0
   return (

@@ -7,7 +7,11 @@ import {
   mapValues,
   getTagMapFromTagNames,
   without,
+  getViewportWidth,
+  getViewportHeight,
+  getSkillsByTags,
 } from "./utils"
+import { useSpring, animated, config } from "react-spring"
 
 interface TagWithSkills extends Tag {
   skills: HardSkill[]
@@ -15,31 +19,6 @@ interface TagWithSkills extends Tag {
 
 interface TagToSkillsMap {
   [key: string]: TagWithSkills
-}
-
-const getSkillsByTags = (skills: HardSkill[]): TagToSkillsMap => {
-  let map: TagToSkillsMap = {}
-
-  skills.forEach(skill => {
-    skill.tags.forEach(tagName => {
-      if (!map[tagName]) {
-        map[tagName] = {
-          name: tagName,
-          active: false,
-          count: 1,
-          skills: [skill],
-        }
-      } else {
-        map[tagName] = {
-          ...map[tagName],
-          count: map[tagName].count + 1,
-          skills: [...map[tagName].skills, skill],
-        }
-      }
-    })
-  })
-
-  return map
 }
 
 interface HardSkillSearchResults {
@@ -135,4 +114,36 @@ export const useHardSkillSearchResultsFiltered = (
     },
     actions,
   ]
+}
+
+export const useViewportDimensions = () => {
+  const [width, setWidth] = useState(getViewportWidth())
+  const [height, setHeight] = useState(getViewportHeight())
+
+  const handleResize = () => {
+    setWidth(getViewportWidth())
+    setHeight(getViewportHeight())
+  }
+
+  useEffect(() => {
+    window.addEventListener("resize", handleResize)
+
+    return () => window.removeEventListener("resize", handleResize)
+  }, [])
+
+  return { width, height }
+}
+
+interface FadeInOpts {
+  fromOpacity: number
+  toOpacity: number
+}
+export const useFadeInRenderProps = (opts?: FadeInOpts) => {
+  const fromOpacity = opts?.fromOpacity || 0
+  const toOpacity = opts?.toOpacity || 1
+  useSpring({
+    // config: config.default,
+    opacity: toOpacity,
+    from: { opacity: fromOpacity },
+  })
 }

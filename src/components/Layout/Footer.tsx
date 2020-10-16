@@ -13,7 +13,7 @@ const Footer: React.FC<Props> = ({ absolutePosition = false }) => {
         absolutePosition ? absolutePositionClassNames : ""
       }`}
     >
-      © {new Date().getFullYear()}, Miguel Chateloin - All Rights Reserved
+      © {new Date().getFullYear()} Miguel Chateloin - All Rights Reserved
     </footer>
   )
 }

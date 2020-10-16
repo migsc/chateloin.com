@@ -1,0 +1,19 @@
+.button {
+  @apply mr-3;
+  @apply mb-3;
+  @apply p-2;
+  @apply border-white;
+  @apply border-solid;
+  @apply border-2;
+  @apply rounded-full;
+}
+
+.buttonPillActive {
+  @apply bg-white;
+  color: #764ba2;
+}
+
+.buttonDisabled {
+  @apply opacity-50;
+  @apply cursor-default;
+}
