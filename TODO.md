@@ -1,0 +1,28 @@
+- Typically don't see dashes in your copyright. (C) Miguel. All rights reserved. The periods are what you see most often, and it's NOT initial capped like you have it.
+- Consider using a higher weight font in the family for small sizes.
+- Consider a more prominent transition between icons at the bottom.
+- Add "Texas" to Dallas?
+- Delete "huge"
+- Had trouble scrolling after losing focus on the webpage
+- We "created" an app?
+- React Native does not have a dash
+- Dash between cutting and edge
+- "I've had time to pick up many languages, frameworks, and more."
+- FlatList has a capital L
+- Don't list chronologically, but instead things that you are most proud of/most impressive
+- "Inspire" creativity "when I'm writing music"
+- No exclamation? idk my opinion
+- RTS real-time strategy
+- GitHub (H capitalized)
+- Deep Diff - ? You are saying "better word" for diff... difference?
+- "Post to Google Sheets" with an "s"
+- Based on versus "off"
+- Comma after suggestions,
+- No dash in use case
+- I say two-dimensional personally
+  "dynamic support, and more" missing Oxford comma
+- WordPress plugin that displayS (missing S)
+- Drop website from 8tracks
+- It uses built in shortcodes from WordPress (avoid possessive)
+- Don't capitalize M on "mostly"
+- Feel free to "connect with me on any of these platforms"
