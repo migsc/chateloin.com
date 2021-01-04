@@ -1,5 +1,3 @@
-- Typically don't see dashes in your copyright. (C) Miguel. All rights reserved. The periods are what you see most often, and it's NOT initial capped like you have it.
-- Consider using a higher weight font in the family for small sizes.
 - Consider a more prominent transition between icons at the bottom.
 - Add "Texas" to Dallas?
 - Delete "huge"
@@ -26,3 +24,5 @@
 - It uses built in shortcodes from WordPress (avoid possessive)
 - Don't capitalize M on "mostly"
 - Feel free to "connect with me on any of these platforms"
+- ~~Typically don't see dashes in your copyright. (C) Miguel. All rights reserved. The periods are what you see most often, and it's NOT initial capped like you have it.~~
+- ~~Consider using a higher weight font in the family for small sizes.~~
