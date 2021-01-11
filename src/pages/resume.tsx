@@ -9,8 +9,10 @@ import {
   View,
   StyleSheet,
 } from "@react-pdf/renderer"
-
 import styled from "@react-pdf/styled-components"
+
+import { useViewportDimensions } from "../hooks"
+
 import LatoThin from "../assets/fonts/Lato-Thin.ttf"
 import LatoLight from "../assets/fonts/Lato-Light.ttf"
 import LatoRegular from "../assets/fonts/Lato-Regular.ttf"
@@ -24,6 +26,8 @@ import faRegular from "../assets/fonts/fa-regular-400.ttf"
 import faSolid from "../assets/fonts/fa-solid-900.ttf"
 
 import svgBuilding from "../assets/images/building.svg"
+
+import jsonData from "../data.json"
 
 // Font.register({
 //   family: "Font Awesome",
@@ -73,19 +77,19 @@ Font.register({
 
 const Text = styled.Text`
   font-family: "Lato";
+  font-size: ${({ size = 12 }) => size}px;
 `
 
 const Row = styled.View`
   flex-direction: row;
+  margin: ${({ m = 0 }) => m}px;
+  border: dashed 1px navy;
 `
 
 const Column = styled.View`
+  flex: ${({ flex = 1 }) => flex};
   flex-direction: column;
-`
-
-const Header = styled(Row)`
-  border: dashed 1px red;
-  margin: 16px;
+  border: dashed 1px gray;
 `
 
 const Name = styled.Text`
@@ -95,6 +99,8 @@ const Name = styled.Text`
 const Title = styled.Text``
 
 const Body = styled(Row)`
+  flex: 1;
+  flex-direction: row;
   border: dashed 1px blue;
   margin-left: 16px;
   margin-right: 16px;
@@ -121,6 +127,28 @@ const getFAFamilyromProps = ({ brands, light, solid, duotone }) => {
 
 const faUnicodes = {
   building: "\uf1ad",
+  envelope: "\uf0e0",
+  phone: "\uf095",
+  browser: "\uf37e",
+  circle: "\uf111",
+  wrench: "\uf0ad",
+  "graduation-cap": "\uf19d",
+  github: "\uf09b",
+  twitter: "\uf099",
+  linkedin: "\uf08c",
+  coffee: "\uf0f4",
+  "mug-tea": "\uf875",
+  tools: "\uf7d9",
+  toolbox: "\uf552",
+  language: "\uf1ab",
+  "pencil-alt": "\uf303",
+  sitemap: "\uf0e8",
+  "share-alt": "\uf1e0",
+  heart: "\uf004",
+  "piano-keyboard": "\uf8d5",
+  "gamepad-alt": "\uf8bc",
+  "alien-monster": "\uf8f6",
+  podcast: "\uf2ce",
 }
 
 const faDuoUnicodes = {
@@ -165,45 +193,69 @@ const useWindowSize = () => {
   return state
 }
 
+const ContactDetail = ({ children, icon }) => {
+  return (
+    <Row>
+      <Column flex={9} style={{ alignItems: "right" }}>
+        <Text size={10}>{children}</Text>
+      </Column>
+      <Column flex={1} style={{ alignItems: "right" }}>
+        <Icon size={10} solid name={icon} />
+      </Column>
+    </Row>
+  )
+}
+
+const Header = () => (
+  <Row m={16}>
+    <Column flex={2}>
+      <Name>MIGUEL CHATELOIN</Name>
+      <Title>Frontend Software Engineer</Title>
+    </Column>
+    <Column flex={1}>
+      <ContactDetail icon="building">miguel@chateloin.com</ContactDetail>
+      <ContactDetail icon="phone">+1-(786)-973-0629</ContactDetail>
+      <ContactDetail icon="browser">chateloin.com</ContactDetail>
+    </Column>
+  </Row>
+)
+
+const Footer = ({ page }) => (
+  <Row m={16}>
+    <Text style={{ textAlign: "right" }}>Page {page}/2</Text>
+  </Row>
+)
+
 // Create Document Component
 const ResumePage: React.FC = () => {
-  const { height } = useWindowSize()
+  const { height } = useViewportDimensions()
   return (
     <PDFViewer style={[styles.viewer, { height }]}>
       <Document title="Resume - Miguel Chateloin" author="Miguel Chateloin">
         <Page size="A4">
-          <Header>
-            <Column>
-              <Name>Miguel Chateloin</Name>
-              <Title>Frontend Software Engineer</Title>
-            </Column>
-            <Column>
-              <Text>miguel@chateloin.com</Text>
-              <Text>+1-(786)-973-0629</Text>
-              <Text>chateloin.com</Text>
-            </Column>
-          </Header>
+          <Header />
           <Body>
-            {/* <Text>Body</Text> */}
-            {/* <Icon light name="building" /> */}
-
-            <Line h />
-            <Line v />
+            <Column flex={2}>
+              {/* <Line v /> */}
+              <Text>EXPERIENCE</Text>
+              {/* {jsonData.code.experience.maps} */}
+            </Column>
+            <Column flex={1}>
+              {/* <Line v /> */}
+              <Row>
+                <Text>TOP SKILLS</Text>
+              </Row>
+              <Row>
+                <Text>EDUCATION</Text>
+              </Row>
+            </Column>
           </Body>
+          <Footer page={1} />
         </Page>
         <Page size="A4">
-          <Header>
-            <Column>
-              <Name>Miguel Chateloin</Name>
-              <Title>Frontend Software Engineer</Title>
-            </Column>
-            <Column>
-              <Text>miguel@chateloin.com</Text>
-              <Text>+1-(786)-973-0629</Text>
-              <Text>chateloin.com</Text>
-            </Column>
-          </Header>
-          <Body>{/* <Text>Body</Text> */}</Body>
+          <Header />
+          <Body></Body>
+          <Footer page={2} />
         </Page>
       </Document>
     </PDFViewer>
