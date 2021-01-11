@@ -1,0 +1,2 @@
+- Consider a more prominent transition between icons at the bottom.
+- Had trouble scrolling after losing focus on the webpage

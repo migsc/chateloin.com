@@ -369,7 +369,7 @@ const CodePage: React.FC = props => {
             <div className="px-4">
               <HeadingText>I build tech.</HeadingText>
               <BodyText>
-                Mostly apps and websites. For fun. For a living. I'm best
+                mostly apps and websites. For fun. For a living. I'm best
                 described as a front-end software engineer.
               </BodyText>
             </div>
@@ -384,15 +384,15 @@ const CodePage: React.FC = props => {
               <CircleImage src={srcCenergisticLogo} />
               <HeadingText>Currently,</HeadingText>
               <BodyText>
-                I work at a company in Dallas that helps schools save energy. We
-                build{" "}
+                I work at a company in Dallas, Texas that helps schools save
+                energy. We created{" "}
                 <TextLink
                   newTab
                   href="https://cdn2.hubspot.net/hubfs/4433266/Website%20Documents/Ceres%20GreenX%20Product%20Brief.pdf?__hssc=106973277.1.1599597603546&__hstc=106973277.b239780adb9316d275282b120b47bf74.1599594171332.1599594171332.1599597603546.2&__hsfp=2190378817&hsCtaTracking=3c595979-b442-43a9-b0cd-5c0c172ae66d%7C0da106c4-8282-4fa4-841a-2231f4542f68"
                 >
                   a cross-platform app
                 </TextLink>{" "}
-                that helps our clients visualize huge utility costs across many
+                that helps our clients visualize utility costs across many
                 facilities.
               </BodyText>
             </div>
@@ -408,7 +408,7 @@ const CodePage: React.FC = props => {
               >
                 <SkillImage className="w-8 h-8">
                   <ReactLogoSVG className="w-8 h-8" />
-                  <p>React / React-Native</p>
+                  <p>React / React Native</p>
                 </SkillImage>
                 <SkillImage className="w-8 h-8">
                   <ReduxLogoSVG className="w-8 h-8" />
@@ -430,9 +430,9 @@ const CodePage: React.FC = props => {
               <div>
                 <HeadingText>Always learning,</HeadingText>
                 <BodyText>
-                  and always using cutting edge tools. Working in the industry
-                  for {today.current.getFullYear() - 2012} years, I've had some
-                  time to pick up a ton of languages, frameworks, etc.
+                  and always using cutting-edge tools. Working in the industry
+                  for {today.current.getFullYear() - 2012} years, I've had time
+                  to pick up many languages, frameworks, and more.
                 </BodyText>
               </div>
               {/* <Button onClick={onOpen}>See more skills</Button> */}
@@ -549,8 +549,9 @@ const CodePage: React.FC = props => {
             <div className="px-4">
               <HeadingText>I'm out there,</HeadingText>
               <BodyText>
-                Mostly publishing code, finding good libraries, and keeping up
-                with tech news. Feel free to reach out on any of my platforms.
+                mostly publishing code, finding good libraries, and keeping up
+                with tech news. Feel free to connect with me on any of these
+                platforms.
               </BodyText>
               <div className="flex flex-row justify-around mt-16">
                 <IconButton

@@ -19,6 +19,7 @@
     "@fortawesome/pro-solid-svg-icons": "^5.14.0",
     "@fortawesome/react-fontawesome": "^0.1.11",
     "@react-pdf/renderer": "^1.6.12",
+    "@react-pdf/styled-components": "^1.4.0",
     "babel-plugin-styled-components": "^1.10.7",
     "emailjs-com": "^2.6.3",
     "emotion-theming": "^10.0.27",
