@@ -353,65 +353,75 @@
           "name": "chord-sketch",
           "description": "A small prototype for an audio tool that generates random chords and let's you modify them. Supports exporting to MIDI files. I use it to inspire creativity when I'm writing music.",
           "repo": "https://github.com/migsc/chord-sketch",
-          "demo": "https://fj7vn.csb.app/"
+          "demo": "https://fj7vn.csb.app/",
+          "skills": ["JavaScript"]
         },
         {
           "icon": "spotify",
           "name": "forget-what-you-heard-playlists",
           "description": "Built on an older Spotify API, this web app generates a playlist based on artist suggestions, choosing music that is not already in the user's Spotify library.",
           "repo": "https://github.com/migsc/forget-what-you-heard-playlists",
-          "demo": "http://forgetwhatyouheard.herokuapp.com/"
+          "demo": "http://forgetwhatyouheard.herokuapp.com/",
+          "skills": ["JavaScript"]
         },
         {
           "icon": "hexagon",
           "name": "thrive",
           "description": "My attempt at a real-time strategy game when I entered in a Github Game Jam. I learned a lot about rendering and pathfinding in hexagonal coordinate systems while working on this.",
           "repo": "https://github.com/migsc/thrive",
-          "demo": "https://beees.herokuapp.com"
+          "demo": "https://beees.herokuapp.com",
+          "skills": ["JavaScript"]
         },
         {
           "icon": "sort-size-down",
           "name": "react-native-scroll-direction",
           "description": "A React Native package that derives and exposes the scroll direction in ScrollView and FlatList components.",
-          "repo": "https://github.com/migsc/react-native-scroll-direction"
+          "repo": "https://github.com/migsc/react-native-scroll-direction",
+          "skills": ["JavaScript"]
         },
         {
           "icon": "calendar-alt",
           "name": "react-native-calendars",
           "description": "A calendar component for React Native that I had to extend in order to support some extra date-picking features for my company's mobile app.",
-          "repo": "https://github.com/migsc/react-native-calendars"
+          "repo": "https://github.com/migsc/react-native-calendars",
+          "skills": ["JavaScript"]
         },
         {
           "icon": "image",
           "name": "lattice.js",
           "description": "A jQuery plugin built to handle every carousel use case I imagined at the time. Handles both HTML content and images, four-directional sliding, responsive, dynamic thumbnail support and more.",
           "repo": "https://github.com/migsc/lattice.js",
-          "demo": "https://migsc.github.io/lattice.js/"
+          "demo": "https://migsc.github.io/lattice.js/",
+          "skills": ["JavaScript"]
         },
         {
           "icon": "calendar-edit",
           "name": "city-agenda-manager",
           "description": "A small web app I built for the City of Miami to manage meetings saved in a CGLive text file. Pretty basic CRUD capabilities running on Laravel (PHP) backend.",
           "repo": "https://github.com/migsc/city-agenda-manager",
-          "demo": "https://city-agenda-manager.herokuapp.com"
+          "demo": "https://city-agenda-manager.herokuapp.com",
+          "skills": ["JavaScript"]
         },
         {
           "icon": "infinity",
           "name": "8tracks-mix-feeds",
           "description": "My first side project ever! It's a WordPress plugin that displays collections of mixes from 8tracks.com. It uses built-in shortcodes from WordPress.",
-          "repo": "https://github.com/migsc/8tracks-mix-feeds"
+          "repo": "https://github.com/migsc/8tracks-mix-feeds",
+          "skills": ["JavaScript"]
         },
         {
           "icon": "shopping-cart",
           "name": "amazon-wishlist-to-drive-sheet",
           "description": "An integration that checks for new items from an Amazon wishlist and updates Google Sheets. This was really useful for budgeting my extra expenses.",
-          "repo": "https://github.com/migsc/amazon-wishlist-to-drive-sheet"
+          "repo": "https://github.com/migsc/amazon-wishlist-to-drive-sheet",
+          "skills": ["JavaScript"]
         },
         {
           "icon": "not-equal",
           "name": "deep-object-diff",
           "description": "A small library that can compare two JavaScript Objects, including nested structures of arrays and objects. ",
-          "repo": "https://github.com/migsc/deep-object-diff"
+          "repo": "https://github.com/migsc/deep-object-diff",
+          "skills": ["JavaScript"]
         }
       ],
 

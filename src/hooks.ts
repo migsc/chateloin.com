@@ -147,3 +147,13 @@ export const useFadeInRenderProps = (opts?: FadeInOpts) => {
     from: { opacity: fromOpacity },
   })
 }
+
+export const useIsClient = (): boolean => {
+  const [isClient, setIsClient] = useState(false)
+
+  useEffect(() => {
+    setIsClient(true)
+  }, [])
+
+  return isClient
+}

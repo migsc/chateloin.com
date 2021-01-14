@@ -21,6 +21,7 @@
     "@react-pdf/renderer": "^1.6.12",
     "@react-pdf/styled-components": "^1.4.0",
     "babel-plugin-styled-components": "^1.10.7",
+    "dayjs": "^1.10.3",
     "emailjs-com": "^2.6.3",
     "emotion-theming": "^10.0.27",
     "fuse.js": "^6.3.1",
