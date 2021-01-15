@@ -84,13 +84,18 @@ const Text = styled.Text`
 const Row = styled.View`
   flex-direction: row;
   margin: ${({ m = 0 }) => m}px;
-  border: dashed 1px navy;
+  /* border: dashed 1px navy; */
 `
 
 const Column = styled.View`
   flex: ${({ flex = 1 }) => flex};
   flex-direction: column;
-  border: dashed 1px gray;
+  /* ${({ line }) =>
+    line &&
+    `
+      border-left-color: black;
+      border-left-width: 1px;
+    `} */
 `
 
 const Name = styled.Text`
@@ -102,16 +107,27 @@ const Title = styled.Text``
 const Body = styled(Row)`
   flex: 1;
   flex-direction: row;
-  border: dashed 1px blue;
   margin-left: 16px;
   margin-right: 16px;
+
+  /* border: dashed 1px blue; */
 `
 
 const Line = styled.View`
   height: ${({ v, length = "100%" }) => (v ? length : "1px")};
   width: ${({ v, length = "100%" }) => (v ? "1px" : length)};
+  position: absolute;
   background-color: black;
 `
+
+const BorderedView = ({ children }) => {
+  return (
+    <View>
+      <Line v />
+      {children}
+    </View>
+  )
+}
 
 const getFAFamilyFromProps = ({ brands, light, solid, duotone }) => {
   if (brands) return "Font Awesome Brands"
@@ -349,53 +365,57 @@ const ResumePage: React.FC = () => {
           <Page size="A4">
             <Header />
             <Body>
-              <Column flex={2}>
-                {/* <Line v /> */}
+              <Column flex={2} line>
                 <SectionTitle icon="coffee">experience</SectionTitle>
-                {jobs.map(
-                  ({ period, place, name, skills, accomplishments }) => (
-                    <View key={place}>
-                      <Event>
-                        <Event.Time
-                          from={period.from}
-                          to={period.to}
-                          place={place}
-                        />
-                        <Event.Title>{name}</Event.Title>
-                        <Event.Skills>{skills.join(", ")}</Event.Skills>
-                        {accomplishments.map(text => (
-                          <Event.Bullet>{text}</Event.Bullet>
-                        ))}
-                      </Event>
-                      <Margin v={8} />
-                    </View>
-                  )
-                )}
+                <BorderedView>
+                  {jobs.map(
+                    ({ period, place, name, skills, accomplishments }) => (
+                      <View key={place}>
+                        <Event>
+                          <Event.Time
+                            from={period.from}
+                            to={period.to}
+                            place={place}
+                          />
+                          <Event.Title>{name}</Event.Title>
+                          <Event.Skills>{skills.join(", ")}</Event.Skills>
+                          {accomplishments.map(text => (
+                            <Event.Bullet>{text}</Event.Bullet>
+                          ))}
+                        </Event>
+                        <Margin v={8} />
+                      </View>
+                    )
+                  )}
+                </BorderedView>
               </Column>
-              <Column flex={1}>
-                {/* <Line v /> */}
 
+              <Column flex={1} line>
                 <SectionTitle icon="tools">top skills</SectionTitle>
-                {skills.map(({ name }) => (
-                  <Text key={name}>{name}</Text>
-                ))}
+                <BorderedView>
+                  {skills.map(({ name }) => (
+                    <Text key={name}>{name}</Text>
+                  ))}
+                </BorderedView>
 
                 <SectionTitle icon="graduation-cap">education</SectionTitle>
-                {certs.map(({ period, place, name, accomplishments }) => (
-                  <Event key={place}>
-                    <Event.Time
-                      from={period.from}
-                      to={period.to}
-                      place={place}
-                    />
-                    <Event.Title>{name}</Event.Title>
+                <BorderedView>
+                  {certs.map(({ period, place, name, accomplishments }) => (
+                    <Event key={place}>
+                      <Event.Time
+                        from={period.from}
+                        to={period.to}
+                        place={place}
+                      />
+                      <Event.Title>{name}</Event.Title>
 
-                    {accomplishments.map(text => (
-                      <Event.Bullet key={text}>{text}</Event.Bullet>
-                    ))}
-                    <Margin v={16} />
-                  </Event>
-                ))}
+                      {accomplishments.map(text => (
+                        <Event.Bullet key={text}>{text}</Event.Bullet>
+                      ))}
+                      <Margin v={16} />
+                    </Event>
+                  ))}
+                </BorderedView>
               </Column>
             </Body>
             <Footer page={1} />
@@ -406,36 +426,44 @@ const ResumePage: React.FC = () => {
             <Body>
               <Column flex={2}>
                 <SectionTitle icon="mug-tea">side projects</SectionTitle>
-                {projects.map(({ name, skills, description, repo, demo }) => (
-                  <Project key={name}>
-                    <Project.Title>{name}</Project.Title>
-                    <Project.Skills>{skills.join(", ")}</Project.Skills>
-                    <Project.Description>{description}</Project.Description>
-                    {repo && <Project.Link type="repo">{repo}</Project.Link>}
-                    {demo && <Project.Link type="demo">{demo}</Project.Link>}
-                    <Margin v={8} />
-                  </Project>
-                ))}
+                <BorderedView>
+                  {projects.map(({ name, skills, description, repo, demo }) => (
+                    <Project key={name}>
+                      <Project.Title>{name}</Project.Title>
+                      <Project.Skills>{skills.join(", ")}</Project.Skills>
+                      <Project.Description>{description}</Project.Description>
+                      {repo && <Project.Link type="repo">{repo}</Project.Link>}
+                      {demo && <Project.Link type="demo">{demo}</Project.Link>}
+                      <Margin v={8} />
+                    </Project>
+                  ))}
+                </BorderedView>
               </Column>
               <Column flex={1}>
                 <SectionTitle icon="toolbox">other skills</SectionTitle>
-                {otherSkills.map(({ icon, text }) => (
-                  <IconBullet key={text} icon={icon}>
-                    {text}
-                  </IconBullet>
-                ))}
+                <BorderedView>
+                  {otherSkills.map(({ icon, text }) => (
+                    <IconBullet key={text} icon={icon}>
+                      {text}
+                    </IconBullet>
+                  ))}
+                </BorderedView>
                 <SectionTitle icon="share-alt">connect</SectionTitle>
-                {connects.map(({ icon, text }) => (
-                  <IconBullet key={text} icon={icon}>
-                    {text}
-                  </IconBullet>
-                ))}
+                <BorderedView>
+                  {connects.map(({ icon, text }) => (
+                    <IconBullet key={text} icon={icon}>
+                      {text}
+                    </IconBullet>
+                  ))}
+                </BorderedView>
                 <SectionTitle icon="heart">hobbies & interests</SectionTitle>
-                {hobbies.map(({ icon, text }) => (
-                  <IconBullet key={text} icon={icon}>
-                    {text}
-                  </IconBullet>
-                ))}
+                <BorderedView>
+                  {hobbies.map(({ icon, text }) => (
+                    <IconBullet key={text} icon={icon}>
+                      {text}
+                    </IconBullet>
+                  ))}
+                </BorderedView>
               </Column>
             </Body>
             <Footer page={2} />
