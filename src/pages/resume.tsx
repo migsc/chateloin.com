@@ -76,15 +76,36 @@ Font.register({
   ],
 })
 
-const Text = styled.Text`
+const getFontWeightFromProps = ({ thin, light, bold, bolder }) => {
+  if (thin) return 100
+  else if (light) return 300
+  else if (bold) return 700
+  else if (bolder) return 900
+  else return 400
+}
+
+const StyledText = styled.Text`
   font-family: "Lato";
-  font-size: ${({ size = 12 }) => size}px;
+  font-size: ${({ size = 10 }) => size}px;
+  ${({ m }) => (m ? `margin: ${m}px;` : "")}
+  ${({ mt }) => (mt ? `margin-top: ${mt}px;` : "")}
+  ${({ mb }) => (mb ? `margin-bottom: ${mb}px;` : "")}
+  ${({ ml }) => (ml ? `margin-left: ${ml}px;` : "")}
+  ${({ mr }) => (mr ? `margin-right: ${mr}px;` : "")}
 `
+const Text = props => {
+  const fontWeight = getFontWeightFromProps(props)
+  return <StyledText style={{ fontWeight }} {...props} />
+}
+// font-weight: ${props => getFontWeightFromProps(props)};
 
 const Row = styled.View`
   flex-direction: row;
-  margin: ${({ m = 0 }) => m}px;
-  /* border: dashed 1px navy; */
+  ${({ m }) => (m ? `margin: ${m}px;` : "")}
+  ${({ mt }) => (mt ? `margin-top: ${mt}px;` : "")}
+  ${({ mb }) => (mb ? `margin-bottom: ${mb}px;` : "")}
+  ${({ ml }) => (ml ? `margin-left: ${ml}px;` : "")}
+  ${({ mr }) => (mr ? `margin-right: ${mr}px;` : "")}
 `
 
 const Column = styled.View`
@@ -97,12 +118,6 @@ const Column = styled.View`
       border-left-width: 1px;
     `} */
 `
-
-const Name = styled.Text`
-  font-size: 24px;
-`
-
-const Title = styled.Text``
 
 const Body = styled(Row)`
   flex: 1;
@@ -122,8 +137,8 @@ const Line = styled.View`
 
 const BorderedView = ({ children }) => {
   return (
-    <View>
-      <Line v />
+    <View style={{ paddingLeft: 24 }}>
+      <Line style={{ left: 8 }} v />
       {children}
     </View>
   )
@@ -214,12 +229,12 @@ const useWindowSize = () => {
 
 const ContactDetail = ({ children, icon }) => {
   return (
-    <Row>
+    <Row style={{ marginBottom: 4 }}>
       <Column flex={9} style={{ alignItems: "right" }}>
-        <Text size={10}>{children}</Text>
+        <Text>{children}</Text>
       </Column>
       <Column flex={1} style={{ alignItems: "right" }}>
-        <Icon size={10} solid name={icon} />
+        <Icon size={10} light name={icon} />
       </Column>
     </Row>
   )
@@ -228,11 +243,13 @@ const ContactDetail = ({ children, icon }) => {
 const Header = () => (
   <Row m={16}>
     <Column flex={2}>
-      <Name>miguel chateloin</Name>
-      <Title>frontend software engineer</Title>
+      <Text size={24} bolder mb={4}>
+        Miguel Chateloin
+      </Text>
+      <Text light>FRONTEND SOFTWARE ENGINEEER</Text>
     </Column>
     <Column flex={1}>
-      <ContactDetail icon="building">miguel@chateloin.com</ContactDetail>
+      <ContactDetail icon="envelope">miguel@chateloin.com</ContactDetail>
       <ContactDetail icon="phone">+1-(786)-973-0629</ContactDetail>
       <ContactDetail icon="browser">chateloin.com</ContactDetail>
     </Column>
@@ -245,11 +262,18 @@ const Footer = ({ page }) => (
   </Row>
 )
 
-const SectionTitle = ({ children, icon }) => (
-  <Text>
-    <Icon name={icon} solid />
-    {children}
-  </Text>
+const SectionTitle = ({ children, icon, ...props }) => (
+  <Row
+    style={{ alignContent: "center", paddingBottom: 4, paddingTop: 4 }}
+    {...props}
+  >
+    <View>
+      <Icon name={icon} solid />
+    </View>
+    <Text ml={8} size={12} bold>
+      {children}
+    </Text>
+  </Row>
 )
 
 const Event = styled.View``
@@ -257,13 +281,25 @@ Event.Time = ({ from, to, place }) => {
   const formattedFrom = formatPeriodDate(from)
   const formattedTo = to ? formatPeriodDate(to) : "Present"
   return (
-    <Text>
-      <Icon name="circle" size={10} />
-      {formattedFrom} - {formattedTo} @ {place}
-    </Text>
+    <Row style={{ alignContent: "center" }}>
+      <View
+        style={{
+          position: "absolute",
+          left: -12.5,
+          backgroundColor: "white",
+          width: 10,
+          height: 10,
+        }}
+      >
+        <Icon name="circle" size={10} />
+      </View>
+      <Text light mt={-2} mb={4}>
+        {formattedFrom} - {formattedTo} <Text regular>@</Text> {place}
+      </Text>
+    </Row>
   )
 }
-Event.Title = styled.Text``
+Event.Title = styled(Text)``
 Event.Skills = ({ children }) => (
   <Text>
     <Icon name="wrench" />
@@ -284,7 +320,7 @@ Event.Link = ({ children }) => (
 const Project = Event
 Project.Title = Event.Title
 Project.Skills = Event.Skills
-Project.Description = styled.Text``
+Project.Description = styled(Text)``
 Project.Link = ({ children, type }) => {
   const iconProps = {
     repo: {
@@ -366,7 +402,9 @@ const ResumePage: React.FC = () => {
             <Header />
             <Body>
               <Column flex={2} line>
-                <SectionTitle icon="coffee">experience</SectionTitle>
+                <SectionTitle icon="coffee" mb={4}>
+                  EXPERIENCE
+                </SectionTitle>
                 <BorderedView>
                   {jobs.map(
                     ({ period, place, name, skills, accomplishments }) => (
@@ -391,14 +429,14 @@ const ResumePage: React.FC = () => {
               </Column>
 
               <Column flex={1} line>
-                <SectionTitle icon="tools">top skills</SectionTitle>
+                <SectionTitle icon="tools">TOP SKILLS</SectionTitle>
                 <BorderedView>
                   {skills.map(({ name }) => (
                     <Text key={name}>{name}</Text>
                   ))}
                 </BorderedView>
 
-                <SectionTitle icon="graduation-cap">education</SectionTitle>
+                <SectionTitle icon="graduation-cap">EDUCATION</SectionTitle>
                 <BorderedView>
                   {certs.map(({ period, place, name, accomplishments }) => (
                     <Event key={place}>
@@ -425,7 +463,7 @@ const ResumePage: React.FC = () => {
             <Header />
             <Body>
               <Column flex={2}>
-                <SectionTitle icon="mug-tea">side projects</SectionTitle>
+                <SectionTitle icon="mug-tea">SIDE PROJECTS</SectionTitle>
                 <BorderedView>
                   {projects.map(({ name, skills, description, repo, demo }) => (
                     <Project key={name}>
@@ -440,7 +478,7 @@ const ResumePage: React.FC = () => {
                 </BorderedView>
               </Column>
               <Column flex={1}>
-                <SectionTitle icon="toolbox">other skills</SectionTitle>
+                <SectionTitle icon="toolbox">OTHER SKILLS</SectionTitle>
                 <BorderedView>
                   {otherSkills.map(({ icon, text }) => (
                     <IconBullet key={text} icon={icon}>
@@ -448,7 +486,7 @@ const ResumePage: React.FC = () => {
                     </IconBullet>
                   ))}
                 </BorderedView>
-                <SectionTitle icon="share-alt">connect</SectionTitle>
+                <SectionTitle icon="share-alt">CONNECT</SectionTitle>
                 <BorderedView>
                   {connects.map(({ icon, text }) => (
                     <IconBullet key={text} icon={icon}>
@@ -456,7 +494,7 @@ const ResumePage: React.FC = () => {
                     </IconBullet>
                   ))}
                 </BorderedView>
-                <SectionTitle icon="heart">hobbies & interests</SectionTitle>
+                <SectionTitle icon="heart">HOBBIES & INTERESTS</SectionTitle>
                 <BorderedView>
                   {hobbies.map(({ icon, text }) => (
                     <IconBullet key={text} icon={icon}>
