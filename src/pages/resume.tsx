@@ -111,12 +111,6 @@ const Row = styled.View`
 const Column = styled.View`
   flex: ${({ flex = 1 }) => flex};
   flex-direction: column;
-  /* ${({ line }) =>
-    line &&
-    `
-      border-left-color: black;
-      border-left-width: 1px;
-    `} */
 `
 
 const Body = styled(Row)`
@@ -137,7 +131,7 @@ const Line = styled.View`
 
 const BorderedView = ({ children }) => {
   return (
-    <View style={{ paddingLeft: 24 }}>
+    <View style={{ paddingLeft: 24, paddingRight: 24 }}>
       <Line style={{ left: 8 }} v />
       {children}
     </View>
@@ -243,7 +237,7 @@ const ContactDetail = ({ children, icon }) => {
 const Header = () => (
   <Row m={16}>
     <Column flex={2}>
-      <Text size={24} bolder mb={4}>
+      <Text size={24} bolder mb={2}>
         Miguel Chateloin
       </Text>
       <Text light>FRONTEND SOFTWARE ENGINEEER</Text>
@@ -293,21 +287,24 @@ Event.Time = ({ from, to, place }) => {
       >
         <Icon name="circle" size={10} />
       </View>
-      <Text light mt={-2} mb={4}>
+      <Text light mt={-2} mb={2}>
         {formattedFrom} - {formattedTo} <Text regular>@</Text> {place}
       </Text>
     </Row>
   )
 }
-Event.Title = styled(Text)``
-Event.Skills = ({ children }) => (
-  <Text>
-    <Icon name="wrench" />
+Event.Title = ({ children }) => (
+  <Text bold mb={4} size={12}>
     {children}
   </Text>
 )
+Event.Skills = ({ children }) => (
+  <Text bold mb={4}>
+    <Icon name="wrench" size={10} solid /> {children}
+  </Text>
+)
 Event.Bullet = ({ children }) => (
-  <Text>
+  <Text mb={2}>
     <Icon name="chevron-right" size={8} /> {children}
   </Text>
 )
@@ -401,7 +398,7 @@ const ResumePage: React.FC = () => {
           <Page size="A4">
             <Header />
             <Body>
-              <Column flex={2} line>
+              <Column flex={2}>
                 <SectionTitle icon="coffee" mb={4}>
                   EXPERIENCE
                 </SectionTitle>
@@ -416,10 +413,10 @@ const ResumePage: React.FC = () => {
                             place={place}
                           />
                           <Event.Title>{name}</Event.Title>
-                          <Event.Skills>{skills.join(", ")}</Event.Skills>
                           {accomplishments.map(text => (
                             <Event.Bullet>{text}</Event.Bullet>
                           ))}
+                          <Event.Skills>{skills.join(", ")}</Event.Skills>
                         </Event>
                         <Margin v={8} />
                       </View>
@@ -428,15 +425,21 @@ const ResumePage: React.FC = () => {
                 </BorderedView>
               </Column>
 
-              <Column flex={1} line>
-                <SectionTitle icon="tools">TOP SKILLS</SectionTitle>
+              <Column flex={1}>
+                <SectionTitle icon="tools" mb={16}>
+                  TOP SKILLS
+                </SectionTitle>
                 <BorderedView>
                   {skills.map(({ name }) => (
-                    <Text key={name}>{name}</Text>
+                    <View>
+                      <Text key={name}>{name}</Text>
+                    </View>
                   ))}
                 </BorderedView>
 
-                <SectionTitle icon="graduation-cap">EDUCATION</SectionTitle>
+                <SectionTitle icon="graduation-cap" mb={16}>
+                  EDUCATION
+                </SectionTitle>
                 <BorderedView>
                   {certs.map(({ period, place, name, accomplishments }) => (
                     <Event key={place}>
@@ -463,7 +466,9 @@ const ResumePage: React.FC = () => {
             <Header />
             <Body>
               <Column flex={2}>
-                <SectionTitle icon="mug-tea">SIDE PROJECTS</SectionTitle>
+                <SectionTitle icon="mug-tea" mb={4}>
+                  SIDE PROJECTS
+                </SectionTitle>
                 <BorderedView>
                   {projects.map(({ name, skills, description, repo, demo }) => (
                     <Project key={name}>
@@ -478,7 +483,9 @@ const ResumePage: React.FC = () => {
                 </BorderedView>
               </Column>
               <Column flex={1}>
-                <SectionTitle icon="toolbox">OTHER SKILLS</SectionTitle>
+                <SectionTitle icon="toolbox" mb={16}>
+                  OTHER SKILLS
+                </SectionTitle>
                 <BorderedView>
                   {otherSkills.map(({ icon, text }) => (
                     <IconBullet key={text} icon={icon}>
@@ -486,7 +493,9 @@ const ResumePage: React.FC = () => {
                     </IconBullet>
                   ))}
                 </BorderedView>
-                <SectionTitle icon="share-alt">CONNECT</SectionTitle>
+                <SectionTitle icon="share-alt" mb={16}>
+                  CONNECT
+                </SectionTitle>
                 <BorderedView>
                   {connects.map(({ icon, text }) => (
                     <IconBullet key={text} icon={icon}>
@@ -494,7 +503,9 @@ const ResumePage: React.FC = () => {
                     </IconBullet>
                   ))}
                 </BorderedView>
-                <SectionTitle icon="heart">HOBBIES & INTERESTS</SectionTitle>
+                <SectionTitle icon="heart" mb={16}>
+                  HOBBIES & INTERESTS
+                </SectionTitle>
                 <BorderedView>
                   {hobbies.map(({ icon, text }) => (
                     <IconBullet key={text} icon={icon}>

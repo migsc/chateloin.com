@@ -16,7 +16,7 @@
             "tags": ["frontend", "library", "javascript"]
           },
           {
-            "name": "Javascript / ES6",
+            "name": "JavaScript",
             "tags": [
               "frontend",
               "backend",
@@ -55,7 +55,6 @@
             "tags": ["microsoft", "paas", "backend", "devops"]
           },
           {
-            "name": "HTML 5 / CSS 3",
             "tags": ["language", "frontend", "web", "css"]
           },
           {
@@ -143,7 +142,7 @@
           {
             "period": { "from": "2019-01", "to": "2019-07" },
             "name": "THRIVE",
-            "skills": ["Javascript / ES6", "React", "Phaser Game Engine"],
+            "skills": ["JavaScript", "React", "Phaser Game Engine"],
             "description": "An attempt at a real-time strategy videogame. Started during Github Game Jam 2018.",
             "url": "https://github.com/migsc/thrive"
           },
@@ -151,7 +150,7 @@
             "period": { "from": "2017-12", "to": "2018-03" },
             "name": "GONE TRAINING",
             "skills": [
-              "Javascript / ES6",
+              "JavaScript",
               "React",
               "Webpack",
               "PHP",
@@ -201,7 +200,7 @@
             "place": "Cenergistic",
             "name": "FRONT-END SOFTWARE ENGINEER",
             "skills": [
-              "Javascript / ES6",
+              "JavaScript",
               "TypeScript",
               "React",
               "React Native",
@@ -219,10 +218,10 @@
             "place": "Tesser Health",
             "name": "FULL-STACK SOFTWARE ENGINEER",
             "skills": [
-              "Javascript / ES6",
+              "JavaScript",
               "TypeScript",
               "Angular",
-              "HTML 5 / CSS 3",
+
               "C#",
               "ASP.NET MVC 5",
               "SQL Server",
@@ -241,7 +240,7 @@
             "place": "LifeWallet",
             "name": "FRONT-END SOFTWARE ENGINEER",
             "skills": [
-              "Javascript / ES6",
+              "JavaScript",
               "Ember",
               "SASS",
               "Node.js",
@@ -261,7 +260,7 @@
             "place": "Ultimate Software",
             "name": "FULL-STACK SOFTWARE ENGINEER",
             "skills": [
-              "Javascript / ES6",
+              "JavaScript",
               "AngularJS",
               "jQuery",
               "Bootstrap",
@@ -283,7 +282,7 @@
             "place": "Picture Marketing",
             "name": "JUNIOR SOFTWARE ENGINEER",
             "skills": [
-              "Javascript / ES6",
+              "JavaScript",
               "AngularJS",
               "jQuery",
               "Bootstrap",
@@ -306,7 +305,7 @@
             "place": "TECKPERT",
             "name": "INTERN WORDPRESS DEVELOPER",
             "skills": [
-              "Javascript / ES6",
+              "JavaScript",
               "AngularJS",
               "jQuery",
               "Bootstrap",
