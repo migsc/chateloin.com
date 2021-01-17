@@ -285,7 +285,7 @@ Event.Time = ({ from, to, place }) => {
       <View
         style={{
           position: "absolute",
-          left: -12.5,
+          left: -20.5,
           backgroundColor: "white",
           width: 10,
           height: 10,
