@@ -249,7 +249,9 @@ const Header = () => (
       <Text size={24} bolder mb={2}>
         Miguel Chateloin
       </Text>
-      <Text light>FRONTEND SOFTWARE ENGINEEER</Text>
+      <Text light size={11} mt={4}>
+        FRONTEND SOFTWARE ENGINEEER
+      </Text>
     </Column>
     <Column flex={1}>
       <ContactDetail icon="envelope">miguel@chateloin.com</ContactDetail>
@@ -451,7 +453,7 @@ const ResumePage: React.FC = () => {
                       <Text bold>Familiar</Text>
                       {" / "}
                       {skills
-                        .slice(11, 20)
+                        .slice(11, 19)
                         .map(({ name }) => name)
                         .join(", ")}
                     </Text>
@@ -459,7 +461,7 @@ const ResumePage: React.FC = () => {
                       <Text bold>Rusty</Text>
                       {" / "}
                       {skills
-                        .slice(20)
+                        .slice(19)
                         .map(({ name }) => name)
                         .join(", ")}
                     </Text>
