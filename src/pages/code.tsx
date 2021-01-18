@@ -572,7 +572,7 @@ const CodePage: React.FC = props => {
                   primaryColor={"transparent"}
                   secondaryColor={"#fff"}
                   icon={faLinkedin}
-                  linkTo={"https://www.linkedin.com/in/chateloin/"}
+                  linkTo={"https://www.linkedin.com/in/migsc/"}
                   iconSize={1.5}
                 />
               </div>

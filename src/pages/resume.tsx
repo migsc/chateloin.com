@@ -11,7 +11,7 @@ import {
 } from "@react-pdf/renderer"
 import styled from "@react-pdf/styled-components"
 import dayjs from "dayjs"
-
+import { truncate, take } from "lodash"
 import { useViewportDimensions, useIsClient } from "../hooks"
 
 import LatoThin from "../assets/fonts/Lato-Thin.ttf"
@@ -74,6 +74,11 @@ Font.register({
     { src: LatoBold, fontWeight: 700 },
     { src: LatoBlack, fontWeight: 900 },
   ],
+})
+
+// Disable hyphenation
+Font.registerHyphenationCallback((words: string) => {
+  return [words]
 })
 
 const getFontWeightFromProps = ({ thin, light, bold, bolder }) => {
@@ -157,7 +162,9 @@ const faUnicodes = {
   phone: "\uf095",
   browser: "\uf37e",
   circle: "\uf111",
+  "ellipsis-h": "\uf141",
   wrench: "\uf0ad",
+  "layer-group": "\uf5fd",
   "graduation-cap": "\uf19d",
   github: "\uf09b",
   twitter: "\uf099",
@@ -167,6 +174,7 @@ const faUnicodes = {
   tools: "\uf7d9",
   toolbox: "\uf552",
   language: "\uf1ab",
+  eye: "\uf06e",
   "pencil-alt": "\uf303",
   sitemap: "\uf0e8",
   "share-alt": "\uf1e0",
@@ -175,6 +183,7 @@ const faUnicodes = {
   "gamepad-alt": "\uf8bc",
   "alien-monster": "\uf8f6",
   podcast: "\uf2ce",
+  dice: "\uf522",
   "chevron-right": "\uf054",
   scrubber: "\uf2f8",
 }
@@ -252,7 +261,9 @@ const Header = () => (
 
 const Footer = ({ page }) => (
   <Row m={16}>
-    <Text style={{ textAlign: "right" }}>Page {page}/2</Text>
+    <Text style={{ textAlign: "right", fontWeight: 300 }} light>
+      Page {page}/2
+    </Text>
   </Row>
 )
 
@@ -271,9 +282,7 @@ const SectionTitle = ({ children, icon, ...props }) => (
 )
 
 const Event = styled.View``
-Event.Time = ({ from, to, place }) => {
-  const formattedFrom = formatPeriodDate(from)
-  const formattedTo = to ? formatPeriodDate(to) : "Present"
+Event.MarkerCaption = ({ icon, children }) => {
   return (
     <Row style={{ alignContent: "center" }}>
       <View
@@ -282,13 +291,13 @@ Event.Time = ({ from, to, place }) => {
           left: -20.5,
           backgroundColor: "white",
           width: 10,
-          height: 10,
+          height: 12,
         }}
       >
-        <Icon name="circle" size={10} />
+        <Icon name={icon} size={10} />
       </View>
       <Text light mt={-2} mb={2}>
-        {formattedFrom} - {formattedTo} <Text regular>@</Text> {place}
+        {children}
       </Text>
     </Row>
   )
@@ -298,9 +307,9 @@ Event.Title = ({ children }) => (
     {children}
   </Text>
 )
-Event.Skills = ({ children }) => (
-  <Text bold mb={4}>
-    <Icon name="wrench" size={10} solid /> {children}
+Event.Skills = ({ children, ...props }) => (
+  <Text light mb={4} {...props}>
+    <Icon name="wrench" size={10} light /> {children}
   </Text>
 )
 Event.Bullet = ({ children }) => (
@@ -318,7 +327,7 @@ const Project = Event
 Project.Title = Event.Title
 Project.Skills = Event.Skills
 Project.Description = styled(Text)``
-Project.Link = ({ children, type }) => {
+Project.Link = ({ children, type, ...props }) => {
   const iconProps = {
     repo: {
       name: "github",
@@ -329,18 +338,8 @@ Project.Link = ({ children, type }) => {
     },
   }[type]
   return (
-    <Text>
-      <Icon {...iconProps} />
-      {children}
-    </Text>
-  )
-}
-
-const IconBullet = ({ children, icon }) => {
-  return (
-    <Text>
-      <Icon name={icon} />
-      {children}
+    <Text light {...props}>
+      <Icon {...iconProps} size={10} light /> {children}
     </Text>
   )
 }
@@ -371,12 +370,12 @@ const ResumePage: React.FC = () => {
     { icon: "sitemap", text: "Passion for UI/UX" },
     { icon: "eye", text: "Eye for design" },
     { icon: "language", text: "Fluent in Spanish" },
-    { icon: "pencil-alt", text: "Journalism writing background" },
+    { icon: "pencil-alt", text: "Journalism background" },
   ]
 
   const connects = [
     { icon: "twitter", text: "twitter.com/mchateloin" },
-    { icon: "linkedin", text: "linkedin.com/in/chateloin" },
+    { icon: "linkedin", text: "linkedin.com/in/migsc" },
     { icon: "github", text: "github.com/migsc" },
   ]
 
@@ -403,59 +402,96 @@ const ResumePage: React.FC = () => {
                   EXPERIENCE
                 </SectionTitle>
                 <BorderedView>
-                  {jobs.map(
+                  {take(jobs, 5).map(
                     ({ period, place, name, skills, accomplishments }) => (
                       <View key={place}>
                         <Event>
-                          <Event.Time
-                            from={period.from}
-                            to={period.to}
-                            place={place}
-                          />
+                          <Event.MarkerCaption icon="circle">
+                            {formatPeriodDate(period.from)} -{" "}
+                            {period?.to
+                              ? formatPeriodDate(period.to)
+                              : "Present"}{" "}
+                            <Text regular>@</Text> {place}
+                          </Event.MarkerCaption>
                           <Event.Title>{name}</Event.Title>
+                          <Event.Skills>
+                            {truncate(skills.join(", "), { length: 80 })}
+                          </Event.Skills>
                           {accomplishments.map(text => (
                             <Event.Bullet>{text}</Event.Bullet>
                           ))}
-                          <Event.Skills>{skills.join(", ")}</Event.Skills>
                         </Event>
                         <Margin v={8} />
                       </View>
                     )
                   )}
+                  <Event.MarkerCaption icon="ellipsis-h">
+                    See more on linkedin.com/in/migsc
+                  </Event.MarkerCaption>
                 </BorderedView>
               </Column>
 
               <Column flex={1}>
-                <SectionTitle icon="tools" mb={16}>
-                  TOP SKILLS
+                <SectionTitle icon="tools" mb={4}>
+                  SKILLS
                 </SectionTitle>
                 <BorderedView>
-                  {skills.map(({ name }) => (
-                    <View>
-                      <Text key={name}>{name}</Text>
-                    </View>
-                  ))}
+                  <View>
+                    <Text mb={4}>
+                      <Text bold hyphenationCallback={0}>
+                        Expert
+                      </Text>
+                      {" / "}
+                      {skills
+                        .slice(0, 11)
+                        .map(({ name }) => name)
+                        .join(", ")}
+                    </Text>
+                    <Text mb={4}>
+                      <Text bold>Familiar</Text>
+                      {" / "}
+                      {skills
+                        .slice(11, 20)
+                        .map(({ name }) => name)
+                        .join(", ")}
+                    </Text>
+                    <Text>
+                      <Text bold>Rusty</Text>
+                      {" / "}
+                      {skills
+                        .slice(20)
+                        .map(({ name }) => name)
+                        .join(", ")}
+                    </Text>
+                  </View>
                 </BorderedView>
 
-                <SectionTitle icon="graduation-cap" mb={16}>
+                <SectionTitle icon="graduation-cap" mt={8} mb={8}>
                   EDUCATION
                 </SectionTitle>
                 <BorderedView>
-                  {certs.map(({ period, place, name, accomplishments }) => (
-                    <Event key={place}>
-                      <Event.Time
-                        from={period.from}
-                        to={period.to}
-                        place={place}
-                      />
-                      <Event.Title>{name}</Event.Title>
+                  {certs.map(
+                    ({ period, place, teacher, name, accomplishments }) => (
+                      <Event key={place}>
+                        <Event.MarkerCaption icon="circle">
+                          {formatPeriodDate(period.from)} -{" "}
+                          {period?.to ? formatPeriodDate(period.to) : "Present"}
+                          {"\n"}
+                          {place && (
+                            <>
+                              <Text regular>@</Text> {place}
+                            </>
+                          )}
+                        </Event.MarkerCaption>
+                        <Event.Title>{name}</Event.Title>
 
-                      {accomplishments.map(text => (
-                        <Event.Bullet key={text}>{text}</Event.Bullet>
-                      ))}
-                      <Margin v={16} />
-                    </Event>
-                  ))}
+                        {accomplishments.map(text => (
+                          <Event.Bullet key={text}>{text}</Event.Bullet>
+                        ))}
+                        <Margin v={8} />
+                      </Event>
+                    )
+                  )}
                 </BorderedView>
               </Column>
             </Body>
@@ -470,47 +506,66 @@ const ResumePage: React.FC = () => {
                   SIDE PROJECTS
                 </SectionTitle>
                 <BorderedView>
-                  {projects.map(({ name, skills, description, repo, demo }) => (
-                    <Project key={name}>
-                      <Project.Title>{name}</Project.Title>
-                      <Project.Skills>{skills.join(", ")}</Project.Skills>
-                      <Project.Description>{description}</Project.Description>
-                      {repo && <Project.Link type="repo">{repo}</Project.Link>}
-                      {demo && <Project.Link type="demo">{demo}</Project.Link>}
-                      <Margin v={8} />
-                    </Project>
-                  ))}
+                  {take(projects, 7).map(
+                    ({ name, skills, description, repo, demo }) => (
+                      <Project key={name}>
+                        <Project.Title>{name}</Project.Title>
+                        <Project.Description>{description}</Project.Description>
+                        {repo && (
+                          <Project.Link type="repo" mt={4}>
+                            {repo.replace("https://", "")}
+                          </Project.Link>
+                        )}
+                        {demo && (
+                          <Project.Link type="demo" mt={4}>
+                            {demo.replace("https://", "")}
+                          </Project.Link>
+                        )}
+
+                        <Margin v={8} />
+                      </Project>
+                    )
+                  )}
+                  <Event.MarkerCaption icon="ellipsis-h">
+                    See more on chateloin.com/code
+                  </Event.MarkerCaption>
                 </BorderedView>
               </Column>
               <Column flex={1}>
-                <SectionTitle icon="toolbox" mb={16}>
+                <SectionTitle icon="toolbox" mt={8} mb={8}>
                   OTHER SKILLS
                 </SectionTitle>
                 <BorderedView>
                   {otherSkills.map(({ icon, text }) => (
-                    <IconBullet key={text} icon={icon}>
+                    <Text key={text} mb={8} size={12}>
+                      <Icon name={icon} size={12} light />
+                      {"  "}
                       {text}
-                    </IconBullet>
+                    </Text>
                   ))}
                 </BorderedView>
-                <SectionTitle icon="share-alt" mb={16}>
+                <SectionTitle icon="share-alt" mt={8} mb={8}>
                   CONNECT
                 </SectionTitle>
                 <BorderedView>
                   {connects.map(({ icon, text }) => (
-                    <IconBullet key={text} icon={icon}>
+                    <Text key={text} mb={8} size={12}>
+                      <Icon brands name={icon} size={12} light />
+                      {"  "}
                       {text}
-                    </IconBullet>
+                    </Text>
                   ))}
                 </BorderedView>
-                <SectionTitle icon="heart" mb={16}>
+                <SectionTitle icon="heart" mt={8} mb={8}>
                   HOBBIES & INTERESTS
                 </SectionTitle>
                 <BorderedView>
                   {hobbies.map(({ icon, text }) => (
-                    <IconBullet key={text} icon={icon}>
+                    <Text key={text} mb={8} size={12}>
+                      <Icon name={icon} size={12} light />
+                      {"  "}
                       {text}
-                    </IconBullet>
+                    </Text>
                   ))}
                 </BorderedView>
               </Column>

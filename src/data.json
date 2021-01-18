@@ -27,12 +27,32 @@
             ]
           },
           {
+            "name": "TypeScript",
+            "tags": ["language", "javascript"]
+          },
+          {
+            "name": "Tailwind CSS",
+            "tags": ["frontend", "css"]
+          },
+          {
+            "name": "Chakra UI",
+            "tags": ["frontend", "css"]
+          },
+          {
             "name": "GatsbyJS",
             "tags": ["web", "frontend", "javascript", "framework"]
           },
           {
+            "name": "Node.js",
+            "tags": ["runtime", "javascript", "backend"]
+          },
+          {
             "name": "ExpressJS",
             "tags": ["backend", "javascript", "framework"]
+          },
+          {
+            "name": "Elasticsearch",
+            "tags": ["database", "backend"]
           },
           {
             "name": "GraphQL",
@@ -47,43 +67,16 @@
             "tags": ["javascript", "testing", "automation", "unit"]
           },
           {
-            "name": "Amazon Web Services",
+            "name": "AWS",
             "tags": ["paas", "amazon", "backend", "devops"]
           },
           {
-            "name": "Microsoft Azure",
+            "name": "Azure",
             "tags": ["microsoft", "paas", "backend", "devops"]
           },
           {
-            "tags": ["language", "frontend", "web", "css"]
-          },
-          {
-            "name": "Boostrap",
+            "name": "Bootstrap",
             "tags": ["frontend", "library", "css"]
-          },
-          {
-            "name": "Tailwind CSS",
-            "tags": ["frontend", "css"]
-          },
-          {
-            "name": "CSS Modules",
-            "tags": ["frontend", "css"]
-          },
-          {
-            "name": "TypeScript",
-            "tags": ["language", "javascript"]
-          },
-          {
-            "name": "Node.js",
-            "tags": ["runtime", "javascript", "backend"]
-          },
-          {
-            "name": "Elasticsearch",
-            "tags": ["database", "backend"]
-          },
-          {
-            "name": "Angular 6 & AngularJS",
-            "tags": ["javascript", "framework", "frontend"]
           },
           {
             "name": "C#",
@@ -94,7 +87,11 @@
             "tags": ["framework", "microsoft", "backend"]
           },
           {
-            "name": "SQL Server 2012",
+            "name": "Angular 6 & AngularJS",
+            "tags": ["javascript", "framework", "frontend"]
+          },
+          {
+            "name": "SQL Server",
             "tags": ["database", "microsoft", "backend"]
           },
           {
@@ -198,14 +195,14 @@
           {
             "period": { "from": "2018-06" },
             "place": "Cenergistic",
-            "name": "FRONT-END SOFTWARE ENGINEER",
+            "name": "Frontend Software Engineer",
             "skills": [
-              "JavaScript",
               "TypeScript",
-              "React",
               "React Native",
+              "React",
               "Node.js",
-              "Elasticsearch"
+              "Elasticsearch",
+              "AWS"
             ],
             "accomplishments": [
               "Developed a cross-platform app to provide an analytics dashboard and internal project management features primarily for our clients to manage their building utility usage.",
@@ -216,18 +213,15 @@
           {
             "period": { "from": "2016-07", "to": "2018-05" },
             "place": "Tesser Health",
-            "name": "FULL-STACK SOFTWARE ENGINEER",
+            "name": "Full Stack Software Engineer",
             "skills": [
-              "JavaScript",
               "TypeScript",
               "Angular",
-
+              "Bootstrap",
               "C#",
               "ASP.NET MVC 5",
               "SQL Server",
-              "Microsoft Azure",
-              "Bootstrap",
-              "Webpack",
+              "Azure",
               "Zeit"
             ],
             "accomplishments": [
@@ -238,17 +232,15 @@
           {
             "period": { "from": "2015-08", "to": "2016-07" },
             "place": "LifeWallet",
-            "name": "FRONT-END SOFTWARE ENGINEER",
+            "name": "Frontend Software Engineer",
             "skills": [
-              "JavaScript",
               "Ember",
               "SASS",
               "Node.js",
               "Jasmine",
               "Selenium",
               "Cassandra",
-              "Sketch",
-              "git"
+              "Sketch"
             ],
             "accomplishments": [
               "Built a custom ember-runtime based JavaScript framework which we used to implement small single page applications that provided insurance and health-assesement to our clients’ employees.",
@@ -258,19 +250,15 @@
           {
             "period": { "from": "2014-03", "to": "2015-08" },
             "place": "Ultimate Software",
-            "name": "FULL-STACK SOFTWARE ENGINEER",
+            "name": "Software Engineer",
             "skills": [
-              "JavaScript",
               "AngularJS",
               "jQuery",
               "Bootstrap",
               "C#",
               "ASP.NET MVC 5",
-              "IIS",
               "SQL Server",
-              "MongoDB",
-              "SVN",
-              "TFS"
+              "MongoDB"
             ],
             "accomplishments": [
               "Built a custom ember-runtime based JavaScript framework which we used to implement small single page applications that provided insurance and health-assesement to our clients’ employees.",
@@ -280,9 +268,8 @@
           {
             "period": { "from": "2013-04", "to": "2014-03" },
             "place": "Picture Marketing",
-            "name": "JUNIOR SOFTWARE ENGINEER",
+            "name": "Junior Software Engineer",
             "skills": [
-              "JavaScript",
               "AngularJS",
               "jQuery",
               "Bootstrap",
@@ -290,14 +277,12 @@
               "Zend 2",
               "Apache",
               "Java",
-              "Spring",
-              "MySQL",
               "AWS",
-              "git"
+              "MySQL"
             ],
             "accomplishments": [
-              "Built a frontend dashboard with AngularJS to create and manage event marketing campaigns, while maitaninng the large PHP/Zend backend API, and integrating AWS technologies to auto-deploy microwebsites for each campaign.",
-              "Converted PSD designs to responsive websites with full social integration for highly customized big brand name clients."
+              "Built dashboard with AngularJS to manage event marketing campaigns and large PHP/Zend backend API.",
+              "Converted PSD designs to responsive websites for highly customized big brand name clients."
             ]
           },
           {
@@ -305,7 +290,6 @@
             "place": "TECKPERT",
             "name": "INTERN WORDPRESS DEVELOPER",
             "skills": [
-              "JavaScript",
               "AngularJS",
               "jQuery",
               "Bootstrap",
@@ -316,7 +300,7 @@
               "Spring",
               "MySQL",
               "AWS",
-              "git"
+              "DynamoDB"
             ],
             "accomplishments": [
               "Developed WordPress based sites with custom themes for local businesses.",
@@ -327,16 +311,25 @@
         ],
         "education": [
           {
-            "name": "B.S. COMPUTER SCIENCE",
+            "name": "Epic React",
+            "period": { "from": "2020-10" },
+            "teacher": "Kent C. Dodds",
+            "accomplishments": [
+              "Currently improving my understanding of React in a comprehensive series of workshops covering advanced hooks, patterns, performance, testing and more",
+              "Meeting weekly with a study group as we progress through the material and take turns leading our sessions."
+            ]
+          },
+          {
+            "name": "B.S. Computer Science",
             "period": { "from": "2012-08", "to": "2016-12" },
-            "place": "Florida International University",
+            "place": "Florida Intl. University",
             "accomplishments": [
               "Tutored students in Programming 1-2 courses",
               "Senior project was an Android app built with React Native that commanded a drone to take images of crops and reported yields using computer vision algorithms."
             ]
           },
           {
-            "name": "A.A. MASS COMMUNICATIONS",
+            "name": "A.A. Mass Communications",
             "period": { "from": "2008-08", "to": "2010-05" },
             "place": "Miami Dade College",
             "accomplishments": [
@@ -352,75 +345,65 @@
           "name": "chord-sketch",
           "description": "A small prototype for an audio tool that generates random chords and let's you modify them. Supports exporting to MIDI files. I use it to inspire creativity when I'm writing music.",
           "repo": "https://github.com/migsc/chord-sketch",
-          "demo": "https://fj7vn.csb.app/",
-          "skills": ["JavaScript"]
+          "demo": "https://fj7vn.csb.app/"
         },
         {
           "icon": "spotify",
           "name": "forget-what-you-heard-playlists",
           "description": "Built on an older Spotify API, this web app generates a playlist based on artist suggestions, choosing music that is not already in the user's Spotify library.",
           "repo": "https://github.com/migsc/forget-what-you-heard-playlists",
-          "demo": "http://forgetwhatyouheard.herokuapp.com/",
-          "skills": ["JavaScript"]
+          "demo": "http://forgetwhatyouheard.herokuapp.com/"
         },
         {
           "icon": "hexagon",
           "name": "thrive",
           "description": "My attempt at a real-time strategy game when I entered in a Github Game Jam. I learned a lot about rendering and pathfinding in hexagonal coordinate systems while working on this.",
           "repo": "https://github.com/migsc/thrive",
-          "demo": "https://beees.herokuapp.com",
-          "skills": ["JavaScript"]
+          "demo": "https://beees.herokuapp.com"
         },
         {
           "icon": "sort-size-down",
           "name": "react-native-scroll-direction",
           "description": "A React Native package that derives and exposes the scroll direction in ScrollView and FlatList components.",
-          "repo": "https://github.com/migsc/react-native-scroll-direction",
-          "skills": ["JavaScript"]
+          "repo": "https://github.com/migsc/react-native-scroll-direction"
         },
         {
           "icon": "calendar-alt",
           "name": "react-native-calendars",
           "description": "A calendar component for React Native that I had to extend in order to support some extra date-picking features for my company's mobile app.",
-          "repo": "https://github.com/migsc/react-native-calendars",
-          "skills": ["JavaScript"]
+          "repo": "https://github.com/migsc/react-native-calendars"
         },
         {
           "icon": "image",
           "name": "lattice.js",
           "description": "A jQuery plugin built to handle every carousel use case I imagined at the time. Handles both HTML content and images, four-directional sliding, responsive, dynamic thumbnail support and more.",
           "repo": "https://github.com/migsc/lattice.js",
-          "demo": "https://migsc.github.io/lattice.js/",
-          "skills": ["JavaScript"]
+          "demo": "https://migsc.github.io/lattice.js/"
         },
         {
           "icon": "calendar-edit",
           "name": "city-agenda-manager",
           "description": "A small web app I built for the City of Miami to manage meetings saved in a CGLive text file. Pretty basic CRUD capabilities running on Laravel (PHP) backend.",
           "repo": "https://github.com/migsc/city-agenda-manager",
-          "demo": "https://city-agenda-manager.herokuapp.com",
-          "skills": ["JavaScript"]
+          "demo": "https://city-agenda-manager.herokuapp.com"
         },
         {
           "icon": "infinity",
           "name": "8tracks-mix-feeds",
           "description": "My first side project ever! It's a WordPress plugin that displays collections of mixes from 8tracks.com. It uses built-in shortcodes from WordPress.",
-          "repo": "https://github.com/migsc/8tracks-mix-feeds",
-          "skills": ["JavaScript"]
+          "repo": "https://github.com/migsc/8tracks-mix-feeds"
         },
         {
           "icon": "shopping-cart",
           "name": "amazon-wishlist-to-drive-sheet",
           "description": "An integration that checks for new items from an Amazon wishlist and updates Google Sheets. This was really useful for budgeting my extra expenses.",
-          "repo": "https://github.com/migsc/amazon-wishlist-to-drive-sheet",
-          "skills": ["JavaScript"]
+          "repo": "https://github.com/migsc/amazon-wishlist-to-drive-sheet"
         },
         {
           "icon": "not-equal",
           "name": "deep-object-diff",
           "description": "A small library that can compare two JavaScript Objects, including nested structures of arrays and objects. ",
-          "repo": "https://github.com/migsc/deep-object-diff",
-          "skills": ["JavaScript"]
+          "repo": "https://github.com/migsc/deep-object-diff"
         }
       ],
 
