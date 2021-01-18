@@ -255,9 +255,9 @@ const Header = () => (
       </Text>
     </Column>
     <Column flex={1}>
-      <ContactDetail icon="envelope">miguel@chateloin.com</ContactDetail>
-      <ContactDetail icon="phone">+1-(786)-973-0629</ContactDetail>
       <ContactDetail icon="browser">chateloin.com</ContactDetail>
+      <ContactDetail icon="envelope">miguel@chateloin.com</ContactDetail>
+      <ContactDetail icon="phone">+1-(xxx)-xxx-xxxx</ContactDetail>
     </Column>
   </Row>
 )
