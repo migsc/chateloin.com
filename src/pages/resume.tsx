@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react"
 import {
   PDFViewer,
+  PDFDownloadLink,
   Document,
   Image,
   Page,
@@ -497,7 +498,6 @@ const ResumePage: React.FC = () => {
                 </BorderedView>
               </Column>
             </Body>
-            <Footer page={1} />
           </Page>
           {/* page 2 */}
           <Page size="A4">
@@ -572,7 +572,6 @@ const ResumePage: React.FC = () => {
                 </BorderedView>
               </Column>
             </Body>
-            <Footer page={2} />
           </Page>
         </Document>
       </PDFViewer>
