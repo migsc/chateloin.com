@@ -257,7 +257,8 @@ const Header = () => (
     <Column flex={1}>
       <ContactDetail icon="browser">chateloin.com</ContactDetail>
       <ContactDetail icon="envelope">miguel@chateloin.com</ContactDetail>
-      <ContactDetail icon="phone">+1-(xxx)-xxx-xxxx</ContactDetail>
+      {/* <ContactDetail icon="phone">+1-(xxx)-xxx-xxxx</ContactDetail> */}
+      <ContactDetail icon="phone">+1-(786)-973-0629</ContactDetail>
     </Column>
   </Row>
 )
@@ -440,32 +441,36 @@ const ResumePage: React.FC = () => {
                 </SectionTitle>
                 <BorderedView>
                   <View>
-                    <Text mb={4}>
-                      <Text bold hyphenationCallback={0}>
-                        Expert
-                      </Text>
-                      {" / "}
-                      {skills
-                        .slice(0, 11)
-                        .map(({ name }) => name)
-                        .join(", ")}
+                    <Text bolder hyphenationCallback={0}>
+                      Expert-level understanding and daily use in...
                     </Text>
                     <Text mb={4}>
-                      <Text bold>Familiar</Text>
-                      {" / "}
-                      {skills
-                        .slice(11, 19)
-                        .map(({ name }) => name)
-                        .join(", ")}
+                      JavaScript, React, React Native, Redux, Node.js, Express,
+                      Elasticsearch, HTML5, CSS, git
                     </Text>
-                    <Text>
-                      <Text bold>Rusty</Text>
-                      {" / "}
-                      {skills
-                        .slice(19)
-                        .map(({ name }) => name)
-                        .join(", ")}
+
+                    <Text bold hyphenationCallback={0}>
+                      Recently used these in production apps...
                     </Text>
+                    <Text mb={4}>
+                      TypeScript, AWS, Jest, Testing Libary, Detox, Storybook
+                    </Text>
+                    <Text bold hyphenationCallback={0}>
+                      Currently learning or building hobby projects with...
+                    </Text>
+                    <Text mb={4}>
+                      Expo, Ignite, Gatsby, Tailwind, FaunaDB, Netlify
+                      Functions, Auth0
+                    </Text>
+
+                    <Text bold>Been a few years since working with...</Text>
+                    <Text mb={4}>
+                      C#, Angular, Bootstrap, ASP.NET MVC, SQL Server, MongoDB,
+                      Azure
+                    </Text>
+
+                    <Text bold>Ancient and forbidden knowledge in...</Text>
+                    <Text>PHP, jQuery, AngularJS, WordPress, Java, MySQL</Text>
                   </View>
                 </BorderedView>
 

@@ -67,6 +67,10 @@
             "tags": ["javascript", "testing", "automation", "unit"]
           },
           {
+            "name": "Testing Libary",
+            "tags": ["frontend", "css"]
+          },
+          {
             "name": "AWS",
             "tags": ["paas", "amazon", "backend", "devops"]
           },
@@ -310,15 +314,6 @@
           }
         ],
         "education": [
-          {
-            "name": "Epic React",
-            "period": { "from": "2020-10" },
-            "teacher": "Kent C. Dodds",
-            "accomplishments": [
-              "Currently improving my understanding of React in a comprehensive series of workshops covering advanced hooks, patterns, performance, testing and more",
-              "Meeting weekly with a study group as we progress through the material and take turns leading our sessions."
-            ]
-          },
           {
             "name": "B.S. Computer Science",
             "period": { "from": "2012-08", "to": "2016-12" },
