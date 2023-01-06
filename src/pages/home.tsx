@@ -87,7 +87,7 @@ import srcCodeAvatar from "../img/code-avatar.jpg"
 import srcCenergisticLogo from "../img/cenergistic-logo.png"
 
 import { TagMap } from "../types"
-import * as styles from "./code.module.css"
+import * as styles from "./home.module.css"
 
 import { faImage } from "@fortawesome/free-regular-svg-icons"
 
