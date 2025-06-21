@@ -1,0 +1,7 @@
+baseURL = 'https://chateloin.com/'
+languageCode = 'en-us'
+title = 'Miguel Chateloin'
+theme = 're-terminal'
+[caches]
+  [caches.images]
+    dir = ':cacheDir/images'
